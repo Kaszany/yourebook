@@ -3,6 +3,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 
+const books = require('./routes/book');
+
 mongoose
   .connect(process.env.DATABASE_URL, { useNewUrlParser: true })
   .then(() => console.log('Connected'))
@@ -27,4 +29,4 @@ app.get('/api/customers', (req, res) => {
 });
 
 // Posting ebook
-app.use('/', require('./routes/postBook'));
+app.use(books);
