@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 // const _ = require('lodash');
-const {User} = require('../models/user');
+const {User} = require('../models/User');
 const Joi = require('joi');
 // const mongoose = require('mongoose');
 const express = require('express');
