@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 const express = require('express');
+const auth = require('./routes/auth');
 
 mongoose
   .connect(process.env.DATABASE_URL, { useNewUrlParser: true })
@@ -10,6 +11,7 @@ mongoose
 
 const app = express();
 app.use(express.json());
+app.use('/api/auth', auth);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
