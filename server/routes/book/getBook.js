@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const { Book } = require('../../models/Book');
+const Joi = require('joi');
 
 // funkcja która stworzy filtr do mongo
 function SearchCriteria(criterias) {
@@ -27,6 +28,10 @@ router.get('/api/books', async (req, res) => {
   try {
     //   próbuje znaleźć ksiązki w bazie
     const books = await Book.find(searchCriteria);
+    
+  // walidacja Joi - można wyszukiwać tylko roczniki 2014-2017  
+  const schema = Joi.number().min(2014).max(2017);
+  Joi.assert(year, schema);
 
     // jeśli poszukiwanie się uda zwraca json, uwaga brak książek (pusta tablica) to też jest sukces
     res.json(books);
