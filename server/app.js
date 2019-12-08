@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 const express = require('express');
+// const books = require('./routes/book');
+const user = require('routes/users');
 const auth = require('./routes/auth');
 
 mongoose
