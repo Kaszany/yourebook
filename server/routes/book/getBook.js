@@ -28,10 +28,16 @@ router.get('/api/books', async (req, res) => {
   try {
     //   próbuje znaleźć ksiązki w bazie
     const books = await Book.find(searchCriteria);
-    
+  
+  //###################################################################  
   // walidacja Joi - można wyszukiwać tylko roczniki 2014-2017  
   const schema = Joi.number().min(2014).max(2017);
   Joi.assert(year, schema);
+
+  const schemaTitle = Joi.string().min(5);
+  Joi.assert(title, schemaTitle);
+  //###################################################################
+
 
     // jeśli poszukiwanie się uda zwraca json, uwaga brak książek (pusta tablica) to też jest sukces
     res.json(books);
