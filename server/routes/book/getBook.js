@@ -25,18 +25,43 @@ router.get('/api/books', async (req, res) => {
   const searchCriteria = new SearchCriteria({ title, year, author, genre });
 
   //   bardzo podstawowa obsluga blędów
+
+
+
+
+
   try {
+      //###################################################################  
+  // walidacja Joi - można wyszukiwać tylko roczniki 2014-2017  
+  
+  // const schemaProbna = {
+  //   year = Joi.number().min(1000),
+  //   title = Joi.string().min(5)
+  // };
+  
+  
+  
+  const schema = Joi.number().min(1000);
+   Joi.validate(year, schema, (err) => {
+    if (err) {
+      res.status(422).send('The year cannot be earlier than 1000');
+    } 
+  });
+
+  const schemaTitle = Joi.string().min(5);
+   Joi.validate(title, schemaTitle, (err) => {
+    if (err) {
+      res.status(422).send('Title should have at least 5 characters');
+    } 
+  });
+  //###################################################################
+  
+
+
     //   próbuje znaleźć ksiązki w bazie
     const books = await Book.find(searchCriteria);
   
-  //###################################################################  
-  // walidacja Joi - można wyszukiwać tylko roczniki 2014-2017  
-  const schema = Joi.number().min(2014).max(2017);
-  Joi.assert(year, schema);
 
-  const schemaTitle = Joi.string().min(5);
-  Joi.assert(title, schemaTitle);
-  //###################################################################
 
 
     // jeśli poszukiwanie się uda zwraca json, uwaga brak książek (pusta tablica) to też jest sukces
