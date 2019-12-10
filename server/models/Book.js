@@ -26,11 +26,11 @@ const bookSchema = new mongoose.Schema({
   },
   bookCover: {
     type: String,
-    // required: true,
+    required: true,
   },
   PDF: {
     type: String,
-    // required: true,
+    required: true,
   }
 
 });
