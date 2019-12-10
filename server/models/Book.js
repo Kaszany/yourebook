@@ -5,13 +5,13 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
     // minlength: 2,
-    maxlenght: 128
+    maxlenght: 128,
   },
   author: {
     type: String,
     required: true,
     minlength: 2,
-    maxlenght: 128
+    maxlenght: 128,
   },
   genre: {
     type: String,
@@ -22,17 +22,16 @@ const bookSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0,
-    max: 2019,
+    max: 2019, //to jest chyba mało przyszłościowy pomysł :)
   },
   bookCover: {
     type: String,
-    required: true,
+    required: false,
   },
   PDF: {
     type: String,
-    required: true,
-  }
-
+    required: false,
+  },
 });
 
 const Book = mongoose.model('Book', bookSchema);
