@@ -4,7 +4,7 @@ const bookSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    minlength: 2,
+    // minlength: 2,
     maxlenght: 128
   },
   author: {
@@ -26,7 +26,11 @@ const bookSchema = new mongoose.Schema({
   },
   bookCover: {
     type: String,
-    required: true
+    // required: true,
+  },
+  PDF: {
+    type: String,
+    // required: true,
   }
 
 });

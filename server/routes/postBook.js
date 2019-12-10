@@ -7,16 +7,24 @@ const multer = require('multer');
 const storage = new GridFsStorage({
   url: process.env.DATABASE_URL,
   file: (req, file) => {
-    const fileInfo = {
-      filename: `Book cover of ${req.body.title}`,
-      bucketName: 'bookCovers',
-    };
-    return fileInfo;
+    if (file.mimetype === 'application/pdf') {
+      const fileInfo = {
+        filename: `PDF file, Book: ${req.body.title}`,
+        bucketName: 'PDFs',
+      };
+      return fileInfo;
+    } else {
+      const fileInfo = {
+        filename: `Bookcover image, Book: ${req.body.title}`,
+        bucketName: 'Bookcovers',
+      };
+      return fileInfo;
+    }
   },
 });
 
-const fileFilter = async (req, file, callback) => {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+const fileFilter = (req, file, callback) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'application/pdf') {
     callback(null, true);
   } else callback(new Error('Wrong file type!'), false);
 };
@@ -24,26 +32,34 @@ const fileFilter = async (req, file, callback) => {
 const upload = multer({
   storage,
   limits: {
-    fileSize: 1024 * 1024,
+    fileSize: 1024 * 1024 * 5,
   },
   fileFilter: fileFilter,
 });
 
-router.post('/api/books', upload.single('bookCover'), async (req, res) => {
-  const book = new bookModel.Book({
-    title: req.body.title,
-    author: req.body.author,
-    genre: req.body.genre,
-    year: req.body.year,
-    bookCover: req.file.id,
-  });
+router.post(
+  '/api/books',
+  upload.fields([
+    { name: 'bookCover', maxCount: 1 },
+    { name: 'PDF', maxCount: 1 },
+  ]),
+  async (req, res) => {
+    const book = new bookModel.Book({
+      title: req.body.title,
+      author: req.body.author,
+      genre: req.body.genre,
+      year: req.body.year,
+      bookCover: req.files['bookCover'][0].id,
+      PDF: req.files['PDF'][0].id,
+    });
 
-  try {
-    const newBook = await book.save();
-    res.status(200).json(newBook);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+    try {
+      const newBook = await book.save();
+      res.status(200).json(newBook);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  },
+);
 
 module.exports = router;
