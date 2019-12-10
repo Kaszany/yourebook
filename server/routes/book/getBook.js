@@ -48,10 +48,10 @@ router.get('/api/books', async (req, res) => {
     } 
   });
 
-  const schemaTitle = Joi.string().min(5);
+  const schemaTitle = Joi.string().min(2);
    Joi.validate(title, schemaTitle, (err) => {
     if (err) {
-      res.status(422).send('Title should have at least 5 characters');
+      res.status(422).send('Title should have at least 2 characters');
     } 
   });
   //###################################################################
