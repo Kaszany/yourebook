@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bookModel = require('../models/Book');
+const bookModel = require('../../models/Book');
 
 router.post('/api/books', async (req, res) => {
   const book = new bookModel.Book({
@@ -19,21 +19,3 @@ router.post('/api/books', async (req, res) => {
 });
 
 module.exports = router;
-
-// const mongoose = require('mongoose')
-
-// const bookModel = require('./../models/Book.js')
-
-// async function addBook() {
-//     const book = new bookModel.Book ({
-//       title: '50 shades of grey',
-//       author: 'E. L. James',
-//       genre: 'romance',
-//       year: 2011
-//     });
-
-//     const result = await book.save();
-//     console.log(result);
-//     }
-
-//     exports.addBook = addBook();
