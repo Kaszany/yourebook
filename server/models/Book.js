@@ -22,7 +22,7 @@ const bookSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0,
-    max: 2019, //to jest chyba mało przyszłościowy pomysł :)
+    max: 2021,
   },
   bookCover: {
     type: String,
