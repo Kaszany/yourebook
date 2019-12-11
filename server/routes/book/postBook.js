@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bookModel = require('../models/Book');
+const bookModel = require('./../../models/Book');
 const GridFsStorage = require('multer-gridfs-storage');
 const multer = require('multer');
 
