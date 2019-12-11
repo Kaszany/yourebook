@@ -3,9 +3,6 @@ const router = express.Router();
 const { Book } = require('../../models/Book');
 
 
-
-
-
 router.put('/api/books/:id', function(req, res,){
     
     Book.findByIdAndUpdate({_id: req.params.id}, req.body)
