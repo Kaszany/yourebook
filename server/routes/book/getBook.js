@@ -20,35 +20,20 @@ router.get('/api/books', async (req, res) => {
   
    try {
 
-  const schema = Joi.number().min(0);
-  Joi.validate(year, schema, (err) => {
-    if (err) {
-      res.status(422).send('The year cannot be earlier than 0');
-    } 
+  const schema = Joi.object().keys({
+    title: Joi.string().min(2),
+    year: Joi.number().min(0),
+    author: Joi.string(),
+    genre: Joi.string()
   });
-  
 
-   const schemaTitle = Joi.string().min(2);
-   Joi.validate(title, schemaTitle, (err) => {
-    if (err) {
-      res.status(422).send('Title should have at least 2 characters');
-    } 
-  });
- 
-
-
-  // const schema = Joi.object({
-  //   title: Joi.string().min(2),
-  //   year: Joi.number().min(0),
-  //   author: Joi.string(),
-  //   genre: Joi.string()
-  // });
-
-  //  Joi.validate(req.body, schema);
+    Joi.validate(req.query, schema, (err) => {
+      if (err) {
+        res.status(422).send('You entered the wrong search parameter value');
+      } 
+    });
    
     
-   
-  
   const books = await Book.find(searchCriteria);
   res.json(books);
 
