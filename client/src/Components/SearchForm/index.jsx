@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react';
 
-const genreOptions = 
-[
-{value: 'romance', text: 'romance'},
-{value: 'fantasy', text: 'fantasy'}, 
-{value: 'horror', text: 'horror'}, 
-{value: 'crime', text:'crime'}, 
-{value: 'thriller', text:'thriller'}
+const genreOptions = [
+  { value: 'romance', text: 'romance' },
+  { value: 'fantasy', text: 'fantasy' },
+  { value: 'horror', text: 'horror' },
+  { value: 'crime', text: 'crime' },
+  { value: 'thriller', text: 'thriller' },
 ];
-
 
 class SearchForm extends Component {
   constructor() {
@@ -22,22 +20,16 @@ class SearchForm extends Component {
     };
   }
 
-
-
-  
-  handleChange = e => {
-    const { name, value } = e.target;
+  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
   };
 
   handleSubmit = async e => {
     e.preventDefault();
     const { title, author, year, genre } = this.state;
-  
     const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`);
     const data = await response.json();
     console.log(data);
-    console.log(genreOptions.value);
   };
 
   render() {
@@ -53,7 +45,13 @@ class SearchForm extends Component {
           <Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
         </Form.Field>
         <Form.Field>
-          <Select placeholder="Genre" name="genre" value={genreOptions.value} onChange={this.handleChange} options={genreOptions}/>
+          <Select
+            placeholder="Genre"
+            name="genre"
+            value={this.state.genre}
+            onChange={this.handleChange}
+            options={genreOptions}
+          />
         </Form.Field>
         <Button type="submit">Show me the books!!!</Button>
       </Form>
