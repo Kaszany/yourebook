@@ -31,10 +31,16 @@ class SearchForm extends Component {
     const { title, author, year, genre } = this.state;
     const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`);
     const data = await response.json();
+    if (data.length === 0){
+      alert('The library does not contain this book');
+      console.log('The library does not contain this book');
+    }
+    else{
     console.log(data);}
-     
+    }
    catch (error) {
     alert('The value is not allowed');
+    console.log('The value is not allowed');
   }
 
 
