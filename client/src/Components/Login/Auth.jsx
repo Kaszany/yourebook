@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { Form, Input, Button } from 'semantic-ui-react';
 
 class Auth extends Component {
@@ -26,20 +26,25 @@ class Auth extends Component {
     //     console.log(`login error ${error}`);
     //   });
 
-    const response = await fetch(`/api/auth`, {
+    await fetch(`/api/auth`, {
       method: 'post',
-      body: JSON.stringify({
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+	  },
+	  body: JSON.stringify({
         email: email,
         password: password,
       }),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-    const date = await response.json();
-    console.log(date);
+
+	})
+	.then(function(response) { 
+		const date = response
+		console.log(date) })
+	.catch(function(response) {console.log(response) })
   };
+
+
 
   render() {
     return (
