@@ -51,6 +51,17 @@ class Auth extends Component {
     e.preventDefault();
     const { email, password} = this.state;
 
+    // axios
+    //   .post('/api/auth', {
+    //     email: email,
+    //     password: password,
+    //   })
+    //   .then(response => {
+    //     console.log(`response ${response}`);
+    //   })
+    //   .catch(error => {
+    //     console.log(`login error ${error}`);
+    //   });
 
     // zapisanie email do localStorage
     localStorage.setItem('email', email);
