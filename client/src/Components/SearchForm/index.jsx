@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react';
 
 const genreOptions = [
-  { value: 'romance', text: 'romance' },
-  { value: 'fantasy', text: 'fantasy' },
-  { value: 'horror', text: 'horror' },
-  { value: 'crime', text: 'crime' },
-  { value: 'thriller', text: 'thriller' },
+  { value: '', text: 'cancel this selection' },
+  { value: 'romance', text: 'Romance' },
+  { value: 'fantasy', text: 'Fantasy' },
+  { value: 'horror', text: 'Horror' },
+  { value: 'crime', text: 'Crime' },
+  { value: 'thriller', text: 'Thriller' },
 ];
 
 class SearchForm extends Component {
@@ -25,11 +26,19 @@ class SearchForm extends Component {
   };
 
   handleSubmit = async e => {
+    try {
     e.preventDefault();
     const { title, author, year, genre } = this.state;
     const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`);
     const data = await response.json();
-    console.log(data);
+    console.log(data);}
+     
+   catch (error) {
+    alert('The value is not allowed');
+  }
+
+
+
   };
 
   render() {
