@@ -122,53 +122,6 @@ class Auth extends Component {
       </div>
     );
   }
-
-  //okno modalne
-
-  // render() {
-  //   return (
-  //     <Modal
-  //       size={'mini'}
-  //       trigger={
-  //         <Button className="big olive ui button" onClick={this.handleOpen}>
-  //           <i className="check icon"></i>Login
-  //         </Button>
-  //       }
-  //       open={this.state.modalOpen}
-  //       onClose={this.handleClose}
-  //     >
-    
-  //       <Modal.Content> 
-    
-  //     <div>
-    
-  //         {this.state.errorMessage && 
-  //         <h3 style={{color: 'red', textAlign: 'center'}}>{this.state.errorMessage}</h3>}
-  //         <Form>
-  //           <Form.Field>
-  //             <div className="ui labeled input">
-  //               <label className="ui right pointing label" style={{width: '40px'}}><i className="at icon"></i></label>
-  //               <Form.Input className="ui labelled input" placeholder="Email" name="email" value={this.state.email} onChange={this.onFormChange}></Form.Input>
-  //             </div>
-  //           </Form.Field>
-  //           <Form.Field>
-  //             <div className="ui labeled input">
-  //               <label className="ui right pointing label" style={{width: '40px'}}><i className="lock icon"></i></label>
-  //               <Form.Input className="ui labelled input" placeholder="Password" name="password" type='password' value={this.state.password} onChange={this.onFormChange}></Form.Input>
-  //             </div>
-  //           </Form.Field>
-  //               <div>
-  //                 <Button className="olive ui button"><i className="check icon"></i>Login</Button>
-  //                 <Button content='I forgot my password' />
-  //               </div>
-  //         </Form>
-
-  //     </div>
-  //     </Modal.Content>
-  //     </Modal> 
-  //   );
-  // }
-
 }
 
 // export default Auth;
