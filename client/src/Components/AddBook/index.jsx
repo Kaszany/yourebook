@@ -1,0 +1,101 @@
+import React, { Component } from 'react';
+import { Button, Form, Input, Modal, Header, Icon } from 'semantic-ui-react';
+import axios from 'axios';
+
+class AddBook extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: '',
+      author: '',
+      year: '',
+      genre: '',
+
+      modalOpen: false,
+    };
+  }
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = () => this.setState({ modalOpen: false });
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    const { title, author, year, genre } = this.state;
+
+    await axios
+      .post('/api/books', {
+        title: title,
+        author: author,
+        year: year,
+        genre: genre,
+        bookCover: null,
+        PDF: null,
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  render() {
+    return (
+      <Modal
+        size={'mini'}
+        trigger={
+          <Button color="green" style={{ marginTop: '10px' }} onClick={this.handleOpen}>
+            Add Book!
+          </Button>
+        }
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+      >
+        <Header icon="book" content="Adding new book" />
+        <Modal.Content>
+          <Form onSubmit={this.handleSubmit} style={{ padding: '5px' }}>
+            <Form.Field>
+              <Input placeholder="Titleee" name="title" value={this.state.title} onChange={this.handleChange} />
+            </Form.Field>
+            <Form.Field>
+              <Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
+            </Form.Field>
+            <Form.Field>
+              <Input
+                placeholder="Year"
+                name="year"
+                type="number"
+                value={this.state.year}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <Input placeholder="Genre" name="genre" value={this.state.genre} onChange={this.handleChange} />
+            </Form.Field>
+            <Form.Field>
+              <h6 style={{margin: "2px"}}>Book cover image(JPEG/PNG)</h6>
+              <Input type="file" name="image" icon="file image"></Input>
+            </Form.Field>
+            <Form.Field>
+              <h6 style={{margin: "2px"}}>PDF file</h6>
+              <Input type="file" name="PDF" icon="file pdf" />
+            </Form.Field>
+            <Modal.Actions>
+              <Button negative style={{ marginLeft: '0px' }} onClick={this.handleClose}>
+                Leave
+              </Button>
+              <Button type="submit" positive icon="checkmark" labelPosition="right" content="Add" floated="right" />
+            </Modal.Actions>
+          </Form>
+        </Modal.Content>
+      </Modal>
+    );
+  }
+}
+
+export default AddBook;
