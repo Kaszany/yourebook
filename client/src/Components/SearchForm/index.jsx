@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Select } from 'semantic-ui-react';
+import { Form, Input, Button, Select, Icon } from 'semantic-ui-react';
 
 const genreOptions = [
   { value: '', text: 'cancel this selection' },
@@ -51,24 +51,24 @@ class SearchForm extends Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Field>
-          <Input placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
+        <Icon value="Title" name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
         </Form.Field>
         <Form.Field>
-          <Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
+        <Icon name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
         </Form.Field>
         <Form.Field>
-          <Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
+        <Icon name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
         </Form.Field>
         <Form.Field>
-          <Select
+        <Icon name='hand point down outline' /><Icon name='caret down' /><Select
             placeholder="Genre"
-            name="genre"
+            name="genre"  
             value={this.state.genre}
             onChange={this.handleChange}
             options={genreOptions}
           />
         </Form.Field>
-        <Button type="submit">Show me the books!!!</Button>
+        <Button type="submit"><Icon name='redo' /> Show me the books</Button>
       </Form>
     );
   }
