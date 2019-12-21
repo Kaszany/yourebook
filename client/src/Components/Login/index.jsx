@@ -1,11 +1,19 @@
 import React from 'react';
+
 import Auth from './Auth';
+// import Registration from '/Register';
+
+
 
 class LoginForm extends React.Component {
 
+	// handleSuccessfulAuth(data) {
+		// this.props.handleLog(data);
+	// }
+
 	render() {
 		return (
-			<div className="ui container" style={{marginTop: '50px'}}>
+			<div>
 				<Auth />
 			</div>
 		)
