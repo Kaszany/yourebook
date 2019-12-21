@@ -60,7 +60,7 @@ class SearchForm extends Component {
         <Icon name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
         </Form.Field>
         <Form.Field>
-        <Icon name='hand point down outline' /><Icon name='caret down' /><Select
+        <Icon name='hand point down outline' /><Icon name='list alternate' /><Select
             placeholder="Genre"
             name="genre"  
             value={this.state.genre}
