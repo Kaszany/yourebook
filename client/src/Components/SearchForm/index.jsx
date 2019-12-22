@@ -10,6 +10,8 @@ const genreOptions = [
   { value: 'thriller', text: 'Thriller' },
 ];
 
+const end = {text: " "};
+
 class SearchForm extends Component {
   constructor() {
     super();
@@ -38,7 +40,7 @@ class SearchForm extends Component {
     else{
       console.log(data);
       for (var i = 0; i < data.length && i < 5; i++){ 
-      console.log("Title: " + data[i].title + " Author: " + data[i].author + " Year: " + data[i].year)
+      end.text = "Title: " + data[i].title + ",  Author: " + data[i].author + "  |||  " + end.text;
       }
     }
     }
@@ -46,8 +48,6 @@ class SearchForm extends Component {
     alert('The value is not allowed');
     console.log('The value is not allowed');
   }
-
-
 
   };
 
@@ -73,11 +73,9 @@ class SearchForm extends Component {
           />
         </Form.Field>
         <Button type="submit" className="ui button"><Icon name='redo' /> Show me the books</Button>
-        <Card>
-                <Card.Content>
-                  <Card.Header content={this.state.author}/>
-                </Card.Content>
-              </Card>
+        <Card >
+        <Card.Content content={end.text} />        
+        </Card>
       </Form>
              
     );
