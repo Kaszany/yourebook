@@ -20,6 +20,8 @@ class SearchForm extends Component {
       author: '',
       year: '',
       genre: '',
+      end: '',
+      pdf: ''
     };
   }
 
@@ -40,8 +42,10 @@ class SearchForm extends Component {
     else{
       console.log(data);
       for (var i = 0; i < data.length && i < 5; i++){ 
-      end.text = "Title: " + data[i].title + ",  Author: " + data[i].author + "  |||  " + end.text;
+      end.text = "Title: " + data[i].title + " * Author: " + data[i].author + " * Genre: " + data[i].genre + " \n \n" + end.text;
       }
+      const five = document.getElementById("fiveBooks");
+      five.innerText = end.text;
     }
     }
    catch (error) {
@@ -72,10 +76,10 @@ class SearchForm extends Component {
             options={genreOptions}
           />
         </Form.Field>
-        <Button type="submit" className="ui button"><Icon name='redo' /> Show me the books</Button>
-        <Card >
-        <Card.Content content={end.text} />        
+        <Card id="fiveBooks">
+        <Card.Content content={end.text} onSubmit={this.handleSubmit}/>        
         </Card>
+        <Button type="submit" className="ui button"><Icon name='redo' /> Show me the books</Button>
       </Form>
              
     );
