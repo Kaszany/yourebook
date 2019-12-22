@@ -36,12 +36,10 @@ class SearchForm extends Component {
       console.log('The library does not contain this book');
     }
     else{
-    console.log(data);
-    console.log("TITLE: " + data[0].title + " AUTHOR: " + data[0].author) 
-    console.log("TITLE: " + data[1].title + " AUTHOR: " + data[1].author)
-    console.log("TITLE: " + data[2].title + " AUTHOR: " + data[2].author)
-    const xxx = data[0].title;
-    return xxx;
+      console.log(data);
+      for (var i = 0; i < data.length && i < 5; i++){ 
+      console.log("Title: " + data[i].title + " Author: " + data[i].author + " Year: " + data[i].year)
+      }
     }
     }
    catch (error) {
