@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Select, Icon } from 'semantic-ui-react';
+import { Form, Input, Button, Select, Icon, Card  } from 'semantic-ui-react';
 
 const genreOptions = [
   { value: '', text: 'cancel this selection' },
@@ -36,7 +36,13 @@ class SearchForm extends Component {
       console.log('The library does not contain this book');
     }
     else{
-    console.log(data);}
+    console.log(data);
+    console.log("TITLE: " + data[0].title + " AUTHOR: " + data[0].author) 
+    console.log("TITLE: " + data[1].title + " AUTHOR: " + data[1].author)
+    console.log("TITLE: " + data[2].title + " AUTHOR: " + data[2].author)
+    const xxx = data[0].title;
+    return xxx;
+    }
     }
    catch (error) {
     alert('The value is not allowed');
@@ -68,8 +74,14 @@ class SearchForm extends Component {
             options={genreOptions}
           />
         </Form.Field>
-        <Button type="submit"><Icon name='redo' /> Show me the books</Button>
+        <Button type="submit" className="ui button"><Icon name='redo' /> Show me the books</Button>
+        <Card>
+                <Card.Content>
+                  <Card.Header content={this.state.author}/>
+                </Card.Content>
+              </Card>
       </Form>
+             
     );
   }
 }
