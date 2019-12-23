@@ -4,13 +4,42 @@ import { Button, Divider, Form, Grid, Segment, Header, Icon} from 'semantic-ui-r
 
 
 class Auth extends Component {
-  state = { email: '', password: '' };
+  userData;
 
+  state = { email: '', password: '' , errorMessage: ''};
+
+  // pobranie i ustawienie wartości input
   onFormChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
+  // ustawienie wartości localStorage
+  componentDidMount() {
+    this.userData = JSON.parse(localStorage.getItem('user'));
+    console.log(this.userData)
+
+    // jeżeli dane są zapisane w localStorage to uzuepłnij nimi formularz
+    if(localStorage.getItem('user')) {
+      this.setState({
+        email: this.userData.email,
+        password: this.userData.password
+      })
+    } 
+    // jeżeli w localStorage nie ma danych to pozostawiamy te pola puste
+    else {
+      this.setState({
+        email:'',
+        password:''
+      })
+    }
+  }
+
+  componentDidUpdate(nextProps, nextState) {
+    localStorage.setItem('user', JSON.stringify(nextState));
+  }
+
+  //pobranie danych z servera
   onFormSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
@@ -21,32 +50,13 @@ class Auth extends Component {
         password: password,
       })
       .then(response => {
-        // if (resoponse.data.logged) {
-          // // this.props.handleSuccessfulAuth(response.data);
-        // }
-		    console.log(response);
+        console.log(response);
       })
       .catch(error => {
-        console.log(`login error ${error}`);
+        this.setState({errorMessage: error.response.data});
+        console.log(`login error ${error.response.data}`);
       });
-
-    // await fetch(`/api/auth`, {
-    //   method: 'post',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-	//   },
-	//   body: JSON.stringify({
-    //     email: email,
-    //     password: password,
-    //   }),
-
-	// })
-	// .then(function(response) { 
-	// 	const date = response
-	// 	console.log(date) })
-	// .catch(function(response) {console.log(response) })
-  };
+  }
 
   render() {
     return (
@@ -65,7 +75,10 @@ class Auth extends Component {
             </Grid.Column>
           </Grid>
         </Header>
+
         <Segment placeholder onSubmit={this.onFormSubmit}>
+          {this.state.errorMessage && 
+          <h3 style={{color: 'red', textAlign: 'center'}}>{this.state.errorMessage}</h3>}
           <Grid columns={2} relaxed='very' stackable>
             <Grid.Column>
               <Form>
