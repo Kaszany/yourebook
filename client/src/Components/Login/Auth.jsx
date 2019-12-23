@@ -119,6 +119,12 @@ class Auth extends Component {
                 </div>
           </Form>
 
+            <Grid.Column verticalAlign='middle'>
+              <Button content='Sign up' icon='signup'   size='big' />
+            </Grid.Column>
+          </Grid>
+          <Divider vertical>Or</Divider>
+        </Segment>
       </div>
     );
   }

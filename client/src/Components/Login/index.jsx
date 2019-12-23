@@ -1,7 +1,9 @@
 import React from 'react';
+// import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Auth from './Auth';
-// import Registration from '/Register';
+// import Register from './Register';
+// import { Container } from 'semantic-ui-react';
 
 
 
@@ -16,8 +18,18 @@ class LoginForm extends React.Component {
 			<div>
 				<Auth />
 			</div>
+			// <BrowserRouter>
+				/* <Container> */
+				  /* <Switch> */
+					/* {/* <Route path="/" component={Auth} 	/> */
+					/* {/* <Route path="/register" component=	{Register} /> */
+				  /* </Switch> */
+				/* </Container> */
+		  	/* </BrowserRouter> */
 		)
 	}
+
+
 };
 
 export default LoginForm;
