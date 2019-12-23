@@ -49,10 +49,8 @@ router.post(
       author: req.body.author,
       genre: req.body.genre,
       year: req.body.year,
-      bookCover: null,
-      PDF: null,
-      // bookCover: req.files['bookCover'] ? req.files['bookCover'][0].id : null,
-      // PDF: req.files['PDF'] ? req.files['PDF'][0].id : null,
+      bookCover: req.files['bookCover'] ? req.files['bookCover'][0].id : null,
+      PDF: req.files['PDF'] ? req.files['PDF'][0].id : null,
     });
 
     try {

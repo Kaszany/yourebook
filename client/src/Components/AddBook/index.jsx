@@ -10,7 +10,8 @@ class AddBook extends Component {
       author: '',
       year: '',
       genre: '',
-
+      bookCover: null,
+      PDF: null,
       modalOpen: false,
     };
   }
@@ -23,18 +24,29 @@ class AddBook extends Component {
     this.setState({ [name]: value });
   };
 
+  handleUpload = e => {
+    const { name, files} = e.target;
+    this.setState({
+      [name]: files[0],
+     })
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
-    const { title, author, year, genre } = this.state;
+    const { title, author, year, genre, bookCover, PDF } = this.state;
+    const bookFormData = new FormData();
+    bookFormData.set('title', title)
+    bookFormData.set('author', author)
+    bookFormData.set('year', year)
+    bookFormData.set('genre', genre)
+    bookFormData.set('bookCover', bookCover)
+    bookFormData.set('PDF', PDF)
 
-    await axios
-      .post('/api/books', {
-        title: title,
-        author: author,
-        year: year,
-        genre: genre,
-        bookCover: null,
-        PDF: null,
+    await axios({
+      method: 'post',
+      url: '/api/books',
+      data: bookFormData,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
       })
       .then(res => {
         console.log(res);
@@ -78,12 +90,12 @@ class AddBook extends Component {
               <Input placeholder="Genre" name="genre" value={this.state.genre} onChange={this.handleChange} />
             </Form.Field>
             <Form.Field>
-              <h6 style={{margin: "2px"}}>Book cover image(JPEG/PNG)</h6>
-              <Input type="file" name="image" icon="file image"></Input>
+              <h6 style={{ margin: '2px' }}>Book cover image(JPEG/PNG)</h6>
+              <Input type="file" name="bookCover" icon="file image" onChange={this.handleUpload}/>
             </Form.Field>
             <Form.Field>
-              <h6 style={{margin: "2px"}}>PDF file</h6>
-              <Input type="file" name="PDF" icon="file pdf" />
+              <h6 style={{ margin: '2px' }}>PDF file</h6>
+              <Input type="file" name="PDF" icon="file pdf" onChange={this.handleUpload}/>
             </Form.Field>
             <Modal.Actions>
               <Button negative style={{ marginLeft: '0px' }} onClick={this.handleClose}>
