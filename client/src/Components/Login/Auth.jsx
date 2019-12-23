@@ -17,11 +17,12 @@ class Auth extends Component {
   // ustawienie wartości localStorage
   componentDidMount() {
     this.userData = JSON.parse(localStorage.getItem('user'));
-    console.log(this.userData)
+    console.log('dane z localStorage: ',this.userData)
 
     // jeżeli dane są zapisane w localStorage to uzuepłnij nimi formularz
     if(localStorage.getItem('user')) {
       this.setState({
+            // email: JSON.parse(localStorage.getItem('email'))
         email: this.userData.email,
         password: this.userData.password
       })
@@ -50,7 +51,8 @@ class Auth extends Component {
         password: password,
       })
       .then(response => {
-        console.log(response);
+        console.log('response: ', response);
+
       })
       .catch(error => {
         this.setState({errorMessage: error.response.data});
@@ -99,7 +101,14 @@ class Auth extends Component {
                   value={this.state.password} 
                   onChange={this.onFormChange}
                 />
-                <Button content='Login' primary />
+                <Grid>
+                  <Grid.Column width={8} style={{marginTop: '10px', right: '0'}}>
+                    <Button content='Login' primary />
+                  </Grid.Column>
+                  <Grid.Column width={8} style={{marginTop: '10px'}}>
+                    <Button content='I forgot my  password' />
+                  </Grid.Column>
+                </Grid>
               </Form>
             </Grid.Column>
 
