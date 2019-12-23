@@ -12,6 +12,10 @@ const genreOptions = [
 
 const end = {text: " "};
 
+//const czysc = document.getElementById("czysc");
+//const hej = document.getElementById("czysc")
+
+
 class SearchForm extends Component {
   constructor() {
     super();
@@ -24,6 +28,14 @@ class SearchForm extends Component {
       pdf: ''
     };
   }
+
+
+
+
+  handleClean = () => {
+    const ccc = document.getElementById("showBooks");
+    ccc.innerText = "Cleaning successful"
+  };
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
@@ -44,8 +56,8 @@ class SearchForm extends Component {
       for (var i = 0; i < data.length /*&& i < 5*/; i++){ 
       end.text = "Title: " + data[i].title.toUpperCase() + " * Author: " + data[i].author.toUpperCase() + " * Genre: " + data[i].genre.toUpperCase() + " \n \n" + end.text;
       }
-      const five = document.getElementById("fiveBooks");
-      five.innerText = end.text;
+      const showBooks = document.getElementById("showBooks");
+      showBooks.innerText = end.text;
     }
     }
    catch (error) {
@@ -55,19 +67,22 @@ class SearchForm extends Component {
 
   };
 
+ 
+
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Field>
+      
+      <Form >
+        <Form.Field >
         <Icon value="Title" name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
         </Form.Field>
-        <Form.Field>
+        <Form.Field >
         <Icon name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
         </Form.Field>
-        <Form.Field>
+        <Form.Field >
         <Icon name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
         </Form.Field>
-        <Form.Field>
+        <Form.Field >
         <Icon name='hand point down outline' /><Icon name='list alternate' /><Select
             placeholder="Genre"
             name="genre"  
@@ -76,13 +91,17 @@ class SearchForm extends Component {
             options={genreOptions}
           />
         </Form.Field> 
-        <Card id="fiveBooks">
-        <Card.Content content={end.text} onSubmit={this.handleSubmit}/>        
-        </Card>
-        <Button type="submit" className="ui button"><Icon name='redo' /> Show me the books</Button>
+        <Card id="showBooks" onSubmit={this.handleSubmit}>
+        <Card.Content />        
+        </Card> 
+      <Button className="ui button" onClick={this.handleSubmit}><Icon name='redo' /> Show me the books</Button>
+      <Button color="red" onClick={this.handleClean}> <Icon name='redo' /> Clear the books</Button>
       </Form>
-             
+     
+      
     );
+          
+    
   }
 }
 
