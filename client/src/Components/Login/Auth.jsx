@@ -44,6 +44,9 @@ class Auth extends Component {
       })
     }
   }
+
+  componentDidUpdate(nextProps, nextState) {
+    localStorage.setItem('user', JSON.stringify(nextState));
   }
 
   //  pobranie danych z formularza
