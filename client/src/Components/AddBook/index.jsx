@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Modal, Header, Icon } from 'semantic-ui-react';
+import { Button, Form, Input, Modal, Header} from 'semantic-ui-react';
 import axios from 'axios';
 
 class AddBook extends Component {

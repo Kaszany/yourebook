@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-export default class MenuExampleSecondary extends Component {
+export default class NavBar extends Component {
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -12,35 +12,31 @@ export default class MenuExampleSecondary extends Component {
 
     return (
       <Menu secondary>
-        <Link to="/">
         <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
+          name='Home'
+          active={activeItem === 'Home'}
           onClick={this.handleItemClick}
+          as={Link} to='/home'
         />
-        </Link>
-        <Link to="/collection">
         <Menu.Item
           name='Collection'
           active={activeItem === 'Collection'}
           onClick={this.handleItemClick}
+          as={Link} to='/collection'
         />
-        </Link>
-        <Link to="/reviews">
         <Menu.Item
-          name='reviews'
-          active={activeItem === 'reviews'}
+          name='Reviews'
+          active={activeItem === 'Reviews'}
           onClick={this.handleItemClick}
+          as={Link} to='/reviews'
         />
-       </Link>
         <Menu.Menu position='right'>
-        <Link to="/login">
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}
             onClick={this.handleItemClick}
+            as={Link} to='/login'
           />
-        </Link>
         </Menu.Menu>
       </Menu>
     )
