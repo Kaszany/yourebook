@@ -10,7 +10,7 @@ const genreOptions = [
   { value: 'thriller', text: 'Thriller' },
 ];
 
-const end = {text: " "};
+
 
 //const czysc = document.getElementById("czysc");
 //const hej = document.getElementById("czysc")
@@ -53,6 +53,7 @@ class SearchForm extends Component {
     }
     else{
       console.log(data);
+      const end = {text: " "};
       for (var i = 0; i < data.length /*&& i < 5*/; i++){ 
       end.text = "Title: " + data[i].title.toUpperCase() + " * Author: " + data[i].author.toUpperCase() + " * Genre: " + data[i].genre.toUpperCase() + " \n \n" + end.text;
       }
