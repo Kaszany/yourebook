@@ -41,8 +41,8 @@ class SearchForm extends Component {
     }
     else{
       console.log(data);
-      for (var i = 0; i < data.length && i < 5; i++){ 
-      end.text = "Title: " + data[i].title + " * Author: " + data[i].author + " * Genre: " + data[i].genre + " \n \n" + end.text;
+      for (var i = 0; i < data.length /*&& i < 5*/; i++){ 
+      end.text = "Title: " + data[i].title.toUpperCase() + " * Author: " + data[i].author.toUpperCase() + " * Genre: " + data[i].genre.toUpperCase() + " \n \n" + end.text;
       }
       const five = document.getElementById("fiveBooks");
       five.innerText = end.text;
@@ -75,7 +75,7 @@ class SearchForm extends Component {
             onChange={this.handleChange}
             options={genreOptions}
           />
-        </Form.Field>
+        </Form.Field> 
         <Card id="fiveBooks">
         <Card.Content content={end.text} onSubmit={this.handleSubmit}/>        
         </Card>
