@@ -10,12 +10,6 @@ const genreOptions = [
   { value: 'thriller', text: 'Thriller' },
 ];
 
-
-
-//const czysc = document.getElementById("czysc");
-//const hej = document.getElementById("czysc")
-
-
 class SearchForm extends Component {
   constructor() {
     super();
@@ -24,18 +18,9 @@ class SearchForm extends Component {
       author: '',
       year: '',
       genre: '',
-      end: '',
-      pdf: ''
+      data: []
     };
   }
-
-
-
-// DO PODMIANY
-  handleClean = () => {
-    const ccc = document.getElementById("showBooks");
-    ccc.innerText = "Cleaning successful"
-  };
 
   handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
@@ -54,25 +39,23 @@ class SearchForm extends Component {
     else{
       console.log(data);
       const end = {text: " "};
-      for (var i = 0; i < data.length /*&& i < 5*/; i++){ 
-      end.text = "Title: " + data[i].title.toUpperCase() + " * Author: " + data[i].author.toUpperCase() + " * Genre: " + data[i].genre.toUpperCase() + " \n \n" + end.text;
+      for (var i = 0; i < data.length; i++){ 
+      end.text = "Title: " + 
+      data[i].title.toUpperCase() + 
+      " * Author: " + data[i].author.toUpperCase() +
+      " * Genre: " + data[i].genre.toUpperCase() +
+      end.text;
       }
-      const showBooks = document.getElementById("showBooks");
-      showBooks.innerText = end.text;
+      console.log(this.props);
+      this.props.changeData(end.text);
     }
-    }
-   catch (error) {
+    } catch (error) {
     alert('The value is not allowed');
-    console.log('The value is not allowed');
   }
-
   };
 
- 
-
   render() {
-    return (
-      
+    return (  
       <Form >
         <Form.Field >
         <Icon value="Title" name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
@@ -91,18 +74,12 @@ class SearchForm extends Component {
             onChange={this.handleChange}
             options={genreOptions}
           />
-        </Form.Field> 
-        <Card id="showBooks" onSubmit={this.handleSubmit}>
-        <Card.Content />        
-        </Card> 
-      <Button className="ui button" onClick={this.handleSubmit}><Icon name='redo' /> Show me the books</Button>
-      <Button color="red" onClick={this.handleClean}> <Icon name='redo' /> Clear the books</Button>
-      </Form>
-     
-      
-    );
-          
-    
+        </Form.Field>  
+        <Button className="ui button" onClick={this.handleSubmit}>
+        <Icon name='redo' /> Show me the books
+        </Button>
+      </Form>  
+    );  
   }
 }
 
