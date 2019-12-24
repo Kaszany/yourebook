@@ -31,7 +31,7 @@ class SearchForm extends Component {
 
 
 
-
+// DO PODMIANY
   handleClean = () => {
     const ccc = document.getElementById("showBooks");
     ccc.innerText = "Cleaning successful"
