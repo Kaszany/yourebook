@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button } from 'semantic-ui-react';
 
 class Books extends Component {
-  
+
     constructor() {
         super();
         this.state = {
@@ -21,7 +21,7 @@ getBooks = async e => {
     }
     else{
       console.log(data);
-      this.setState( {books: data}); 
+      this.setState( {books: data});
     }
     } catch (error) {
     alert('The value is not allowed');
@@ -35,12 +35,12 @@ render(){
      {this.state.books.map(book => {
       return (
         <Card>
-        <Card.Content>{"Title: " + book.title.toUpperCase() + " * Author: " + book.author.toUpperCase()}</Card.Content>       
+        <Card.Content>{"Title: " + book.title.toUpperCase() + " * Author: " + book.author.toUpperCase()}</Card.Content>
       </Card>
       );
-     })} 
-     
-      
+     })}
+
+
     </>
   );
 }
