@@ -76,6 +76,7 @@ class Auth extends Component {
         password: password,
       })
       .then(response => {
+        console.log('response: ', response);
 
         // zapisywanie statusu, jako token do localStorage
         localStorage.setItem('status', response.data);
