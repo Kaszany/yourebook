@@ -34,7 +34,7 @@ render(){
      <Button className="ui button" color="green" onClick={this.getBooks}>Show me all books</Button>
      {this.state.books.map(book => {
       return (
-        <Card>
+        <Card key={book._id}>
         <Card.Content>{"Title: " + book.title.toUpperCase() + " * Author: " + book.author.toUpperCase()}</Card.Content>       
       </Card>
       );
