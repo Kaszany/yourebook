@@ -7,6 +7,12 @@ export default class NavBar extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleLogOut = e => {
+      localStorage.removeItem('email');
+      localStorage.removeItem('status');
+  }
+
+
   render() {
     const { activeItem } = this.state
 
@@ -34,7 +40,7 @@ export default class NavBar extends Component {
           <Menu.Item
             name='logout'
             active={activeItem === 'logout'}
-            onClick={this.handleItemClick}
+            onClick={this.handleLogOut}
             as={Link} to='/login'
           />
         </Menu.Menu>
