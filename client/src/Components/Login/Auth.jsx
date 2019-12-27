@@ -5,37 +5,35 @@ import { withRouter } from "react-router-dom";
 
 
 class Auth extends Component {
-  // userData;
-  // nextState;
+  userData;
 
-  state = { email: '', password: '' , errorMessage: ''};
+  state = { 
+    email: '', 
+    password: '', 
+    errorMessage: ''
+  };
 
-  // pobranie i ustawienie wartości input oraz z localStorage
+  // pobranie i ustawienie wartości input
   onFormChange = e => {
     const { name, value } = e.target;
     this.setState( () => { 
-      // localStorage.setItem('user', JSON.stringify(this.nextState));
       return {[name]: value };
     });
 
   };
 
-  // ustawienie wartości localStorage
+  // pobieranie wartości z localStorage
   componentDidMount() {
     this.userEmail = localStorage.getItem('email');
-    this.userPassword = localStorage.getItem('password');
+    // this.userPassword = localStorage.getItem('password');
 
-    console.log('dane z localStorage: ',this.userEmail)
-    
-    // jeżeli dane są zapisane w localStorage to uzuepłnij nimi formularz
-    if(localStorage.getItem(this.userEmail)) {
-    console.log('dane z localStorage: ',this.userPassword)
-      
+    // jeżeli dane (email) są zapisane w localStorage to uzuepłnij nimi formularz
+    if(localStorage.getItem('email')) {
       this.setState({
         email: this.userEmail,
-        password: this.userPassword
+        password: 'password'
       })
-    } 
+    }
     // jeżeli w localStorage nie ma danych to pozostawiamy te pola puste
     else {
       this.setState({
@@ -45,33 +43,43 @@ class Auth extends Component {
     }
   }
 
-  // componentDidUpdate(nextProps, nextState) {
-    // localStorage.setItem('user', JSON.stringify(nextState));
-  // }
-
-  //pobranie danych z servera
+  //  pobranie danych z formularza
   onFormSubmit = async e => {
     e.preventDefault();
-    const { email, password } = this.state;
+    const { email, password} = this.state;
+
+
+    // zapisanie email do localStorage
     localStorage.setItem('email', email);
 
-    axios
-      .post('/api/auth', {
-        email: email,
-        password: password,
-      })
-      .then(response => {
-        console.log('response: ', response);
-        
-        localStorage.setItem('password', response.data);
-    
-        this.props.history.push('/');
+    if(localStorage.getItem('status')) {
+      this.props.history.push('/')
+    } else {
+      axios
+        .post('/api/auth', {
+          email: email,
+          password: password,
+        })
+        .then(response => {
 
-      })
-      .catch(error => {
-        this.setState({errorMessage: error.response.data});
-        console.log(`login error ${error.response.data}`);
-      });
+          // zapisywanie statusu do localStorage
+          localStorage.setItem('status', true);
+
+          //przekierowanie do home po poprawnym zalogowaniu
+          this.props.history.push('/');
+
+        })
+        .catch(error => {
+          this.setState({errorMessage: error.response.data});
+          console.log(`login error ${error.response.data}`);
+        });
+    }
+  }
+
+  // przekierowanie do rejestracji - adres przekierowania do poprawy!!!
+  onRegister = e => {
+    e.preventDefault();
+    this.props.history.push('/');
   }
 
   render() {
@@ -120,14 +128,14 @@ class Auth extends Component {
                     <Button content='Login' primary />
                   </Grid.Column>
                   <Grid.Column width={8} style={{marginTop: '10px'}}>
-                    <Button content='I forgot my  password' />
+                    <Button content='I forgot my password' />
                   </Grid.Column>
                 </Grid>
               </Form>
             </Grid.Column>
 
             <Grid.Column verticalAlign='middle'>
-              <Button content='Sign up' icon='signup'   size='big' />
+              <Button content='Sign up' icon='signup'size='big' onClick={this.onRegister} />
             </Grid.Column>
           </Grid>
           <Divider vertical>Or</Divider>
