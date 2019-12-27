@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Divider, Form, Grid, Segment, Header, Icon} from 'semantic-ui-react'
+import { withRouter } from "react-router-dom";
 
 
 class Auth extends Component {
-  userData;
+  // userData;
+  // nextState;
 
   state = { email: '', password: '' , errorMessage: ''};
 
-  // pobranie i ustawienie wartości input
+  // pobranie i ustawienie wartości input oraz z localStorage
   onFormChange = e => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    this.setState( () => { 
+      // localStorage.setItem('user', JSON.stringify(this.nextState));
+      return {[name]: value };
+    });
+
   };
 
   // ustawienie wartości localStorage
   componentDidMount() {
-    this.userData = JSON.parse(localStorage.getItem('user'));
-    console.log('dane z localStorage: ',this.userData)
+    this.userEmail = localStorage.getItem('email');
+    this.userPassword = localStorage.getItem('password');
 
+    console.log('dane z localStorage: ',this.userEmail)
+    
     // jeżeli dane są zapisane w localStorage to uzuepłnij nimi formularz
-    if(localStorage.getItem('user')) {
+    if(localStorage.getItem(this.userEmail)) {
+    console.log('dane z localStorage: ',this.userPassword)
+      
       this.setState({
-            // email: JSON.parse(localStorage.getItem('email'))
-        email: this.userData.email,
-        password: this.userData.password
+        email: this.userEmail,
+        password: this.userPassword
       })
     } 
     // jeżeli w localStorage nie ma danych to pozostawiamy te pola puste
@@ -36,14 +45,15 @@ class Auth extends Component {
     }
   }
 
-  componentDidUpdate(nextProps, nextState) {
-    localStorage.setItem('user', JSON.stringify(nextState));
-  }
+  // componentDidUpdate(nextProps, nextState) {
+    // localStorage.setItem('user', JSON.stringify(nextState));
+  // }
 
   //pobranie danych z servera
   onFormSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
+    localStorage.setItem('email', email);
 
     axios
       .post('/api/auth', {
@@ -52,6 +62,10 @@ class Auth extends Component {
       })
       .then(response => {
         console.log('response: ', response);
+        
+        localStorage.setItem('password', response.data);
+    
+        this.props.history.push('/');
 
       })
       .catch(error => {
@@ -123,4 +137,5 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+// export default Auth;
+export default withRouter(Auth)
