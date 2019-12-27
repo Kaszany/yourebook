@@ -32,6 +32,18 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  decription: {
+    type: String,
+    required: false,
+    minlength: 2,
+    maxlenght: 10000,
+  },
+  reviews: [{
+    type: String,
+    required: false,
+    minlength: 2,
+    maxlenght: 10000,
+  }],
 });
 
 const Book = mongoose.model('Book', bookSchema);
