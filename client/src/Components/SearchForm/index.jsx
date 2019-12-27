@@ -44,7 +44,7 @@ class SearchForm extends Component {
       data[i].title.toUpperCase() + 
       " * Author: " + data[i].author.toUpperCase() +
       " * Genre: " + data[i].genre.toUpperCase() +
-      end.text;
+      " * |||| " + end.text;
       }
       console.log(this.props);
       this.props.changeData(end.text);

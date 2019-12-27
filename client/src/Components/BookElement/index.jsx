@@ -21,16 +21,7 @@ getBooks = async e => {
     }
     else{
       console.log(data);
-      const end = {text: " "};
-      for (var i = 0; i < data.length; i++){ 
-      end.text = "Title: " + 
-      data[i].title.toUpperCase() + 
-      " * Author: " + data[i].author.toUpperCase() +
-      " * Genre: " + data[i].genre.toUpperCase() +
-      " * " + end.text;
-      this.setState( {books: data});  
-      }
-      
+      this.setState( {books: data}); 
     }
     } catch (error) {
     alert('The value is not allowed');
