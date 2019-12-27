@@ -17,8 +17,7 @@ class SearchForm extends Component {
       title: '',
       author: '',
       year: '',
-      genre: '',
-      data: []
+      genre: ''
     };
   }
 
@@ -46,7 +45,6 @@ class SearchForm extends Component {
       " * Genre: " + data[i].genre.toUpperCase() +
       end.text;
       }
-      console.log(this.props);
       this.props.changeData(end.text);
     }
     } catch (error) {
