@@ -20,7 +20,8 @@ getBooks = async e => {
       alert('The library does not contain this book');
     }
     else{
-      this.setState( {books: data}); 
+      //data.length = 5; - gdy chcę ograniczyć ilość
+      this.setState( {books: data});
     }
     } catch (error) {
     alert('The value is not allowed');

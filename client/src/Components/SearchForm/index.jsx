@@ -39,7 +39,9 @@ class SearchForm extends Component {
       alert('You have not selected any search options');
     }
     else{
-      this.setState( {books: data} );
+      //data.length = 5; - gdy chcę ograniczyć ilość
+      this.setState( {books: data} )
+      
     }
     } catch (error) {
     alert('The value is not allowed');
