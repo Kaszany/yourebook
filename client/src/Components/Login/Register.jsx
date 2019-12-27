@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'semantic-ui-react';
 import axios from 'axios';
+import { useFormik } from 'formik';
+
+
+// basic
 
 class Register extends Component {
     state = { name: '', email: '', password: '', passwordconf: '' };
+
+
 
     onFormChange = e => {
       const { name, value } = e.target;
@@ -13,7 +19,7 @@ class Register extends Component {
     onFormSubmit = async e => {
       e.preventDefault();
       const { name, email, password, passwordconf} = this.state;
-      if (password!==passwordconf) return (console.log('confirm password'));
+      if (password!==passwordconf) return (alert('confirm password'));
 
       axios
         .post('/api/users', {
@@ -33,6 +39,8 @@ class Register extends Component {
         });
   };
 
+
+
     render() {
       return (
           <Form onSubmit={this.onFormSubmit}>
@@ -51,7 +59,7 @@ class Register extends Component {
             <Form.Field>
               <label>Confirm password</label>
               <Input placeholder="Confirm password" name="passwordconf" value={this.state.passwordconf} onChange={this.onFormChange}></Input>
-            </Form.Field>
+              </Form.Field>
             <div style={{display:'flex', justifyContent:'center'}}>
               <Button type="submit" style={{width: '250px'}}>Sign in</Button>
             </div>
