@@ -17,6 +17,7 @@ class Auth extends Component {
   onFormChange = e => {
     const { name, value } = e.target;
     this.setState( () => { 
+      // localStorage.setItem('user', JSON.stringify(this.nextState));
       return {[name]: value };
     });
 
@@ -34,6 +35,7 @@ class Auth extends Component {
     if(localStorage.getItem('email')) {
       this.setState({
         email: this.userEmail,
+        password: this.userPassword
       })
     }
     // jeżeli w localStorage nie ma danych to pozostawiamy te pola puste
@@ -69,7 +71,6 @@ class Auth extends Component {
     // zapisanie email do localStorage
     localStorage.setItem('email', email);
 
-
     axios
       .post('/api/auth', {
         email: email,
@@ -83,6 +84,7 @@ class Auth extends Component {
 
         //przekierowanie do home po poprawnym zalogowaniu
         this.props.history.push('/');
+
       })
       .catch(error => {
         this.setState({errorMessage: error.response.data});
