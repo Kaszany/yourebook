@@ -18,7 +18,7 @@ class SearchForm extends Component {
       author: '',
       year: '',
       genre: '',
-      data: []
+      books: []
     };
   }
 
@@ -32,22 +32,14 @@ class SearchForm extends Component {
     const { title, author, year, genre } = this.state;
     const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`);
     const data = await response.json();
-    if (data.length === 0){
+    if (data.length === 0 ){
       alert('The library does not contain this book');
-      console.log('The library does not contain this book');
+    }
+    else if((this.state.author === '' && this.state.title === '' && this.state.year === '' && this.state.genre === '' )){
+      alert('You have not selected any search options');
     }
     else{
-      console.log(data);
-      const end = {text: " "};
-      for (var i = 0; i < data.length; i++){ 
-      end.text = "Title: " + 
-      data[i].title.toUpperCase() + 
-      " * Author: " + data[i].author.toUpperCase() +
-      " * Genre: " + data[i].genre.toUpperCase() +
-      " * |||| " + end.text;
-      }
-      console.log(this.props);
-      this.props.changeData(end.text);
+      this.setState( {books: data} );
     }
     } catch (error) {
     alert('The value is not allowed');
@@ -58,25 +50,34 @@ class SearchForm extends Component {
     return (  
       <Form >
         <Form.Field >
-        <Icon value="Title" name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
+        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /><Input  placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
+        </Form.Field >
+        <Form.Field >
+        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /><Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
         </Form.Field>
         <Form.Field >
-        <Icon name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
+        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /><Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
         </Form.Field>
         <Form.Field >
-        <Icon name='hand point down outline' /><Icon name='keyboard' /><Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
-        </Form.Field>
-        <Form.Field >
-        <Icon name='hand point down outline' /><Icon name='list alternate' /><Select
+        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='list alternate' /><Select
             placeholder="Genre"
             name="genre"  
             value={this.state.genre}
             onChange={this.handleChange}
             options={genreOptions}
           />
-        </Form.Field>  
-        <Button className="ui button" onClick={this.handleSubmit}>
-        <Icon name='redo' /> Show me the books
+        </Form.Field>
+        {this.state.books.map(book => {
+        return (
+        <Card color="blue" key={book._id}>
+        <Card.Content>
+          {"Title: " + book.title.toUpperCase() + "  *  Author: " + book.author.toUpperCase() + "  *  Year: " + book.year + "  *  Genre: " + book.genre.toUpperCase()}
+        </Card.Content>       
+        </Card>
+      );
+     })}
+        <Button className="ui button" color="blue" onClick={this.handleSubmit}>
+        <Icon name='redo' /> Find books!
         </Button>
       </Form>  
     );  

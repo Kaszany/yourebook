@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
-import { Card } from 'semantic-ui-react';
+import BookElement from '../Components/BookElement';
 
 class Home extends Component {
-state = { data: [] };
-
-changeData = data => {
-this.setState({ data });
-}
 
 render(){
   return (
     <>
-      <SearchForm changeData={this.changeData} />
+      <SearchForm />
+      <BookElement />
       <AddBook />
-      <Card>
-        <Card.Content>{this.state.data}</Card.Content>        
-      </Card>
     </>
   );
 }

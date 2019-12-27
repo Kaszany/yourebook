@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'semantic-ui-react';
+import { Card, Button, Icon } from 'semantic-ui-react';
 
-class Books extends Component {
+class BookElement extends Component {
   
     constructor() {
         super();
@@ -20,7 +20,6 @@ getBooks = async e => {
       alert('The library does not contain this book');
     }
     else{
-      console.log(data);
       this.setState( {books: data}); 
     }
     } catch (error) {
@@ -30,20 +29,20 @@ getBooks = async e => {
 
 render(){
   return (
-    <>
-     <Button className="ui button" color="green" onClick={this.getBooks}>Show me all books</Button>
+    <>  
      {this.state.books.map(book => {
       return (
-        <Card key={book._id}>
-        <Card.Content>{"Title: " + book.title.toUpperCase() + " * Author: " + book.author.toUpperCase()}</Card.Content>       
-      </Card>
+        <Card color="yellow" key={book._id}>
+        <Card.Content>
+            {"Title: " + book.title.toUpperCase() + " * Author: " + book.author.toUpperCase() + " * Year: " + book.year + " * Genre: " + book.genre.toUpperCase()} 
+        </Card.Content>       
+        </Card>
       );
      })} 
-     
-      
+     <Button className="ui button" color="yellow" onClick={this.getBooks}><Icon name='redo' />Show all books in the library!</Button>  
     </>
   );
 }
 }
 
-export default Books;
+export default BookElement;
