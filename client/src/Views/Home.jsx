@@ -8,7 +8,8 @@ class Home extends Component {
 
 state = { findBooks: [],
           allBooks: [],
-          modalOpen: false,
+          modalFindOpen: false,
+          modalAllOpen: false,
         };
     
 findData = findBooks => {
@@ -19,9 +20,13 @@ showAllData = allBooks => {
   this.setState({ allBooks });
 }
 
-handleOpen = () => this.setState({ modalOpen: true });
+handleOpen = () => this.setState({modalFindOpen: true});
 
-handleClose = () => this.setState({ modalOpen: false });
+handleClose = () => this.setState({ modalFindOpen: false});
+
+handleShowOpen = () => this.setState({modalAllOpen: true});
+
+handleShowClose = () => this.setState({ modalAllOpen: false});
 
 render(){
   return (
@@ -29,7 +34,7 @@ render(){
       <SearchForm findData={this.findData} handleOpen={this.handleOpen}/>
       <Modal
         size={'mini'}
-        open={this.state.modalOpen}
+        open={this.state.modalFindOpen}
         onClose={this.handleClose}
       >
         <Modal.Content>
@@ -44,7 +49,13 @@ render(){
      })}
        </Modal.Content>
       </Modal>
-      <BookElement showAllData={this.showAllData}/>
+      <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen}/>
+      <Modal
+        size={'mini'}
+        open={this.state.modalAllOpen}
+        onClose={this.handleShowClose}
+      >
+        <Modal.Content>
       {this.state.allBooks.map(book => {
       return (
         <Card color="yellow" key={book._id}>
@@ -54,6 +65,8 @@ render(){
         </Card>
       );
      })}
+           </Modal.Content>
+      </Modal>
       <AddBook />
     </>
   );
