@@ -6,16 +6,22 @@ import { Card  } from 'semantic-ui-react';
 
 class Home extends Component {
 
-state = { findBooks: [] };
+state = { findBooks: [],
+          allBooks: []
+        };
     
-changeFindData = findBooks => {
+findData = findBooks => {
   this.setState({ findBooks });
+}
+
+showAllData = allBooks => {
+  this.setState({ allBooks });
 }
 
 render(){
   return (
     <>
-      <SearchForm changeFindData={this.changeFindData} />
+      <SearchForm findData={this.findData} />
       {this.state.findBooks.map(book => {
         return (
         <Card color="blue" key={book._id}>
@@ -25,7 +31,16 @@ render(){
         </Card>
       );
      })}
-      <BookElement />
+      <BookElement showAllData={this.showAllData}/>
+      {this.state.allBooks.map(book => {
+      return (
+        <Card color="yellow" key={book._id}>
+        <Card.Content>
+            {"Title: " + book.title.toUpperCase() + " * Author: " + book.author.toUpperCase() + " * Year: " + book.year + " * Genre: " + book.genre.toUpperCase()} 
+        </Card.Content>       
+        </Card>
+      );
+     })}
       <AddBook />
     </>
   );

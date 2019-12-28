@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Select, Icon, Card  } from 'semantic-ui-react';
+import { Form, Input, Button, Select, Icon } from 'semantic-ui-react';
 
 const genreOptions = [
   { value: '', text: 'cancel this selection' },
@@ -41,7 +41,7 @@ class SearchForm extends Component {
     else{
       //data.length = 5; - gdy chcę ograniczyć ilość
       this.setState( {books: data} )
-      this.props.changeFindData(data);
+      this.props.findData(data);
       
     }
     } catch (error) {

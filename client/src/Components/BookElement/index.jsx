@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, Icon } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 class BookElement extends Component {
   
@@ -9,7 +9,6 @@ class BookElement extends Component {
             books: []
         };
       }
-
 
 getBooks = async e => {
     try {
@@ -22,6 +21,7 @@ getBooks = async e => {
     else{
       //data.length = 5; - gdy chcę ograniczyć ilość
       this.setState( {books: data});
+      this.props.showAllData(data);
     }
     } catch (error) {
     alert('The value is not allowed');
@@ -30,16 +30,7 @@ getBooks = async e => {
 
 render(){
   return (
-    <>  
-     {this.state.books.map(book => {
-      return (
-        <Card color="yellow" key={book._id}>
-        <Card.Content>
-            {"Title: " + book.title.toUpperCase() + " * Author: " + book.author.toUpperCase() + " * Year: " + book.year + " * Genre: " + book.genre.toUpperCase()} 
-        </Card.Content>       
-        </Card>
-      );
-     })} 
+    <>   
      <Button className="ui button" color="yellow" onClick={this.getBooks}><Icon name='redo' />Show all books in the library!</Button>  
     </>
   );
