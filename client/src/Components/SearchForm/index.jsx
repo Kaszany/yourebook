@@ -42,7 +42,7 @@ class SearchForm extends Component {
       //data.length = 5; - gdy chcę ograniczyć ilość
       this.setState( {books: data} )
       this.props.findData(data);
-      
+      this.props.handleOpen();
     }
     } catch (error) {
     alert('The value is not allowed');
@@ -70,7 +70,6 @@ class SearchForm extends Component {
             options={genreOptions}
           />
         </Form.Field>
-        
         <Button className="ui button" color="blue" onClick={this.handleSubmit}>
         <Icon name='redo' /> Find books!
         </Button>

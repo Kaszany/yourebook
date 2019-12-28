@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';
-import { Card  } from 'semantic-ui-react';
+import { Card, Modal, Button  } from 'semantic-ui-react';
 
 class Home extends Component {
 
 state = { findBooks: [],
-          allBooks: []
+          allBooks: [],
+          modalOpen: false,
         };
     
 findData = findBooks => {
@@ -18,10 +19,20 @@ showAllData = allBooks => {
   this.setState({ allBooks });
 }
 
+handleOpen = () => this.setState({ modalOpen: true });
+
+handleClose = () => this.setState({ modalOpen: false });
+
 render(){
   return (
     <>
-      <SearchForm findData={this.findData} />
+      <SearchForm findData={this.findData} handleOpen={this.handleOpen}/>
+      <Modal
+        size={'mini'}
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+      >
+        <Modal.Content>
       {this.state.findBooks.map(book => {
         return (
         <Card color="blue" key={book._id}>
@@ -31,6 +42,8 @@ render(){
         </Card>
       );
      })}
+       </Modal.Content>
+      </Modal>
       <BookElement showAllData={this.showAllData}/>
       {this.state.allBooks.map(book => {
       return (
