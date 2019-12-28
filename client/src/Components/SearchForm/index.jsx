@@ -41,6 +41,7 @@ class SearchForm extends Component {
     else{
       //data.length = 5; - gdy chcę ograniczyć ilość
       this.setState( {books: data} )
+      this.props.changeFindData(data);
       
     }
     } catch (error) {
@@ -69,15 +70,7 @@ class SearchForm extends Component {
             options={genreOptions}
           />
         </Form.Field>
-        {this.state.books.map(book => {
-        return (
-        <Card color="blue" key={book._id}>
-        <Card.Content>
-          {"Title: " + book.title.toUpperCase() + "  *  Author: " + book.author.toUpperCase() + "  *  Year: " + book.year + "  *  Genre: " + book.genre.toUpperCase()}
-        </Card.Content>       
-        </Card>
-      );
-     })}
+        
         <Button className="ui button" color="blue" onClick={this.handleSubmit}>
         <Icon name='redo' /> Find books!
         </Button>
