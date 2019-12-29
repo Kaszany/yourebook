@@ -71,7 +71,7 @@ class Register extends Component {
             </Form.Field>
             
             <div style={{display:'flex', justifyContent:'center'}}>
-              <Button className="big orange ui button" type="submit"><i className="sign-in icon"></i>Sign in</Button>
+              <Button className="big orange ui button" type="submit"><i className="edit icon"></i>Sign up</Button>
             </div>
             </div>
             </Form>
