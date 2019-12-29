@@ -42,29 +42,40 @@ class Register extends Component {
 
 
     render() {
-      return (
-          <Form onSubmit={this.onFormSubmit}>
+      return (        
+          <Form onSubmit={this.onFormSubmit} style={{display: 'flex', justifyContent: 'center'}}>
+            <div className="ui segment" style={{width: '500px' }}>
             <Form.Field>
-              <label>Name</label>
-              <Input placeholder="Name" name="name" value={this.state.name} onChange={this.onFormChange}></Input>
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="user icon"></i></label>
+                <Input placeholder="Name (min. 5 char.)" name="name" value={this.state.name} onChange={this.onFormChange}></Input>
+              </div>
             </Form.Field>
             <Form.Field>
-              <label>Email</label>
-              <Input placeholder="Email" name="email" value={this.state.email} onChange={this.onFormChange}></Input>
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="at icon"></i></label>
+                <Input placeholder="Email" name="email" value={this.state.email} onChange={this.onFormChange}></Input>
+              </div>
             </Form.Field>
             <Form.Field>
-              <label>Password</label>
-              <Input placeholder="Password" name="password" value={this.state.password} onChange={this.onFormChange}></Input>
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="lock icon"></i></label>
+                <Input className="ui labelled input" placeholder="Password (min. 5 char.)" name="password" value={this.state.password} onChange={this.onFormChange} type="password"></Input>
+              </div>
             </Form.Field>
             <Form.Field>
-              <label>Confirm password</label>
-              <Input placeholder="Confirm password" name="passwordconf" value={this.state.passwordconf} onChange={this.onFormChange}></Input>
-              </Form.Field>
-            <div style={{display:'flex', justifyContent:'center'}}>
-              <Button type="submit" style={{width: '250px'}}>Sign in</Button>
-            </div>
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="check icon"></i></label>
+                <Input className="ui labelled input" placeholder="Confirm password" name="passwordconf" value={this.state.passwordconf} onChange={this.onFormChange} type="password"></Input>
+              </div>
+            </Form.Field>
             
-          </Form>
+            <div style={{display:'flex', justifyContent:'center'}}>
+              <Button className="big orange ui button" type="submit"><i className="sign-in icon"></i>Sign in</Button>
+            </div>
+            </div>
+            </Form>
+            
         );
       }
 
