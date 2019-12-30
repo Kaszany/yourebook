@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
             //     <Auth />
             // </div>
             <div className="ui container" style={{marginTop:'50px'}}>
-            <Register />
+            <Auth />
         </div>
         )
     }
