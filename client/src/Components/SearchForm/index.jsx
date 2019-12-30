@@ -89,7 +89,7 @@ class SearchForm extends Component {
         </Form.Field>
         </div>
         <Button className="ui olive button" onClick={this.handleSubmit}>
-        <Icon className='redo icon' /> Find books!
+        <Icon className='redo icon' /> Find books
         </Button>
       </Form>  
     );  
