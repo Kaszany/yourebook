@@ -71,6 +71,7 @@ class Auth extends Component {
     // zapisanie email do localStorage
     localStorage.setItem('email', email);
 
+
     axios
       .post('/api/auth', {
         email: email,
