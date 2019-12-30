@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'semantic-ui-react';
+import { Form, Input, Button, Modal} from 'semantic-ui-react';
 import axios from 'axios';
-import { useFormik } from 'formik';
+// import { useFormik } from 'formik';
 
 
 // basic
@@ -45,7 +45,19 @@ class Register extends Component {
   }
 
     render() {
-      return (        
+      return (
+        <Modal
+        size={'mini'}
+        trigger={
+          <Button className="orange ui button" onClick={this.handleOpen}>
+            Sign up
+          </Button>
+        }
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+      >
+    
+        <Modal.Content>        
           <Form onSubmit={this.onFormSubmit} style={{display: 'flex', justifyContent: 'center'}}>
             <div className="ui segment" style={{width: '500px' }}>
             <Form.Field>
@@ -78,7 +90,8 @@ class Register extends Component {
             </div>
             </div>
             </Form>
-            
+            </Modal.Content>
+            </Modal> 
         );
       }
 
