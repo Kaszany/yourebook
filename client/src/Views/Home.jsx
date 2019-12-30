@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
+<<<<<<< HEAD
 import BookElement from '../Components/BookElement';
 import { Card, Modal, Button  } from 'semantic-ui-react';
 
@@ -67,6 +68,16 @@ render(){
      })}
            </Modal.Content>
       </Modal>
+=======
+import NavBar from '../Components/NavBar';
+
+
+const Home = () => {
+  return (
+    <>
+      <NavBar/>
+      <SearchForm />
+>>>>>>> NavBar
       <AddBook />
     </>
   );
