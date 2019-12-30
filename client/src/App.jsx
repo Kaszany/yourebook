@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-
+import Login from './Views/Login'
 import Home from './Views/Home';
 
 

@@ -29,13 +29,13 @@ class SearchForm extends Component {
   handleSubmit = async e => {
     try {
     e.preventDefault();
-    const { title, author, year, genre } = this.state;
+    const { title, author, year, genre} = this.state;
     const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`);
     const data = await response.json();
     if (data.length === 0 ){
       alert('The library does not contain this book');
     }
-    else if((this.state.author === '' && this.state.title === '' && this.state.year === '' && this.state.genre === '' )){
+    else if((this.state.author === '' && this.state.title === '' && this.state.year === '' && this.state.genre === '' && this.state.PDF === '' )){
       alert('You have not selected any search options');
     }
     else{
@@ -45,6 +45,7 @@ class SearchForm extends Component {
       this.props.handleOpen();
     }
     } catch (error) {
+      console.log(error);
     alert('The value is not allowed');
   }
   };
