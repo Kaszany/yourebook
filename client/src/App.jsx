@@ -4,8 +4,8 @@ import { Container } from 'semantic-ui-react';
 import Login from './Views/Login'
 import Home from './Views/Home';
 import Regist from './Views/Register'
-import PrivateRoute from './Components/PrivateRoute/PrivateRoute'
-import LoginRoute from './Components/PrivateRoute/LoginRoute'
+import PrivateRoute from './Components/PrivateRoutes/PrivateRoute'
+import LoginRoute from './Components/PrivateRoutes/LoginRoute'
 
 
 
