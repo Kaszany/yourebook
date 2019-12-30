@@ -78,7 +78,7 @@ class Auth extends Component {
   // przekierowanie do rejestracji - adres przekierowania do poprawy!!!
   onRegister = e => {
     e.preventDefault();
-    this.props.history.push('/');
+    this.props.history.push('/regist');
   }
 
   render() {
