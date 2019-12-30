@@ -39,7 +39,10 @@ class Register extends Component {
         });
   };
 
-
+  onRegister = e => {
+    e.preventDefault();
+    this.props.history.push('/');
+  }
 
     render() {
       return (        
