@@ -61,8 +61,8 @@ class AddBook extends Component {
       <Modal
         size={'mini'}
         trigger={
-          <Button color="green" style={{ marginTop: '10px' }} onClick={this.handleOpen}>
-            Add Book!
+          <Button className="orange ui button" onClick={this.handleOpen}>
+            Add Book
           </Button>
         }
         open={this.state.modalOpen}
@@ -98,10 +98,10 @@ class AddBook extends Component {
               <Input type="file" name="PDF" icon="file pdf" onChange={this.handleUpload} />
             </Form.Field>
             <Modal.Actions>
-              <Button negative style={{ marginLeft: '0px' }} onClick={this.handleClose}>
+              <Button className="olive ui button" style={{ marginLeft: '0px' }} onClick={this.handleClose}>
                 Leave
               </Button>
-              <Button type="submit" positive icon="checkmark" labelPosition="right" content="Add" floated="right" />
+              <Button className="orange ui button" type="submit" content="Add" floated="right">Add<i className="check icon" style={{marginLeft:"5px"}}></i></Button>
             </Modal.Actions>
           </Form>
         </Modal.Content>

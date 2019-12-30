@@ -31,7 +31,7 @@ getBooks = async e => {
 render(){
   return (
     <>   
-     <Button className="ui button" color="yellow" onClick={this.getBooks}><Icon name='redo' />Show all books in the library!</Button>  
+     <Button className="ui yellow button" onClick={this.getBooks}><i className='redo icon'></i>Show all books in the library</Button>  
     </>
   );
 }

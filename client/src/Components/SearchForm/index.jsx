@@ -52,27 +52,44 @@ class SearchForm extends Component {
   render() {
     return (  
       <Form >
+        <div className="ui segment">
         <Form.Field >
-        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /><Input  placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
+        <div className="ui labeled input">
+        <label className="ui right pointing label" style={{width: '40px'}}><i className="keyboard icon"></i></label>
+        {/* <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /> */}
+        <Input  placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
+        </div>
         </Form.Field >
         <Form.Field >
-        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /><Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
+        <div className="ui labeled input">
+        <label className="ui right pointing label" style={{width: '40px'}}><i className="keyboard icon"></i></label>
+        {/* <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /> */}
+        <Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
+        </div>
         </Form.Field>
         <Form.Field >
-        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /><Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
+        {/* <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='keyboard' /> */}
+        <div className="ui labeled input">
+        <label className="ui right pointing label" style={{width: '40px'}}><i className="keyboard icon"></i></label>
+        <Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
+        </div>
         </Form.Field>
         <Form.Field >
-        <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='list alternate' /><Select
+        <div className="ui labeled input">
+        <label className="ui right pointing label" style={{width: '40px'}}><i className="keyboard icon"></i></label>
+        {/* <Icon color="blue" name='hand point down outline' /><Icon color="blue" name='list alternate' /> */}
+        <Select
             placeholder="Genre"
             name="genre"  
             value={this.state.genre}
             onChange={this.handleChange}
             options={genreOptions}
           />
+          </div>
         </Form.Field>
-        
-        <Button className="ui button" color="blue" onClick={this.handleSubmit}>
-        <Icon name='redo' /> Find books!
+        </div>
+        <Button className="ui olive button" onClick={this.handleSubmit}>
+        <Icon className='redo icon' /> Find books!
         </Button>
       </Form>  
     );  
