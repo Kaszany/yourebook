@@ -22,8 +22,11 @@ class Auth extends Component {
 
   };
 
-  // pobieranie wartości z localStorage
+  // pobieranie wartości z localStorage. Jezeli w localStorage jest zapisany status(token) to przenosimy do Home
   componentDidMount() {
+    if(localStorage.getItem('status')) {
+      this.props.history.push('/')
+    } else {
     this.userEmail = localStorage.getItem('email');
     // this.userPassword = localStorage.getItem('password');
 
@@ -31,7 +34,6 @@ class Auth extends Component {
     if(localStorage.getItem('email')) {
       this.setState({
         email: this.userEmail,
-        password: 'password'
       })
     }
     // jeżeli w localStorage nie ma danych to pozostawiamy te pola puste
@@ -41,6 +43,7 @@ class Auth extends Component {
         password:''
       })
     }
+  }
   }
 
   //  pobranie danych z formularza
@@ -52,28 +55,24 @@ class Auth extends Component {
     // zapisanie email do localStorage
     localStorage.setItem('email', email);
 
-    if(localStorage.getItem('status')) {
-      this.props.history.push('/')
-    } else {
-      axios
-        .post('/api/auth', {
-          email: email,
-          password: password,
-        })
-        .then(response => {
 
-          // zapisywanie statusu do localStorage
-          localStorage.setItem('status', true);
+    axios
+      .post('/api/auth', {
+        email: email,
+        password: password,
+      })
+      .then(response => {
 
-          //przekierowanie do home po poprawnym zalogowaniu
-          this.props.history.push('/');
+        // zapisywanie statusu, jako token do localStorage
+        localStorage.setItem('status', response.data);
 
-        })
-        .catch(error => {
-          this.setState({errorMessage: error.response.data});
-          console.log(`login error ${error.response.data}`);
-        });
-    }
+        //przekierowanie do home po poprawnym zalogowaniu
+        this.props.history.push('/');
+      })
+      .catch(error => {
+        this.setState({errorMessage: error.response.data});
+        console.log(`login error ${error.response.data}`);
+      });
   }
 
   // przekierowanie do rejestracji - adres przekierowania do poprawy!!!
