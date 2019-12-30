@@ -35,8 +35,10 @@ router.get('/api/books', async (req, res) => {
       }
     });
 
-    const books = await Book.find(searchCriteria);
-    console.log('TCL: books', books);
+    const books = await Book.find(searchCriteria).lean();
+    for (let book of books) {
+      book.imgURL = `/uploads/${book.bookCover}`;
+    }
     res.json(books);
   } catch (ex) {
     console.error(ex);
