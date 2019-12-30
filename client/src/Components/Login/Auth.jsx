@@ -85,7 +85,6 @@ class Auth extends Component {
 
         //przekierowanie do home po poprawnym zalogowaniu
         this.props.history.push('/');
-
       })
       .catch(error => {
         this.setState({errorMessage: error.response.data});
