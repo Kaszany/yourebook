@@ -84,27 +84,11 @@ class Auth extends Component {
   render() {
     return (
       <div>
-        <Header as='h2' icon textAlign='center' style={{marginTop: '100px', marginBottom: '100px'}}>
-          <Header.Content>Welcome at BookStorm</Header.Content>
-          <Grid>
-            <Grid.Column width={5}>
-              <Icon name='lightning'style={{marginTop: '50px'}} />
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Icon name='lightning'style={{marginTop: '50px'}}/>
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Icon name='lightning'style={{marginTop: '50px'}}/>
-            </Grid.Column>
-          </Grid>
-        </Header>
 
-        <Segment placeholder onSubmit={this.onFormSubmit}>
+        
           {this.state.errorMessage && 
           <h3 style={{color: 'red', textAlign: 'center'}}>{this.state.errorMessage}</h3>}
-          <Grid columns={2} relaxed='very' stackable>
-            <Grid.Column>
-              <Form>
+          <Form>
                 <Form.Input
                   icon='user'
                   iconPosition='left'
@@ -122,23 +106,12 @@ class Auth extends Component {
                   value={this.state.password} 
                   onChange={this.onFormChange}
                 />
-                <Grid>
-                  <Grid.Column width={8} style={{marginTop: '10px', right: '0'}}>
-                    <Button content='Login' primary />
-                  </Grid.Column>
-                  <Grid.Column width={8} style={{marginTop: '10px'}}>
-                    <Button content='I forgot my password' />
-                  </Grid.Column>
-                </Grid>
-              </Form>
-            </Grid.Column>
+                <div>
+                  <Button content='Login' primary />
+                  <Button content='I forgot my password' />
+                </div>
+          </Form>
 
-            <Grid.Column verticalAlign='middle'>
-              <Button content='Sign up' icon='signup'size='big' onClick={this.onRegister} />
-            </Grid.Column>
-          </Grid>
-          <Divider vertical>Or</Divider>
-        </Segment>
       </div>
     );
   }
