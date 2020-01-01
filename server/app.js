@@ -34,8 +34,8 @@ mongoose
 const app = express();
 app.use(express.json());
 
-//TODO: przenieść do middleware
 app.use('/uploads', (req, res, next) => {
+  eval(`Grid.prototype.findOne = ${Grid.prototype.findOne.toString().replace('nextObject', 'next')}`);
   res.locals.gfs = gfs;
   next();
 });
