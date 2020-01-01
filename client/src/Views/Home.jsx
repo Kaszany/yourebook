@@ -5,6 +5,8 @@ import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';
 import BookCard from '../Components/BookCard';
+import LoginForm from '../Components/Login'
+import RegisterForm from '../Components/Register'
 
 class Home extends Component {
   state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
@@ -28,6 +30,17 @@ class Home extends Component {
   render() {
     return (
       <>
+
+	<div>
+      	  <div className="ui segment" style={{marginLeft: '55%', display: 'flex'}}>
+            <LoginForm />
+            <RegisterForm />
+        </div>
+        <div className="ui segment">
+        <img src='/client/public/bookstorm.jpg'/>
+	</div>
+
+	<div>
         <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
         <Modal size={'large'} open={this.state.modalFindOpen} onClose={this.handleClose}>
           <Modal.Content>
@@ -49,6 +62,7 @@ class Home extends Component {
           </Modal.Content>
         </Modal>
         <AddBook />
+	</div>
       </>
     );
   }
