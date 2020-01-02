@@ -8,7 +8,7 @@ class RegisterForm extends React.Component {
             // <div className="ui container" style={{marginTop:'50px'}}>
             //     <Auth />
             // </div>
-            <div className="ui container" style={{marginTop:'50px'}}>
+            <div className="ui container" style={{marginLeft: '14px'}}>
             <Register />
         </div>
         )

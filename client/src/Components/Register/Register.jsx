@@ -44,22 +44,12 @@ class Register extends Component {
     this.props.history.push('/');
   }
 
+
+//tabelka
+
     render() {
       return (
-        <Modal
-        size={'mini'}
-        trigger={
-          <Button className="orange ui button" onClick={this.handleOpen}>
-            Sign up
-          </Button>
-        }
-        open={this.state.modalOpen}
-        onClose={this.handleClose}
-      >
-    
-        <Modal.Content>        
-          <Form onSubmit={this.onFormSubmit} style={{display: 'flex', justifyContent: 'center'}}>
-            <div className="ui segment" style={{width: '500px' }}>
+        <Form onSubmit={this.onFormSubmit} >
             <Form.Field>
               <div className="ui labeled input">
                 <label className="ui right pointing label" style={{width: '40px'}}><i className="user icon"></i></label>
@@ -86,14 +76,66 @@ class Register extends Component {
             </Form.Field>
             
             <div style={{display:'flex', justifyContent:'center'}}>
-              <Button className="big orange ui button" type="submit"><i className="edit icon"></i>Sign up</Button>
+              <Button className=" orange ui button" type="submit"><i className="edit icon"></i>Sign up</Button>
             </div>
-            </div>
-            </Form>
-            </Modal.Content>
-            </Modal> 
+          </Form>
+            
         );
       }
+
+//okno modalne
+
+// render() {
+//   return (
+//     <Modal
+//     size={'mini'}
+//     trigger={
+//       <Button className="big orange ui button" onClick={this.handleOpen}>
+//         <i className="edit icon"></i>Sign up
+//       </Button>
+//     }
+//     open={this.state.modalOpen}
+//     onClose={this.handleClose}
+//   >
+
+//     <Modal.Content>        
+//       <Form onSubmit={this.onFormSubmit} >
+//         {/* <div className="ui segment" style={{width: '500px' }}> */}
+//         <Form.Field>
+//           <div className="ui labeled input">
+//             <label className="ui right pointing label" style={{width: '40px'}}><i className="user icon"></i></label>
+//             <Input placeholder="Name (min. 5 char.)" name="name" value={this.state.name} onChange={this.onFormChange}></Input>
+//           </div>
+//         </Form.Field>
+//         <Form.Field>
+//           <div className="ui labeled input">
+//             <label className="ui right pointing label" style={{width: '40px'}}><i className="at icon"></i></label>
+//             <Input placeholder="Email" name="email" value={this.state.email} onChange={this.onFormChange}></Input>
+//           </div>
+//         </Form.Field>
+//         <Form.Field>
+//           <div className="ui labeled input">
+//             <label className="ui right pointing label" style={{width: '40px'}}><i className="lock icon"></i></label>
+//             <Input className="ui labelled input" placeholder="Password (min. 5 char.)" name="password" value={this.state.password} onChange={this.onFormChange} type="password"></Input>
+//           </div>
+//         </Form.Field>
+//         <Form.Field>
+//           <div className="ui labeled input">
+//             <label className="ui right pointing label" style={{width: '40px'}}><i className="check icon"></i></label>
+//             <Input className="ui labelled input" placeholder="Confirm password" name="passwordconf" value={this.state.passwordconf} onChange={this.onFormChange} type="password"></Input>
+//           </div>
+//         </Form.Field>
+        
+//         <div style={{display:'flex', justifyContent:'center'}}>
+//           <Button className="big orange ui button" type="submit"><i className="edit icon"></i>Sign up</Button>
+//         </div>
+//         {/* </div> */}
+//         </Form>
+//         </Modal.Content>
+//         </Modal> 
+//     );
+//   }
+
 
 }
 
