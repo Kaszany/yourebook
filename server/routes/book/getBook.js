@@ -35,7 +35,10 @@ router.get('/api/books', async (req, res) => {
       }
     });
 
-    const books = await Book.find(searchCriteria);
+    const books = await Book.find(searchCriteria).lean();
+    for (let book of books) {
+      if (book.bookCover) book.imgURL = `/uploads/${book.bookCover}`;
+    }
     res.json(books);
   } catch (ex) {
     console.error(ex);
