@@ -14,7 +14,6 @@ const getToken = () => {
 
 export const Authentication = () => {
   const token = getToken();
-  console.log(token);
   if (!token) {
     return false;
   }
@@ -33,7 +32,7 @@ const App = () => {
     <BrowserRouter>
       <Container>
         <Switch>
-          <Route path="/login" component={Login} />
+          <LoginRoute path="/login" component={Login} />
           <PrivateRoute path="/" component={Home} />
           {/* <LoginRoute path="/regist" component={Regist} /> */}
         </Switch>

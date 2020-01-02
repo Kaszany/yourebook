@@ -8,7 +8,7 @@ import NavBar from '../Components/NavBar';
 
 
 class Home extends Component {
-  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, PDF: ''};
+  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, PDF: '',};
 
   findData = findBooks => {
     this.setState({ findBooks });
@@ -17,7 +17,6 @@ class Home extends Component {
   showAllData = allBooks => {
     this.setState({ allBooks });
   };
-
 
   handleOpen = () => this.setState({ modalFindOpen: true });
 
