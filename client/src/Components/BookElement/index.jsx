@@ -21,7 +21,7 @@ getBooks = async e => {
     else{
       //data.length = 5; - gdy chcę ograniczyć ilość
       this.setState( {books: data});
-      this.props.showAllData(data);
+      this.props.allData(data);
       this.props.handleShowOpen();
     }
     } catch (error) {

@@ -7,14 +7,10 @@ import BookElement from '../Components/BookElement';
 import BookCard from '../Components/BookCard';
 
 class Home extends Component {
-  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
+  state = { books: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
 
-  findData = findBooks => {
-    this.setState({ findBooks });
-  };
-
-  showAllData = allBooks => {
-    this.setState({ allBooks });
+  allData = books => {
+    this.setState({ books });
   };
 
   handleOpen = () => this.setState({ modalFindOpen: true });
@@ -28,21 +24,21 @@ class Home extends Component {
   render() {
     return (
       <>
-        <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
+        <SearchForm allData={this.allData} handleOpen={this.handleOpen} />
         <Modal size={'large'} open={this.state.modalFindOpen} onClose={this.handleClose}>
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
-              {this.state.findBooks.map(book => {
+              {this.state.books.map(book => {
                 return <BookCard key={book._id} book={book} />;
               })}
             </Card.Group>
           </Modal.Content>
         </Modal>
-        <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen} />
+        <BookElement allData={this.allData} handleShowOpen={this.handleShowOpen} />
         <Modal size={'large'} open={this.state.modalAllOpen} onClose={this.handleShowClose}>
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
-              {this.state.allBooks.map(book => {
+              {this.state.books.map(book => {
                 return <BookCard key={book._id} book={book} />;
               })}
             </Card.Group>

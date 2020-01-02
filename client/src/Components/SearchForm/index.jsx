@@ -44,7 +44,7 @@ class SearchForm extends Component {
       } else {
         //data.length = 5; - gdy chcę ograniczyć ilość
         this.setState({ books: data });
-        this.props.findData(data);
+        this.props.allData(data);
         this.props.handleOpen();
       }
     } catch (error) {
