@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 
 
 class Auth extends Component {
-  // userData;
 
   state = { 
     email: '', 
@@ -23,26 +22,26 @@ class Auth extends Component {
   };
 
   // pobieranie wartości z localStorage. Jezeli w localStorage jest zapisany status(token) to przenosimy do Home
-  componentDidMount() {
-    if(localStorage.getItem('status')) {
-      this.props.history.push('/')
-    } else {
-    this.userEmail = localStorage.getItem('email');
+  // componentDidMount() {
+    // if(localStorage.getItem('status')) {
+      // this.props.history.push('/')
+    // } else {
+    // this.userEmail = localStorage.getItem('email');
 
     // jeżeli dane (email) są zapisane w localStorage to uzuepłnij nimi formularz
-    if(localStorage.getItem('email')) {
-      this.setState({
-        email: this.userEmail,
-      })
-    }
+    // if(localStorage.getItem('email')) {
+    //   this.setState({
+    //     email: this.userEmail,
+    //   })
+    // }
     // jeżeli w localStorage nie ma danych to pozostawiamy te pola puste
-    else {
-      this.setState({
-        email:'',
-        password:''
-      })
-    }
-  }}
+  //   else {
+  //     this.setState({
+  //       email:'',
+  //       password:''
+  //     })
+  //   }
+  // }}
 
   //  pobranie danych z formularza
   onFormSubmit = async e => {
@@ -50,8 +49,7 @@ class Auth extends Component {
     const { email, password} = this.state;
 
     // zapisanie email do localStorage
-    localStorage.setItem('email', email);
-
+    // localStorage.setItem('email', email);
 
     axios
       .post('/api/auth', {
