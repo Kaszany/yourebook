@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Auth from './Auth';
-// import Register from './Register';
 
 
 
