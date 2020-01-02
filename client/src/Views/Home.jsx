@@ -4,10 +4,11 @@ import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';
 import { Card, Modal, Button } from 'semantic-ui-react';
 import axios from 'axios';
-import NavBar from '../Components/NavBar'
+import NavBar from '../Components/NavBar';
+
 
 class Home extends Component {
-  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, PDF: '' };
+  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, PDF: ''};
 
   findData = findBooks => {
     this.setState({ findBooks });
@@ -16,6 +17,7 @@ class Home extends Component {
   showAllData = allBooks => {
     this.setState({ allBooks });
   };
+
 
   handleOpen = () => this.setState({ modalFindOpen: true });
 
@@ -60,7 +62,13 @@ class Home extends Component {
                       book.genre.toUpperCase() +
                       '  *  PDF: ' +
                       book.PDF}
-                    <Button icon="file pdf" color="red" onClick={this.handleDownload} style={{marginTop: "20px"}} floated="right" />
+                    <Button
+                      icon="file pdf"
+                      color="red"
+                      onClick={this.handleDownload}
+                      style={{ marginTop: '20px' }}
+                      floated="right"
+                    />
                   </Card.Content>
                 </Card>
               );
@@ -84,7 +92,13 @@ class Home extends Component {
                       book.genre.toUpperCase() +
                       'PDF' +
                       book.PDF}
-                    <Button icon="file pdf" color="red" onClick={this.handleDownload} style={{marginTop: "20px"}} floated="right" />
+                    <Button
+                      icon="file pdf"
+                      color="red"
+                      onClick={this.handleDownload}
+                      style={{ marginTop: '20px' }}
+                      floated="right"
+                    />
                   </Card.Content>
                 </Card>
               );

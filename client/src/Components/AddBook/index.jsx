@@ -46,7 +46,7 @@ class AddBook extends Component {
     bookFormData.set('bookCover', bookCover);
     bookFormData.set('PDF', PDF);
 
-    await axios({
+      axios({
       method: 'post',
       url: '/api/books',
       data: bookFormData,
