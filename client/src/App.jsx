@@ -19,10 +19,11 @@ export const Authentication = () => {
   }
 
   axios
-    .get('/me', { headers: { Auth: `Bearer ${token}` } })
+    .get('api/users/me', { headers: { 'x-auth-token': token } })
     .then(res => console.log(res.data))
     .catch(err => {
-      console.log('DENIED')
+      localStorage.removeItem('status')
+      console.log(err);
       return false;
     });
 };
