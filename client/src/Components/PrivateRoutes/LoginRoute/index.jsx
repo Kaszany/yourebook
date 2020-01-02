@@ -4,7 +4,7 @@ import {Authentication} from '../../../App';
 
 const LoginRoute = ({ component: Component, ...rest }) => {
   return (
-    <Route {...rest} render={props => (Authentication() === false ? <Component {...props} /> : <Redirect to="/" />)} />
+    <Route {...rest} render={props => (Authentication()  ?  <Redirect to="/"  /> : <Component {...props} />)} />
   );
 };
 

@@ -15,6 +15,7 @@ const getToken = () => {
 export const Authentication = () => {
   const token = getToken();
   if (!token) {
+    console.log("brak tokena")
     return false;
   }
 

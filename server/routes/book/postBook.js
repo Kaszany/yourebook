@@ -1,3 +1,4 @@
+const auth = require('../../middleware/auth')
 const express = require('express');
 const router = express.Router();
 const bookModel = require('./../../models/Book');
@@ -49,12 +50,13 @@ const upload = multer({
 });
 
 router.post(
-  '/api/books',
+  '/api/books', auth,
   upload.fields([
     { name: 'bookCover', maxCount: 1 },
     { name: 'PDF', maxCount: 1 },
   ]),
   async (req, res) => {
+
     const book = new bookModel.Book({
       title: req.body.title,
       author: req.body.author,
