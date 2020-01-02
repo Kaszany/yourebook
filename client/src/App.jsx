@@ -26,6 +26,7 @@ export const Authentication = () => {
       console.log(err);
       return false;
     });
+    return true;
 };
 
 const App = () => {
