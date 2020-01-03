@@ -4,7 +4,7 @@ import { Button, Form, Modal} from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
 
 
-class Auth extends Component {
+class LoginForm extends Component {
 
   state = { 
     email: '', 
@@ -18,30 +18,7 @@ class Auth extends Component {
     this.setState( () => { 
       return {[name]: value };
     });
-
   };
-
-  // pobieranie wartości z localStorage. Jezeli w localStorage jest zapisany status(token) to przenosimy do Home
-  // componentDidMount() {
-    // if(localStorage.getItem('status')) {
-      // this.props.history.push('/')
-    // } else {
-    // this.userEmail = localStorage.getItem('email');
-
-    // jeżeli dane (email) są zapisane w localStorage to uzuepłnij nimi formularz
-    // if(localStorage.getItem('email')) {
-    //   this.setState({
-    //     email: this.userEmail,
-    //   })
-    // }
-    // jeżeli w localStorage nie ma danych to pozostawiamy te pola puste
-  //   else {
-  //     this.setState({
-  //       email:'',
-  //       password:''
-  //     })
-  //   }
-  // }}
 
   //  pobranie danych z formularza
   onFormSubmit = async e => {
@@ -114,4 +91,4 @@ class Auth extends Component {
   }
 }
 
-export default withRouter(Auth)
+export default withRouter(LoginForm)

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { withRouter } from "react-router-dom";
 
 
-class Register extends Component {
+class RegisterForm extends Component {
 
   state = { 
     name: '', 
@@ -23,8 +23,7 @@ class Register extends Component {
     e.preventDefault();
     const { name, email, password, passwordconf} = this.state;
     if (password!==passwordconf) return this.setState({errorMessage: 'confirm password'});
-    // return (alert('confirm password'));
-    // localStorage.setItem('email', email);
+    
     axios
       .post('/api/users', {
         name: name,
@@ -99,4 +98,4 @@ class Register extends Component {
   }
 }
 
-export default withRouter(Register);
+export default withRouter(RegisterForm);
