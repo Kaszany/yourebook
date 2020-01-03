@@ -9,10 +9,10 @@ router.post('/', async(req, res) => {
 	if (error) return res.status(400).send(error.details[0].message);
 
 	let user = await User.findOne({ email:req.body.email });
-	if (!user) return res.status(400).send('Podano błędny email i / lub hasło. Popraw dane i spróbuj ponownie.');
+	if (!user) return res.status(400).send('Incorrect email address and / or password. Correct the data and try again.');
 
 	const validPassword = await bcrypt.compare(req.body.password, user.password);
-	if(!validPassword) return res.status(400).send('Podano błędny email i / lub hasło. Popraw dane i spróbuj ponownie.');
+	if(!validPassword) return res.status(400).send('Incorrect email address and / or password. Correct the data and try again.');
 
 	const token = user.generateAuthToken();
 	res.send(token);
