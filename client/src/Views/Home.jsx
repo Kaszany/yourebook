@@ -3,13 +3,14 @@ import { Modal, Card } from 'semantic-ui-react';
 
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
+import MyFavorites from '../Components/MyFavorites';
 import BookElement from '../Components/BookElement';
 import BookCard from '../Components/BookCard';
 import LoginForm from '../Components/Login/Auth'
 import RegisterForm from '../Components/Login/Register'
 
 class Home extends Component {
-  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
+  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false, favorites: [] };
 
   findData = findBooks => {
     this.setState({ findBooks });
@@ -48,7 +49,7 @@ class Home extends Component {
             <Modal.Content>
               <Card.Group itemsPerRow={3}>
                 {this.state.findBooks.map(book => {
-                  return <BookCard key={book._id} book={book} />;
+                  return <BookCard key={book._id} book={book} favorites={this.state.favorites}/>;
                 })}
               </Card.Group>
             </Modal.Content>
@@ -58,12 +59,13 @@ class Home extends Component {
             <Modal.Content>
               <Card.Group itemsPerRow={3}>
                 {this.state.allBooks.map(book => {
-                  return <BookCard key={book._id} book={book} />;
+                  return <BookCard key={book._id} book={book} favorites={this.state.favorites}/>;
                 })}
               </Card.Group>
             </Modal.Content>
           </Modal>
           <AddBook />
+          <MyFavorites favorites={this.state.favorites}/>
         </div>
       </>
     );

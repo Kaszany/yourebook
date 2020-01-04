@@ -3,38 +3,24 @@ import { Button } from 'semantic-ui-react';
 
 class AddFavorites extends Component {
   
-    constructor() {
-        
-        super();
-        this.state = {
+    state = { disabled: false };
 
-            favorites: [],
-            disabled: false
+    addToFavorites = () => { 
+        // for (var i = 0; i < this.props.favorites.length; i++ ){
+        // if (this.props.favorites[i]._id === this.props.book._id){
+        //     alert("dupa");
+        // }
+        // else{
+        // console.log(this.props.book._id);    
+        this.props.favorites.push(this.props.book);
+        this.setState({disabled:true})
+        // }
+        // }
+    };
 
-        };
-
-      }
-
-
-
-      addToFavorites = () => {
-          
-          console.log("Twoje ulubiona tablica to:")
-          console.log(this.state.favorites)
-          console.log("Dodajesz:")
-          console.log(this.props.book)
-          this.setState({favorites: this.state.favorites.push(this.props.book)});
-          console.log("Twoje ulubiona tablica po zmianach to:")
-          console.log(this.state.favorites)
-          this.setState({disabled:true})
-      };
-
-
-
-  render() {
-  return (
-    <>
-   
+   render() {
+     return (
+        <>
               <Button
                 color="red"
                 icon="heart"
@@ -42,9 +28,8 @@ class AddFavorites extends Component {
                 onClick={this.addToFavorites}
                 disabled = {this.state.disabled}
                 floated="right"
-              />
-    
-    </>
+              />   
+        </>
     );
 }
 }
