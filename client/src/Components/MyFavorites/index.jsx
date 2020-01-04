@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, Card } from 'semantic-ui-react';
-import BookCard from '../BookCard';
+import FavoritesBookCard from '../FavoritesBookCard';
 
 class MyFavorites extends Component {
   
@@ -10,7 +10,6 @@ class MyFavorites extends Component {
     if (this.props.favorites.length === 0){
         alert('You dont have any favorite book');
         }else{
-        console.log(this.props.favorites)
         this.setState({ modalFavoritesOpen: true });
         }
     };
@@ -30,7 +29,7 @@ class MyFavorites extends Component {
             <Modal.Content>
               <Card.Group itemsPerRow={3}>
                 {this.props.favorites.map(book => {
-                  return <BookCard key={book._id} book={book} favorites={this.state.favorites}/>;
+                  return <FavoritesBookCard key={book._id} book={book}/>;
                 })}
               </Card.Group>
             </Modal.Content>
