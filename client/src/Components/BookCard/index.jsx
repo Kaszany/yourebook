@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-react';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
+import DeleteBook from '../DeleteBook';
+
 const BookCard = ({ book }) => {
   const { title, author, genre, year, imgURL } = book;
 
@@ -62,8 +64,10 @@ const BookCard = ({ book }) => {
                 floated="right"
               />
             </ModalActions>
+	    <Modal.Actions>
+              <DeleteBook key={book._id} book={book} />
+            </Modal.Actions>
           </Modal>
-          </div>
         </Card.Content>
       </Card>
     </>
