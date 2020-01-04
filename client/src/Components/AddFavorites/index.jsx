@@ -4,27 +4,20 @@ import { Button } from 'semantic-ui-react';
 class AddFavorites extends Component {
   
     state = { disabled: false,
-              isBookThere: null
+              isBookThere: 1
     };
 
 
     
-    addToFavorites = () => { 
+    addToFavorites = async (e) => { 
          for (var i = 0; i < this.props.favorites.length; i++ ){
          if (this.props.favorites[i]._id === this.props.book._id){
              alert("This book is already in favorites");
              this.setState({disabled:true})
-             this.setState({isBookThere:this.props.book._id})
-             
-             break;
-        //  this.props.favorites.push(this.props.book);
-        //  this.setState({disabled:true})
+             await this.setState( {isBookThere: 2} )
          }
         }
-        
-        console.log(this.state.isBookThere)
-
-        if (this.state.isBookThere !== this.props.book._id){
+        if (this.state.isBookThere === 1){    
         this.props.favorites.push(this.props.book);
         this.setState({disabled:true})
         }
