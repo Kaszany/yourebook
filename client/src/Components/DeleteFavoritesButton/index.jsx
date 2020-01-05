@@ -20,8 +20,8 @@ class DeleteFavoritesButton extends Component {
         this.props.favorites.remove(this.props.book);
         this.setState({disabled:true})
         alert( "You have removed " + this.props.book.title.toUpperCase() + " from your favorites" )
+        this.props.modalFavoritesClose();
       };
-
 
     render() {
         return (
