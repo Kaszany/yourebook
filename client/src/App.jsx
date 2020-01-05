@@ -7,41 +7,29 @@ import Regist from './Views/Register';
 import PrivateRoute from './Components/PrivateRoutes/PrivateRoute';
 import LoginRoute from './Components/PrivateRoutes/LoginRoute';
 import axios from 'axios';
+import AuthLoader from './Components/AuthLoader'
 
-const getToken = () => {
-  return localStorage.getItem('status');
-};
 
-export const Authentication = () => {
-  const token = getToken();
-  if (!token) {
-    console.log("brak tokena")
-    return false;
-  }
 
-  axios
-    .get('api/users/me', { headers: { 'x-auth-token': token } })
-    .then(res => console.log(res.data))
-    .catch(err => {
-      localStorage.removeItem('status')
-      console.log(err);
-      return false;
-    });
-    return true;
-};
 
-const App = () => {
-  return (
-    <BrowserRouter>
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
       <Container>
         <Switch>
-          <LoginRoute path="/login" component={Login} />
-          <PrivateRoute path="/" component={Home} />
+          <Route path="/login" component={Login}></Route>
+          <AuthLoader>
+          <Route path="/" component={Home} />
           {/* <LoginRoute path="/regist" component={Regist} /> */}
+          </AuthLoader>
         </Switch>
       </Container>
     </BrowserRouter>
-  );
-};
+    )
+  }
+}
+
+
 
 export default App;
