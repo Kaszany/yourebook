@@ -35,8 +35,8 @@ const BookCard = ({ book, favorites }) => {
                 <p>Year: {year}</p>
                 <p>Genre: {genre}</p>
               </Modal.Description>
-              <AddFavorites book={book} favorites={favorites}></AddFavorites>
             </Modal.Content>
+            <AddFavorites book={book} favorites={favorites}></AddFavorites>
           </Modal>
         </Card.Content>
       </Card>

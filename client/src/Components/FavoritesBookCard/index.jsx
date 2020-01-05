@@ -1,9 +1,10 @@
 import React from 'react';
-import AddFavorites from '../AddFavorites';
+import DeleteFavoritesButton from '../DeleteFavoritesButton';
 import { Card, Modal, Button, Image, Header } from 'semantic-ui-react';
 
-const FavoritesBookCard = ({ book }) => {
+const FavoritesBookCard = ({ book, favorites }) => {
   const { title, author, genre, year, imgURL } = book;
+  
   return (
     <>
       <Card color="blue" key={book._id}>
@@ -36,6 +37,7 @@ const FavoritesBookCard = ({ book }) => {
                 <p>Genre: {genre}</p>
               </Modal.Description>
             </Modal.Content>
+            <DeleteFavoritesButton book={book} favorites={favorites}></DeleteFavoritesButton>
           </Modal>
         </Card.Content>
       </Card>

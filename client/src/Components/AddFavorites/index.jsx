@@ -7,8 +7,6 @@ class AddFavorites extends Component {
               isBookThere: 1
     };
 
-
-    
     addToFavorites = async (e) => { 
          for (var i = 0; i < this.props.favorites.length; i++ ){
          if (this.props.favorites[i]._id === this.props.book._id){
@@ -23,13 +21,15 @@ class AddFavorites extends Component {
         }
     };
 
-   render() {
+    render() {
      return (
         <>
               <Button
+                size="massive"
                 color="red"
                 icon="heart"
-                content="Add to favorites"
+                labelPosition="right"
+                label="Add to favorites"
                 onClick={this.addToFavorites}
                 disabled = {this.state.disabled}
                 floated="right"
