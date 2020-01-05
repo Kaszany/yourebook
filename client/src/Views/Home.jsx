@@ -12,6 +12,9 @@ import RegisterForm from '../Components/Login/Register'
 class Home extends Component {
   state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false, favorites: [] };
 
+  //favorites = 'api/users/favorites'
+
+
   findData = findBooks => {
     this.setState({ findBooks });
   };
