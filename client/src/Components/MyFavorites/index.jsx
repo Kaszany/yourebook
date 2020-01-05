@@ -34,7 +34,7 @@ class MyFavorites extends Component {
             <Modal.Content>
               <Card.Group itemsPerRow={3}>
                 {this.props.favorites.map(book => {
-                  return <FavoritesBookCard key={book._id} book={book} modalFavoritesClose={this.modalFavoritesClose} favorites={this.props.favorites}/>;
+                  return <FavoritesBookCard key={book._id} book={book} modalFavoritesClose={this.modalFavoritesClose}  favorites={this.props.favorites}/>;
                 })}
               </Card.Group>
             </Modal.Content>
