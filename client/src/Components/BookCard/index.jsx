@@ -4,6 +4,7 @@ import axios from 'axios';
 import fileDownload from 'js-file-download';
 import DeleteBook from '../DeleteBook';
 
+
 const BookCard = ({ book }) => {
   const { title, author, genre, year, imgURL } = book;
 

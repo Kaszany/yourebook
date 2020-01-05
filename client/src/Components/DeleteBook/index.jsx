@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Modal, Header, Form } from 'semantic-ui-react';
+import { Button, Card, Modal, Header, Form, Transition } from 'semantic-ui-react';
+// // import { transitions, positions, Provider as AlertProvider } from 'react-alert';
+// import AlertTemplate from 'react-alert-template-basic';
+// import Alert from './Alert';
+
+// const options = {
+	// position: positions.BOTTOM_CENTER,
+	// timeout: 5000,
+	// offset: '30px',
+	// transition: transitions.SCALE
+// }
+
 
 class DeleteBook extends Component {
 	constructor() {
@@ -9,10 +20,10 @@ class DeleteBook extends Component {
 			modalOpen: false,
 		}
 	}
-
+	
 	handleOpen = () => this.setState({ modalOpen: true });
 	handleClose = () => this.setState({ modalOpen: false });
-	
+
 	deleteThisBook = async e => {
 		e.preventDefault();
 		const id = this.props.book._id;
@@ -20,13 +31,14 @@ class DeleteBook extends Component {
 		axios
 			.delete(`/api/books/${id}`)
 			.then(response => {
-			  console.log('response: ', response);
-			  alert('This book has been removed');
-			  this.setState({ modalOpen: false });
+				setTimeout(() => {
+					window.location.reload()
+				}, 1000);
+					
 			})
 			.catch(error => {
-			  this.setState({errorMessage: 	error.response.data});
-			  console.log(`login error ${error.response.data}`);
+				alert({errorMessage:error.response.data});
+				console.log(`login error ${error.response.data}`);
 			});
 	}
 
@@ -51,20 +63,33 @@ class DeleteBook extends Component {
 				<Header>Are you sure you want to delete this book?</Header>
 				<Modal.Content>
 					<Form onSubmit={this.deleteThisBook}>
-					{/* <Card.Header>{title}</Card.Header> */}
-						<Modal.Actions>
-							  <Button 
-							  style={{ marginLeft: '0px' }} onClick={this.handleClose}>
-              				  Leave
-              				</Button>
+						<Modal.Actions onSubmit={this.handleClose}>
 							<Button 
-							  type="submit" 
-							  color="red"
-							  content="Delete book" 
-							  floated="right" 
-							  />
-            			</Modal.Actions>
-					</Form>
+							style={{ marginLeft: '0px' }}
+							onClick={this.handleClose}
+							>
+								Leave
+              				</Button>
+							<Modal
+								size={'small'}
+								trigger={
+								<Button 
+								  type="submit" 
+								  color="red"
+								  content="Delete book" 
+								  floated="right"
+								/>
+								}
+							>
+								<Card fluid color='red'>
+									<Card.Content 
+									header='This book has been removed' 
+									textAlign='center'/>
+								</Card>
+							</Modal>
+							
+						</ Modal.Actions>
+					</Form >
 				</Modal.Content>
 			</Modal>
 
