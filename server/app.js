@@ -8,6 +8,7 @@ const Grid = require('gridfs-stream');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const books = require('./routes/book');
+const userFavorites = require('./routes/userFavorites');
 const images = require('./routes/uploads/images');
 
 if (!config.get('jwtPrivateKey')) {
@@ -42,6 +43,7 @@ app.use('/uploads', (req, res, next) => {
 
 app.use('/api/auth', auth);
 app.use('/api/users', users);
+app.use(userFavorites);
 app.use(books);
 app.use(images);
 
