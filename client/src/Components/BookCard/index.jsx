@@ -4,7 +4,6 @@ import axios from 'axios';
 import fileDownload from 'js-file-download';
 import DeleteBook from '../DeleteBook';
 
-
 const BookCard = ({ book }) => {
   const { title, author, genre, year, imgURL } = book;
 
@@ -64,9 +63,9 @@ const BookCard = ({ book }) => {
                 style={{ marginBottom: '15px' }}
                 floated="right"
               />
-            </ModalActions>
+            </Modal.Actions>
 	    <Modal.Actions>
-              <DeleteBook key={book._id} book={book} />
+              <DeleteBookCard book={book} />
             </Modal.Actions>
           </Modal>
         </Card.Content>
