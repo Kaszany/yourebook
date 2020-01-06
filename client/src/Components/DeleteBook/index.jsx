@@ -17,7 +17,13 @@ class DeleteBook extends Component {
 	deleteBookFromList = () => {
 		this.setState({bookOnList: false})
 		console.log(this.props.book)
+		// this.props.modalDeleteBookCardClose();
+	}
 
+	showInformation = () => {
+		setTimeout(() => {
+			this.setState({ modalOpen: false })
+		}, 1000);
 	}
 
 	deleteBook = async e => {
@@ -27,15 +33,12 @@ class DeleteBook extends Component {
 		axios
 			.delete(`/api/books/${id}`)
 			.then(response => {
+				console.log(this.props.book)
 				this.deleteBookFromList()
-				// setTimeout(() => {
-					// window.location.reload()
-				// }, 1000);
-					
 			})
 			.catch(error => {
 				alert({errorMessage:error.response.data});
-				console.log(`login error ${error.response.data}`);
+				console.log(`login error ${error.response}`);
 			});
 	}
 
@@ -46,49 +49,22 @@ class DeleteBook extends Component {
 				size={'small'}
 				trigger={
 				<Button 
-					size="tiny"
-					labelPosition="left"
-					color="red"
-					content="Delete book"
-					icon="remove"
-					onClick={this.handleOpen}
-				/> 
-				}
-				open={this.state.modalOpen}
-				onClose={this.handleClose}
+				  type="submit" 
+				  color="red"
+				  content="Delete book" 
+				  floated="right"
+				  onClick={this.deleteBook}
+				//   onClick={this.modalOpen}
+				/>
+			}
 			>
-				<Header>Are you sure you want to delete this book?</Header>
-				<Modal.Content>
-					<Form onSubmit={this.deleteBook}>
-						<Modal.Actions onSubmit={this.handleClose}>
-							<Button 
-							style={{ marginLeft: '0px' }}
-							onClick={this.handleClose}
-							>
-								Leave
-              				</Button>
-							<Modal
-								size={'small'}
-								trigger={
-								<Button 
-								  type="submit" 
-								  color="red"
-								  content="Delete book" 
-								  floated="right"
-								  onClick={this.handleClose}
-								/>
-								}
-							>
-								<Card fluid color='red'>
-									<Card.Content 
-									header='This book has been removed' 
-									textAlign='center'/>
-								</Card>
-							</Modal>
-							
-						</ Modal.Actions>
-					</Form >
-				</Modal.Content>
+				<Card fluid color='red'>
+					<Card.Content 
+					header='This book has removed' 
+					textAlign='center'
+					onClick={this.showInformation}
+					/>
+				</Card>
 			</Modal>
 
 		)
