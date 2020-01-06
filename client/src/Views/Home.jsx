@@ -20,6 +20,11 @@ class Home extends Component {
     this.setState({ allBooks });
   };
 
+  removeBook = id => {
+    const filteredBooks = this.state.allBooks.filter(book => book._id !== id);
+    this.setState({ allBooks: filteredBooks });
+  };
+
   handleOpen = () => this.setState({ modalFindOpen: true });
 
   handleClose = () => this.setState({ modalFindOpen: false });
