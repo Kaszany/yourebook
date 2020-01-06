@@ -5,22 +5,25 @@ const BookCard = ({ book }) => {
   const { title, author, genre, year, imgURL } = book;
   return (
     <>
-      <Card color="blue" key={book._id}>
+      <Card color="grey" key={book._id}>
         <Card.Content>
+          <div style={{marginBottom:'10px'}}>
           {imgURL && <Image floated="right" size="tiny" src={imgURL} />}
           <Card.Header>{title}</Card.Header>
           <Card.Meta>{author}</Card.Meta>
           <Card.Meta>{year}</Card.Meta>
+          </div>
           <Modal
             size={'large'}
             trigger={
               <Button
                 type="submit"
                 size="tiny"
-                color="blue"
-                icon="redo"
+                color="olive"
+                icon="eye"
                 labelPosition="right"
                 content="Show me this book"
+                // style={{marginTop:'60px'}}
                 floated="right"
               />
             }

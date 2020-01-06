@@ -43,27 +43,32 @@ class Home extends Component {
         </div>
       
         <div>
-          <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
-          <Modal size={'large'} open={this.state.modalFindOpen} onClose=  {this.handleClose}>
-            <Modal.Content>
-              <Card.Group itemsPerRow={3}>
-                {this.state.findBooks.map(book => {
-                  return <BookCard key={book._id} book={book} />;
-                })}
-              </Card.Group>
-            </Modal.Content>
-          </Modal>
-          <BookElement showAllData={this.showAllData} handleShowOpen= {this.handleShowOpen} />
-          <Modal size={'large'} open={this.state.modalAllOpen} onClose= {this.handleShowClose}>
-            <Modal.Content>
-              <Card.Group itemsPerRow={3}>
-                {this.state.allBooks.map(book => {
-                  return <BookCard key={book._id} book={book} />;
-                })}
-              </Card.Group>
-            </Modal.Content>
-          </Modal>
-          <AddBook />
+        <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
+      <div style={{marginLeft:'450px', width: '100%', position: 'relative', top: '-45px'}}>
+       
+        <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen} />
+        <AddBook  />
+        </div>
+
+        <Modal size={'large'} open={this.state.modalFindOpen} onClose={this.handleClose}>
+          <Modal.Content>
+            <Card.Group itemsPerRow={3}>
+              {this.state.findBooks.map(book => {
+                return <BookCard key={book._id} book={book} />;
+              })}
+            </Card.Group>
+          </Modal.Content>
+        </Modal>
+        
+        <Modal size={'large'} open={this.state.modalAllOpen} onClose={this.handleShowClose}>
+          <Modal.Content>
+            <Card.Group itemsPerRow={3}>
+              {this.state.allBooks.map(book => {
+                return <BookCard key={book._id} book={book} />;
+              })}
+            </Card.Group>
+          </Modal.Content>
+        </Modal>
         </div>
       </>
     );

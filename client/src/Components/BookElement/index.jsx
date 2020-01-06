@@ -29,13 +29,13 @@ getBooks = async e => {
   }
   };
 
-render(){
-  return (
-    <>   
-     <Button className="ui button" color="yellow" onClick={this.getBooks}><Icon name='redo' />Show all books in the library!</Button>  
-    </>
-  );
-}
-}
-
-export default BookElement;
+  render(){
+    return (
+      <>   
+       <Button className="ui yellow button" style={{ marginTop: '10px', width: '250px'}} onClick={this.getBooks}><Icon name='eye' />Show all books in the library</Button>  
+      </>
+    );
+  }
+  }
+  
+  export default BookElement;

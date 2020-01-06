@@ -61,47 +61,60 @@ class AddBook extends Component {
       <Modal
         size={'mini'}
         trigger={
-          <Button color="green" style={{ marginTop: '10px' }} onClick={this.handleOpen}>
-            Add Book!
+          <Button className="olive ui button" style={{ marginTop: '10px', marginLeft:'80px', width: '250px'}} onClick={this.handleOpen}><Icon name='plus' />
+            Add Book
           </Button>
         }
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
-        <Header icon="book" content="Adding new book" />
+        {/* <Header icon="book" content="Adding new book" /> */}
         <Modal.Content>
           <Form onSubmit={this.handleSubmit} style={{ padding: '5px' }}>
             <Form.Field>
-              <Input placeholder="Titleee" name="title" value={this.state.title} onChange={this.handleChange} />
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="book icon"></i></label>
+                <Input placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
+              </div>
             </Form.Field>
             <Form.Field>
-              <Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="user icon"></i></label>
+                <Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
+              </div>
             </Form.Field>
             <Form.Field>
-              <Input
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="calendar check out icon"></i></label>
+                <Input
                 placeholder="Year"
                 name="year"
                 type="number"
                 value={this.state.year}
                 onChange={this.handleChange}
-              />
+                />
+              </div>
             </Form.Field>
             <Form.Field>
-              <Input placeholder="Genre" name="genre" value={this.state.genre} onChange={this.handleChange} />
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="list alternate outline icon"></i></label>
+                <Input placeholder="Genre" name="genre" value={this.state.genre} onChange={this.handleChange} />
+              </div>
             </Form.Field>
             <Form.Field>
-              <h6 style={{ margin: '2px' }}>Book cover image(JPEG/PNG)</h6>
+              <h5 style={{ margin: '10px 0px 6px 0px' }}>Cover image (JPEG/PNG)</h5>
               <Input type="file" name="bookCover" icon="file image" onChange={this.handleUpload} />
             </Form.Field>
             <Form.Field>
-              <h6 style={{ margin: '2px' }}>PDF file</h6>
+              <h5 style={{ margin: '10px 0px 6px 0px' }}>PDF file</h5>
               <Input type="file" name="PDF" icon="file pdf" onChange={this.handleUpload} />
             </Form.Field>
             <Modal.Actions>
-              <Button negative style={{ marginLeft: '0px' }} onClick={this.handleClose}>
+              <Button className="orange ui button" onClick={this.handleClose} style={{marginLeft:'0px'}}><Icon name='external alternate' />
                 Leave
               </Button>
-              <Button type="submit" positive icon="checkmark" labelPosition="right" content="Add" floated="right" />
+              <Button className="olive ui button" type="submit" floated="right" ><Icon name='plus' />Add book</Button>
+            
             </Modal.Actions>
           </Form>
         </Modal.Content>
