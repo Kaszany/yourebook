@@ -2,8 +2,10 @@ import React from 'react';
 import { Card, Modal, Button, Icon, Image, Header } from 'semantic-ui-react';
 import DeleteBook from '../DeleteBook';
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, allBooks, onListBook }) => {
   const { title, author, genre, year, imgURL } = book;
+
+
   
   return (
     <>
@@ -40,6 +42,8 @@ const BookCard = ({ book }) => {
             <Modal.Actions>
               <DeleteBook 
                 book={book}
+                allBooks={allBooks}
+                onListBook={onListBook}
               />
             </Modal.Actions>
           </Modal>

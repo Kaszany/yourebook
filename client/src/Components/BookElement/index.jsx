@@ -6,7 +6,8 @@ class BookElement extends Component {
     constructor() {
         super();
         this.state = {
-            books: []
+            books: [],
+            bookOnList: false
         };
       }
 
@@ -21,6 +22,7 @@ getBooks = async e => {
     else{
       //data.length = 5; - gdy chcę ograniczyć ilość
       this.setState( {books: data});
+      this.setState({ bookOnList: true})
       this.props.showAllData(data);
       this.props.handleShowOpen();
     }

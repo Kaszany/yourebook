@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Card, Modal, Header, Form, Transition } from 'semantic-ui-react';
-// // import { transitions, positions, Provider as AlertProvider } from 'react-alert';
-// import AlertTemplate from 'react-alert-template-basic';
-// import Alert from './Alert';
-
-// const options = {
-	// position: positions.BOTTOM_CENTER,
-	// timeout: 5000,
-	// offset: '30px',
-	// transition: transitions.SCALE
-// }
+import { Button, Card, Modal, Header, Form} from 'semantic-ui-react';
 
 
 class DeleteBook extends Component {
@@ -18,11 +8,19 @@ class DeleteBook extends Component {
 		super();
 		this.state = {
 			modalOpen: false,
+			bookOnList: true
 		}
 	}
 	
 	handleOpen = () => this.setState({ modalOpen: true });
 	handleClose = () => this.setState({ modalOpen: false });
+	deleteBook = () => this.setState({ bookOnList: false});
+
+	removeBookFromList = async (e) => {
+		this.props.allBooks.slice(this.props.allBooks.indexOf(e), 1);
+		
+		console.log(this.props.allBooks)
+	}
 
 	deleteThisBook = async e => {
 		e.preventDefault();
@@ -31,14 +29,17 @@ class DeleteBook extends Component {
 		axios
 			.delete(`/api/books/${id}`)
 			.then(response => {
-				setTimeout(() => {
-					window.location.reload()
-				}, 1000);
-					
+				if(response.data === null) {
+					alert('This book has been deleted  already')
+				} else {
+					this.removeBookFromList(this.props.book)
+				}
+				console.log(response)
+				
 			})
 			.catch(error => {
-				alert({errorMessage:error.response.data});
-				console.log(`login error ${error.response.data}`);
+				alert({errorMessage:error.response});
+				console.log(`login error ${error.response}`);
 			});
 	}
 
@@ -63,7 +64,7 @@ class DeleteBook extends Component {
 				<Header>Are you sure you want to delete this book?</Header>
 				<Modal.Content>
 					<Form onSubmit={this.deleteThisBook}>
-						<Modal.Actions onSubmit={this.handleClose}>
+						<Modal.Actions>
 							<Button 
 							style={{ marginLeft: '0px' }}
 							onClick={this.handleClose}
@@ -78,10 +79,13 @@ class DeleteBook extends Component {
 								  color="red"
 								  content="Delete book" 
 								  floated="right"
+								  onClick={this.deleteBook}
+								//   onClick={this.handleClose}
 								/>
 								}
 							>
-								<Card fluid color='red'>
+								<Card fluid color='red'
+								>
 									<Card.Content 
 									header='This book has been removed' 
 									textAlign='center'/>
@@ -92,7 +96,6 @@ class DeleteBook extends Component {
 					</Form >
 				</Modal.Content>
 			</Modal>
-
 		)
 	}
 }

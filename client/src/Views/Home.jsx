@@ -9,7 +9,7 @@ import LoginForm from '../Components/Login/Auth'
 import RegisterForm from '../Components/Login/Register'
 
 class Home extends Component {
-  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
+  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false, bookOnList: true };
 
   findData = findBooks => {
     this.setState({ findBooks });
@@ -26,6 +26,9 @@ class Home extends Component {
   handleShowOpen = () => this.setState({ modalAllOpen: true });
 
   handleShowClose = () => this.setState({ modalAllOpen: false });
+
+  onListBook = () => this.setState({ bookOnList: true})
+
 
   render() {
     return (
@@ -58,7 +61,7 @@ class Home extends Component {
             <Modal.Content>
               <Card.Group itemsPerRow={3}>
                 {this.state.allBooks.map(book => {
-                  return <BookCard key={book._id} book={book} />;
+                  return <BookCard key={book._id} book={book} allBooks={this.state.allBooks} onListBook={this.onListBook}/>;
                 })}
               </Card.Group>
             </Modal.Content>
