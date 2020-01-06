@@ -61,9 +61,9 @@ class AddBook extends Component {
       <Modal
         size={'mini'}
         trigger={
-          <Button className="olive ui button" style={{ marginTop: '10px', marginLeft:'80px', width: '250px'}} onClick={this.handleOpen}><Icon name='plus' />
-            Add Book
-          </Button>
+          <Button className="olive ui button big" style={{ marginTop: '10px', marginLeft:'80px', width: '250px'}} onClick={this.handleOpen} icon="plus"
+          labelPosition="right"
+          content="Add book"/>
         }
         open={this.state.modalOpen}
         onClose={this.handleClose}

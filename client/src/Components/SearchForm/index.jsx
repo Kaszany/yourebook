@@ -54,7 +54,7 @@ class SearchForm extends Component {
 
   render() {
     return (
-      <Form style={{marginTop: '10px'}}>
+      <Form style={{marginTop: '30px'}}>
         <Form.Field>
           <div className="ui labeled input">
             <label className="ui right pointing label" style={{width: '40px'}}><i className="book icon"></i></label>
@@ -85,8 +85,10 @@ class SearchForm extends Component {
             />
           </div>
         </Form.Field>
-          <Button className="orange ui button" style={{width: '250px', marginLeft: '120px', marginTop:'20px'}} onClick={this.handleSubmit}>
-          <Icon name="eye" /> Find books </Button>
+          <Button className="orange ui button big" style={{width: '250px', marginLeft: '110px', marginTop:'10px'}} onClick={this.handleSubmit} icon="eye"
+                labelPosition="right"
+                content="Find books"/>
+          
           
       </Form>
     );

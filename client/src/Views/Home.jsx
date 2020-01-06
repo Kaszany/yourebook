@@ -44,7 +44,7 @@ class Home extends Component {
       
         <div>
         <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
-      <div style={{marginLeft:'450px', width: '100%', position: 'relative', top: '-45px'}}>
+      <div style={{marginLeft:'450px', width: '100%', position: 'relative', top: '-55px'}}>
        
         <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen} />
         <AddBook  />

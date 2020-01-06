@@ -5,26 +5,30 @@ const BookCard = ({ book }) => {
   const { title, author, genre, year, imgURL } = book;
   return (
     <>
-      <Card color="grey" key={book._id}>
-        <Card.Content>
-          <div style={{marginBottom:'10px'}}>
-          {imgURL && <Image floated="right" size="tiny" src={imgURL} />}
-          <Card.Header>{title}</Card.Header>
-          <Card.Meta>{author}</Card.Meta>
-          <Card.Meta>{year}</Card.Meta>
+      <Card color="grey" key={book._id} >
+        <Card.Content >
+          <div style={{display:'flex', justifyContent: 'space-between', marginBottom:'10px'}}>
+            <div>
+              <Card.Header>{title}</Card.Header>
+              <Card.Meta>{author}</Card.Meta>
+              <Card.Meta>{year} r.</Card.Meta>
+            </div>
+            <div>
+              {imgURL && <Image size="tiny" src={imgURL} />}
+            </div>
           </div>
           <Modal
             size={'large'}
             trigger={
               <Button
                 type="submit"
+                className="ui olive button"
                 size="tiny"
-                color="olive"
                 icon="eye"
                 labelPosition="right"
                 content="Show me this book"
-                // style={{marginTop:'60px'}}
                 floated="right"
+                
               />
             }
           >
@@ -39,7 +43,7 @@ const BookCard = ({ book }) => {
               </Modal.Description>
             </Modal.Content>
           </Modal>
-        </Card.Content>
+          </Card.Content>
       </Card>
     </>
   );

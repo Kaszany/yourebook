@@ -32,7 +32,8 @@ getBooks = async e => {
   render(){
     return (
       <>   
-       <Button className="ui yellow button" style={{ marginTop: '10px', width: '250px'}} onClick={this.getBooks}><Icon name='eye' />Show all books in the library</Button>  
+       <Button className="ui yellow button big" style={{ marginTop: '10px', width: '250px'}} onClick={this.getBooks} icon="eye"
+                labelPosition="right" content="Show all books"/>  
       </>
     );
   }
