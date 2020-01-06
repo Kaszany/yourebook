@@ -9,6 +9,8 @@ const users = require('./routes/users');
 const auth = require('./routes/auth');
 const books = require('./routes/book');
 const images = require('./routes/uploads/images');
+const PDFs = require('./routes/uploads/downloadPDF');
+
 
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
@@ -18,12 +20,19 @@ if (!config.get('jwtPrivateKey')) {
 const conn = mongoose.createConnection(process.env.DATABASE_URL);
 
 // Init gfs
-let gfs;
+let gfsImage;
 
 conn.once('open', () => {
   // Init stream
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('Bookcovers');
+  gfsImage = Grid(conn.db, mongoose.mongo);
+  gfsImage.collection('Bookcovers')
+});
+
+let gfsPDF;
+conn.once('open', () => {
+  // Init stream
+  gfsPDF = Grid(conn.db, mongoose.mongo);
+  gfsPDF.collection('PDFs')
 });
 
 mongoose
@@ -36,7 +45,13 @@ app.use(express.json());
 
 app.use('/uploads', (req, res, next) => {
   eval(`Grid.prototype.findOne = ${Grid.prototype.findOne.toString().replace('nextObject', 'next')}`);
-  res.locals.gfs = gfs;
+  res.locals.gfs = gfsImage;
+  next();
+});
+
+app.use('/api/PDFs.files', (req, res, next) => {
+  eval(`Grid.prototype.findOne = ${Grid.prototype.findOne.toString().replace('nextObject', 'next')}`);
+  res.locals.gfs = gfsPDF;
   next();
 });
 
@@ -44,6 +59,7 @@ app.use('/api/auth', auth);
 app.use('/api/users', users);
 app.use(books);
 app.use(images);
+app.use(PDFs)
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

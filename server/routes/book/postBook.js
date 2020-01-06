@@ -1,38 +1,26 @@
-const auth = require('../../middleware/auth')
 const express = require('express');
 const router = express.Router();
 const bookModel = require('./../../models/Book');
 const GridFsStorage = require('multer-gridfs-storage');
 const multer = require('multer');
-const crypto = require('crypto')
-const path = require('path');
 
-var storage = new GridFsStorage({
+const storage = new GridFsStorage({
   url: process.env.DATABASE_URL,
   file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString('hex') + path.extname(file.originalname);
-        if (file.mimetype === 'application/pdf'){
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'PDFs'
-        };
-        resolve(fileInfo);
-      } else {
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'Bookcovers',
-        };
-        resolve(fileInfo); 
-      }
-
-      });
-    });
-  }
+    if (file.mimetype === 'application/pdf') {
+      const fileInfo = {
+        filename: `PDF file, Book: ${req.body.title}`,
+        bucketName: 'PDFs',
+      };
+      return fileInfo;
+    } else {
+      const fileInfo = {
+        filename: `Bookcover image, Book: ${req.body.title}`,
+        bucketName: 'Bookcovers',
+      };
+      return fileInfo;
+    }
+  },
 });
 
 const fileFilter = (req, file, callback) => {
@@ -50,7 +38,7 @@ const upload = multer({
 });
 
 router.post(
-  '/api/books', auth,
+  '/api/books',
   upload.fields([
     { name: 'bookCover', maxCount: 1 },
     { name: 'PDF', maxCount: 1 },
@@ -62,8 +50,8 @@ router.post(
       author: req.body.author,
       genre: req.body.genre,
       year: req.body.year,
-      bookCover: req.files['bookCover'] ? req.files['bookCover'][0].filename : null,
-      PDF: req.files['PDF'] ? req.files['PDF'][0].filename : null,
+      bookCover: req.files['bookCover'] ? req.files['bookCover'][0].id: null,
+      PDF: req.files['PDF'] ? req.files['PDF'][0].id : null,
     });
 
     try {

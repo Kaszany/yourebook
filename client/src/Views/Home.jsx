@@ -5,6 +5,7 @@ import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';
 import BookCard from '../Components/BookCard';
+import NavBar from '../Components/NavBar';
 
 class Home extends Component {
   state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
@@ -28,6 +29,7 @@ class Home extends Component {
   render() {
     return (
       <>
+        <NavBar/>
         <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
         <Modal size={'large'} open={this.state.modalFindOpen} onClose={this.handleClose}>
           <Modal.Content>
