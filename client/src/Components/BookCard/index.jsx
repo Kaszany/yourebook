@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Modal, Button, Icon, Image, Header } from 'semantic-ui-react';
-import DeleteBookCard from '../DeleteBookCard';
+import DeleteBook from '../DeleteBook';
 
 const BookCard = ({ book }) => {
   const { title, author, genre, year, imgURL } = book;
@@ -38,7 +38,9 @@ const BookCard = ({ book }) => {
               </Modal.Description>
             </Modal.Content>
             <Modal.Actions>
-              <DeleteBookCard book={book} />
+              <DeleteBook 
+                book={book}
+              />
             </Modal.Actions>
           </Modal>
         </Card.Content>
