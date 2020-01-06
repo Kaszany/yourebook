@@ -13,6 +13,7 @@ class AddBook extends Component {
       bookCover: null,
       PDF: null,
       modalOpen: false,
+      description: '',
     };
   }
   handleOpen = () => this.setState({ modalOpen: true });
@@ -33,7 +34,7 @@ class AddBook extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const { title, author, year, genre, bookCover, PDF } = this.state;
+    const { title, author, year, genre, bookCover, PDF, description } = this.state;
     const bookFormData = new FormData();
     bookFormData.set('title', title);
     bookFormData.set('author', author);
@@ -41,6 +42,7 @@ class AddBook extends Component {
     bookFormData.set('genre', genre);
     bookFormData.set('bookCover', bookCover);
     bookFormData.set('PDF', PDF);
+    bookFormData.set ('description', description);
 
     await axios({
       method: 'post',
@@ -96,6 +98,9 @@ class AddBook extends Component {
             <Form.Field>
               <h6 style={{ margin: '2px' }}>PDF file</h6>
               <Input type="file" name="PDF" icon="file pdf" onChange={this.handleUpload} />
+            </Form.Field>
+            <Form.Field>
+              <Input placeholder="Description" name="description" value={this.state.description} onChange={this.handleChange} />
             </Form.Field>
             <Modal.Actions>
               <Button negative style={{ marginLeft: '0px' }} onClick={this.handleClose}>
