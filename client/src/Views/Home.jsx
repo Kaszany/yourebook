@@ -26,20 +26,6 @@ class Home extends Component {
 
   handleShowClose = () => this.setState({ modalAllOpen: false });
 
-  handleDownload = () => {
-    axios({
-      method: 'get',
-      url: `/api/PDFs.files/9628214f89f564f8d86dca102e6646e2.pdf`,
-      responseType: 'blob',
-    }).then(response => {
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'testpdf');
-      document.body.appendChild(link);
-      link.click();
-    });
-  };
   render() {
     return (
       <>
@@ -61,13 +47,6 @@ class Home extends Component {
                       book.genre.toUpperCase() +
                       '  *  PDF: ' +
                       book.PDF}
-                    <Button
-                      icon="file pdf"
-                      color="red"
-                      onClick={this.handleDownload}
-                      style={{ marginTop: '20px' }}
-                      floated="right"
-                    />
                   </Card.Content>
                 </Card>
               );

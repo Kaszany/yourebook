@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
-import {Loader, Segment, Container} from 'semantic-ui-react'
+import {Loader, Dimmer} from 'semantic-ui-react'
 import getToken from '../../utils/getToken'
 class AuthLoader extends React.Component {
   constructor(props) {
@@ -30,7 +30,9 @@ class AuthLoader extends React.Component {
   render() {
     if (this.state.user === null) {
       return (
+        <Dimmer active>
           <Loader size="massive">Please wait...</Loader>
+          </Dimmer>
       );
     }
     return <div>{this.props.children}</div>;
