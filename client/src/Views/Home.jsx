@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import { Modal, Card } from 'semantic-ui-react';
+
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';
-import { Card, Modal, Button } from 'semantic-ui-react';
-import axios from 'axios';
-import NavBar from '../Components/NavBar';
-
+import BookCard from '../Components/BookCard';
 
 class Home extends Component {
-  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, PDF: '',};
+  state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
 
   findData = findBooks => {
     this.setState({ findBooks });
@@ -29,58 +28,24 @@ class Home extends Component {
   render() {
     return (
       <>
-        <NavBar />
         <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
-        <Modal size={'mini'} open={this.state.modalFindOpen} onClose={this.handleClose}>
+        <Modal size={'large'} open={this.state.modalFindOpen} onClose={this.handleClose}>
           <Modal.Content>
-            {this.state.findBooks.map(book => {
-              return (
-                <Card color="blue" key={book._id}>
-                  <Card.Content>
-                    {'Title: ' +
-                      book.title.toUpperCase() +
-                      '  *  Author: ' +
-                      book.author.toUpperCase() +
-                      '  *  Year: ' +
-                      book.year +
-                      '  *  Genre: ' +
-                      book.genre.toUpperCase() +
-                      '  *  PDF: ' +
-                      book.PDF}
-                  </Card.Content>
-                </Card>
-              );
-            })}
+            <Card.Group itemsPerRow={3}>
+              {this.state.findBooks.map(book => {
+                return <BookCard key={book._id} book={book} />;
+              })}
+            </Card.Group>
           </Modal.Content>
         </Modal>
         <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen} />
-        <Modal size={'mini'} open={this.state.modalAllOpen} onClose={this.handleShowClose}>
+        <Modal size={'large'} open={this.state.modalAllOpen} onClose={this.handleShowClose}>
           <Modal.Content>
-            {this.state.allBooks.map(book => {
-              return (
-                <Card color="yellow" key={book._id}>
-                  <Card.Content>
-                    {'Title: ' +
-                      book.title.toUpperCase() +
-                      '  *  Author: ' +
-                      book.author.toUpperCase() +
-                      '  *  Year: ' +
-                      book.year +
-                      '  *  Genre: ' +
-                      book.genre.toUpperCase() +
-                      'PDF' +
-                      book.PDF}
-                    <Button
-                      icon="file pdf"
-                      color="red"
-                      onClick={this.handleDownload}
-                      style={{ marginTop: '20px' }}
-                      floated="right"
-                    />
-                  </Card.Content>
-                </Card>
-              );
-            })}
+            <Card.Group itemsPerRow={3}>
+              {this.state.allBooks.map(book => {
+                return <BookCard key={book._id} book={book} />;
+              })}
+            </Card.Group>
           </Modal.Content>
         </Modal>
         <AddBook />
