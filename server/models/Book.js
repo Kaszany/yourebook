@@ -32,6 +32,12 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  description: {
+    type: String,
+    required: false,
+    min: 0,
+    max: 5000,
+  },
 });
 
 const Book = mongoose.model('Book', bookSchema);
