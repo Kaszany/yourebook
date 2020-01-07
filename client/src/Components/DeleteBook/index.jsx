@@ -7,7 +7,6 @@ class DeleteBook extends Component {
     super();
     this.state = {
       modalOpen: false,
-      bookOnList: true,
     };
   }
 
@@ -16,9 +15,7 @@ class DeleteBook extends Component {
   deleteBook = () => this.setState({ bookOnList: false });
 
   removeBookFromList = async () => {
-    // this.props.allBooks.slice(this.props.allBooks.indexOf(e), 1);
     this.props.removeBook(this.props.book._id);
-    console.log(this.props.allBooks);
   };
 
   deleteThisBook = async e => {
@@ -74,7 +71,6 @@ class DeleteBook extends Component {
                     content="Delete book"
                     floated="right"
                     onClick={this.deleteBook}
-                    //   onClick={this.handleClose}
                   />
                 }
               >

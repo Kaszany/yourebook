@@ -23,6 +23,15 @@ class Home extends Component {
   removeBook = id => {
     const filteredBooks = this.state.allBooks.filter(book => book._id !== id);
     this.setState({ allBooks: filteredBooks });
+    if(filteredBooks.length === 0) {
+      alert('The library does not contain any book')
+    }
+
+    const filteredFindBooks = this.state.findBooks.filter(book => book._id !== id);
+    this.setState({ findBooks: filteredFindBooks});
+    if(filteredFindBooks.length === 0) {
+      alert('The library does not contain this book')
+    }
   };
 
   handleOpen = () => this.setState({ modalFindOpen: true });
@@ -75,7 +84,7 @@ class Home extends Component {
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
               {this.state.findBooks.map(book => {
-                return <BookCard key={book._id} book={book} />;
+                return <BookCard key={book._id} book={book} removeBook={removeBook}/>;
               })}
             </Card.Group>
           </Modal.Content>
@@ -85,7 +94,7 @@ class Home extends Component {
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
               {this.state.allBooks.map(book => {
-                return <BookCard key={book._id} book={book} />;
+                return <BookCard key={book._id} book={book} removeBook={removeBook} />;
               })}
             </Card.Group>
           </Modal.Content>
