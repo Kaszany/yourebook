@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Card } from 'semantic-ui-react';
-
+import LoginForm from '../Components/Login/Auth'
+import RegisterForm from '../Components/Login/Register'
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';
@@ -29,8 +30,26 @@ class Home extends Component {
   render() {
     return (
       <>
-        <NavBar/>
+        <NavBar />
+	      <div style={{marginTop:'10px'}}>
+      	  <div className="ui segment" style={{marginLeft: '70%', display: 'flex', justifyContent: 'space-evenly'}}>
+            <LoginForm />
+            <RegisterForm />
+          </div>
+
+          <div className="ui segment">
+            <img src='./bookstorm.jpg' alt='book in storm' style={{width:'100%'}}/>
+          </div>
+        </div>
+      
+        <div>
         <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
+      <div style={{marginLeft:'450px', width: '100%', position: 'relative', top: '-55px'}}>
+       
+        <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen} />
+        <AddBook  />
+        </div>
+
         <Modal size={'large'} open={this.state.modalFindOpen} onClose={this.handleClose}>
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
@@ -40,7 +59,7 @@ class Home extends Component {
             </Card.Group>
           </Modal.Content>
         </Modal>
-        <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen} />
+        
         <Modal size={'large'} open={this.state.modalAllOpen} onClose={this.handleShowClose}>
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
@@ -50,10 +69,11 @@ class Home extends Component {
             </Card.Group>
           </Modal.Content>
         </Modal>
-        <AddBook />
+        </div>
       </>
     );
-  }
-}
+  };
+
+};
 
 export default Home;
