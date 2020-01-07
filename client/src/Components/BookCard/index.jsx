@@ -1,5 +1,6 @@
 import React from 'react';
 import AddFavorites from '../AddFavorites';
+import BookEdition from '../BookEdition';
 import { Card, Modal, Button, Image, Header } from 'semantic-ui-react';
 
 const BookCard = ({ book, favorites }) => {
@@ -37,6 +38,7 @@ const BookCard = ({ book, favorites }) => {
               </Modal.Description>
             </Modal.Content>
             <AddFavorites book={book} favorites={favorites}></AddFavorites>
+            <BookEdition book={book} favorites={favorites}></BookEdition>
           </Modal>
         </Card.Content>
       </Card>
