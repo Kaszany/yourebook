@@ -31,11 +31,9 @@ class DeleteBook extends Component {
         } else {
           setTimeout(this.removeBookFromList, 1000)
         }
-        console.log(response);
       })
       .catch(error => {
         alert({ errorMessage: error.response });
-        console.log(`login error ${error.response}`);
       });
   };
 
