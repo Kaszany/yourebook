@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Card, Modal, Header, Form } from 'semantic-ui-react';
 
+
 class DeleteBook extends Component {
   constructor() {
     super();
@@ -28,7 +29,7 @@ class DeleteBook extends Component {
         if (response.data === null) {
           alert('This book has been deleted  already');
         } else {
-          this.removeBookFromList();
+          setTimeout(this.removeBookFromList, 1000)
         }
         console.log(response);
       })
@@ -74,8 +75,8 @@ class DeleteBook extends Component {
                   />
                 }
               >
-                  <Card fluid color="red">
-                    <Card.Content header="This book has been removed" textAlign="center" /> 
+                <Card fluid color="red">
+                  <Card.Content header="This book has been removed" textAlign="center" />
                 </Card>
               </Modal>
             </Modal.Actions>
