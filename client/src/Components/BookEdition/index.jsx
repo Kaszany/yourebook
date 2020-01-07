@@ -14,8 +14,14 @@ import axios from 'axios';const genreOptions = [
         author: '',
         year: '',
         genre: '',
+        modalOpen: false,
                
      };    
+
+
+     handleOpen = () => this.setState({ modalOpen: true });
+
+     handleClose = () => this.setState({ modalOpen: false });
      
      handleChange = e => {
         const { name, value } = e.target;
@@ -24,20 +30,26 @@ import axios from 'axios';const genreOptions = [
       
       handleSubmit = async e => {
         e.preventDefault();
+        
+        const id = this.props.book._id;
         const { title, author, year, genre } = this.state;
         const bookFormData = new FormData();
         bookFormData.set('title', title);
         bookFormData.set('author', author);
         bookFormData.set('year', year);
         bookFormData.set('genre', genre);
-
+        
     
         await axios({
+            
           method: 'put',
-          url: '/api/books/:id',
+          url: `/api/books/${id}`,
           data: bookFormData,
-          config: { headers: { 'Content-Type': 'multipart/form-data' } },
+          
+        //   config: { headers: { 'Content-Type': 'multipart/form-data' } },
         })
+          
+          
           .then(res => {
             console.log(res.data);
           })
@@ -63,7 +75,7 @@ import axios from 'axios';const genreOptions = [
                   //icon="heart"
                   labelPosition="right"
                   label="Edit this book"
-                  onClick={this.dupa}
+                  onClick={this.handleOpen}
                   //disabled = {this.state.disabled}
                   //floated="right"
                   />
