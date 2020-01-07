@@ -7,7 +7,7 @@ class AuthLoader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      valid: null,
     };
   }
   componentDidMount() {
@@ -19,7 +19,7 @@ class AuthLoader extends React.Component {
 
     axios
       .get('api/users/me', { headers: { 'x-auth-token': token } })
-      .then(res => this.setState({ user: res.data }))
+      .then(res => this.setState({ valid: res.data }))
       .catch(err => {
         localStorage.removeItem('status');
         console.log(err);
@@ -28,7 +28,7 @@ class AuthLoader extends React.Component {
   }
 
   render() {
-    if (this.state.user === null) {
+    if (this.state.valid === null) {
       return (
         <Dimmer active>
           <Loader size="massive">Please wait...</Loader>

@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const auth = require('../../middleware/auth')
 const { Book } = require('../../models/Book');
 const Joi = require('joi');
 
