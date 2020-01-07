@@ -15,23 +15,26 @@ import axios from 'axios';const genreOptions = [
         year: '',
         genre: '',
                
-     };     handleChange = e => {
+     };    
+     
+     handleChange = e => {
         const { name, value } = e.target;
         this.setState({ [name]: value });
-      };      handleSubmit = async e => {
+      };      
+      
+      handleSubmit = async e => {
         e.preventDefault();
-        const { title, author, year, genre, bookCover, PDF } = this.state;
+        const { title, author, year, genre } = this.state;
         const bookFormData = new FormData();
         bookFormData.set('title', title);
         bookFormData.set('author', author);
         bookFormData.set('year', year);
         bookFormData.set('genre', genre);
-        bookFormData.set('bookCover', bookCover);
-        bookFormData.set('PDF', PDF);
+
     
         await axios({
           method: 'put',
-          url: '/api/books',
+          url: '/api/books/:id',
           data: bookFormData,
           config: { headers: { 'Content-Type': 'multipart/form-data' } },
         })
@@ -41,7 +44,11 @@ import axios from 'axios';const genreOptions = [
           .catch(err => {
             console.log(err);
           });
-      };    render() {
+      };    
+      
+      
+      
+      render() {
      return (
       
               
