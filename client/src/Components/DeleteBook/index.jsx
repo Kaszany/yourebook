@@ -74,8 +74,8 @@ class DeleteBook extends Component {
                   />
                 }
               >
-                <Card fluid color="red">
-                  <Card.Content header="This book has been removed" textAlign="center" />
+                  <Card fluid color="red">
+                    <Card.Content header="This book has been removed" textAlign="center" /> 
                 </Card>
               </Modal>
             </Modal.Actions>

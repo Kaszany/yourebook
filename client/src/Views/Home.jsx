@@ -23,15 +23,9 @@ class Home extends Component {
   removeBook = id => {
     const filteredBooks = this.state.allBooks.filter(book => book._id !== id);
     this.setState({ allBooks: filteredBooks });
-    if(filteredBooks.length === 0) {
-      alert('The library does not contain any book')
-    }
 
     const filteredFindBooks = this.state.findBooks.filter(book => book._id !== id);
-    this.setState({ findBooks: filteredFindBooks});
-    if(filteredFindBooks.length === 0) {
-      alert('The library does not contain this book')
-    }
+    this.setState({ findBooks: filteredFindBooks})
   };
 
   handleOpen = () => this.setState({ modalFindOpen: true });
