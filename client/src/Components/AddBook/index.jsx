@@ -64,7 +64,6 @@ class AddBook extends Component {
           request: 'Something went wrong',
           endmessage: err.response.data.message,
         });
-        console.log(err.response.data);
       });
   };
 
@@ -126,7 +125,11 @@ class AddBook extends Component {
                 Leave
               </Button>
               <Button className="olive ui button" type="submit" floated="right" ><Icon name='plus' />Add book</Button>
-            
+              {this.state.endmessage === 'Success!' ? (
+                <h5 style={{ color: 'green', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
+              ) : (
+                <h5 style={{ color: 'red', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
+              )}
             </Modal.Actions>
           </Form>
         </Modal.Content>
