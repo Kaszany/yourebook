@@ -22,7 +22,7 @@ export default class NavBar extends Component {
           name='Home'
           active={activeItem === 'Home'}
           onClick={this.handleItemClick}
-          as={Link} to='/home'
+          as={Link} to='/'
         />
         <Menu.Item
           name='Collection'

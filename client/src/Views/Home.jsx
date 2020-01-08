@@ -31,16 +31,9 @@ class Home extends Component {
     return (
       <>
         <NavBar />
-	      <div style={{marginTop:'10px'}}>
-      	  <div className="ui segment" style={{marginLeft: '70%', display: 'flex', justifyContent: 'space-evenly'}}>
-            <LoginForm />
-            <RegisterForm />
-          </div>
-
           <div className="ui segment">
             <img src='./bookstorm.jpg' alt='book in storm' style={{width:'100%'}}/>
           </div>
-        </div>
       
         <div>
         <SearchForm findData={this.findData} handleOpen={this.handleOpen} />

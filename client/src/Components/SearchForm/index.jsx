@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react';
-
-const genreOptions = [
-  { value: '', text: 'cancel this selection' },
-  { value: 'romance', text: 'Romance' },
-  { value: 'fantasy', text: 'Fantasy' },
-  { value: 'horror', text: 'Horror' },
-  { value: 'crime', text: 'Crime' },
-  { value: 'thriller', text: 'Thriller' },
-];
+import genreOptions from '../../utils/genreOptions'
 
 class SearchForm extends Component {
   constructor() {
