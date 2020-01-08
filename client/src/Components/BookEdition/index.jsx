@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form, Input, Icon, Select } from 'semantic-ui-react';
+import { Button, Modal, Form, Input, Icon, Select, Header } from 'semantic-ui-react';
 import axios from 'axios';
 
 const genreOptions = [
@@ -49,7 +49,6 @@ const genreOptions = [
       
         axios(req)
         this.handleClose(); 
-        alert("You have successfully made changes to this book")
         this.props.handleShowClose();
 
       }
@@ -101,15 +100,50 @@ const genreOptions = [
             onChange={this.handleChange}
             options={genreOptions}
           />
-        </Form.Field>
-        <Button className="ui button" color="blue" onClick={this.handleSubmit}>
-          <Icon name="redo" /> Save changes
-        </Button>
-      </Form>
+        </Form.Field>   
+      </Form>                       
       </Modal.Content>
+      <Modal
+	           trigger={
+             <Button 
+              size="massive" 
+              className="ui button"  
+              color="orange"
+              icon="redo"
+              labelPosition="right"
+              label="Save changes"
+              floated="right"
+              onClick={this.handleOpen}          
+             />
+             }
+			  >
+				 <Header>Are you sure you want to edit this book?</Header>
+				  <Modal.Content>
+						<Modal.Actions onSubmit={this.handleClose}>
+              <Button
+                color="red" 
+                content="No, don't edit this book" 
+							  onClick={this.handleClose}
+							/>
+							  <Modal	
+								trigger={
+								<Button 
+								  type="submit" 
+								  color="green"
+								  content="Yes, edit this book" 
+                  floated="right"
+                  onClick={this.handleSubmit}
+								/>
+								}
+							  >
+							</Modal>	
+						</ Modal.Actions>	
+				</Modal.Content>
+			</Modal>
       </Modal> 
-              
-     
+                 
     );
+  }
 }
-}export default BookEdition;
+
+export default BookEdition;
