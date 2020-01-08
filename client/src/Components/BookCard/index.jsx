@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-react';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
+
+
 const BookCard = ({ book }) => {
   const { title, author, genre, year, imgURL } = book;
-
+  const [PDFResponse, setResponse] = useState('')
   const handleDownload = () => {
+
     axios({
       method: 'get',
       url: `/api/PDFs.files/${book.PDF}`,
       responseType: 'blob',
     }).then(response => {
+      setResponse('Your download should begin in a second')
       fileDownload(response.data, `${book.title}.pdf`);
+    }).catch(err => {
+      setResponse(`No file attached`)
     });
   };
 
@@ -49,6 +55,7 @@ const BookCard = ({ book }) => {
                 <p>Author: {author}</p>
                 <p>Year: {year}</p>
                 <p>Genre: {genre}</p>
+
               </Modal.Description>
             </Modal.Content>
             <ModalActions>
@@ -59,6 +66,9 @@ const BookCard = ({ book }) => {
                 style={{ marginBottom: '15px' }}
                 floated="right"
               />
+                {PDFResponse === 'Your download should begin in a second' ? (<h5 style={{ color: 'green', display: 'flex', justifyContent: 'center' }}>{PDFResponse}</h5>) : (
+                <h5 style={{ color: 'red', display: 'flex', justifyContent: 'center' }}>{PDFResponse}</h5>
+              )}
             </ModalActions>
           </Modal>
         </Card.Content>
