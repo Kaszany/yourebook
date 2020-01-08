@@ -11,14 +11,16 @@ const BookCard = ({ book }) => {
     axios({
       method: 'get',
       url: `/api/PDFs.files/${book.PDF}`,
-      responseType: 'stream',
+      responseType: 'arraybuffer'
     })
       .then(response => {
         setResponse('Your download should begin in a second');
         fileDownload(response.data, `${book.title}.pdf`);
       })
       .catch(err => {
-        setResponse(`${err.response.data}`);
+        const decodedErr = String.fromCharCode.apply(null, new Uint8Array(err.response.data));
+        setResponse(decodedErr);
+          
       });
   };
 
