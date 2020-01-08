@@ -19,7 +19,7 @@ const BookCard = ({ book }) => {
     <>
       <Card color="grey" key={book._id}>
         <Card.Content>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+          <div  className="ui content" >
             <div>
               <Card.Header>{title}</Card.Header>
               <Card.Meta>{author}</Card.Meta>
@@ -27,9 +27,11 @@ const BookCard = ({ book }) => {
             </div>
             <div>{imgURL && <Image size="tiny" src={imgURL} />}</div>
           </div>
-          <Modal
+          <div className="ui extra content">
+          <Modal 
             size={'large'}
             trigger={
+              
               <Button
                 type="submit"
                 className="ui olive button"
@@ -61,6 +63,7 @@ const BookCard = ({ book }) => {
               />
             </ModalActions>
           </Modal>
+          </div>
         </Card.Content>
       </Card>
     </>
