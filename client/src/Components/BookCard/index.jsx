@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-react';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
+import '../../App.css'
 
 
 const BookCard = ({ book }) => {
@@ -23,7 +24,7 @@ const BookCard = ({ book }) => {
 
   return (
     <>
-      <Card color="grey" key={book._id}>
+      <Card color="grey" key={book._id} className="entrance-center">
         <Card.Content>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
             <div>
@@ -34,6 +35,7 @@ const BookCard = ({ book }) => {
             <div>{imgURL && <Image size="tiny" src={imgURL} />}</div>
           </div>
           <Modal
+         className="entrance-left"
             size={'large'}
             trigger={
               <Button

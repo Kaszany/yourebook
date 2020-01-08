@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Input, Modal, Icon } from 'semantic-ui-react';
 import axios from 'axios';
-
+import '../../App.css'
 class AddBook extends Component {
   constructor() {
     super();
@@ -69,6 +69,7 @@ class AddBook extends Component {
   render() {
     return (
       <Modal
+      className="entrance-center"
         size={'mini'}
         trigger={
           <Button className="olive ui button big" style={{ marginTop: '10px', marginLeft:'80px', width: '250px'}} onClick={this.handleOpen} icon="plus"
@@ -119,17 +120,17 @@ class AddBook extends Component {
               <h5 style={{ margin: '10px 0px 6px 0px' }}>PDF file</h5>
               <Input type="file" name="PDF" icon="file pdf" onChange={this.handleUpload} />
             </Form.Field>
-            <Modal.Actions>
+            <Modal.Actions className="modalactionsaddbook">
               <Button className="orange ui button" onClick={this.handleClose} style={{marginLeft:'0px'}}><Icon name='external alternate' />
                 Leave
               </Button>
               <Button className="olive ui button" type="submit" floated="right" ><Icon name='plus' />Add book</Button>
               {this.state.endmessage === 'Success!' ? (
-                <h5 style={{ color: 'green', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
+                <h5  style={{ color: 'green', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
               ) : (
-                <h5 style={{ color: 'red', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
+                <h5  style={{ color: 'red', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
               )}
-            </Modal.Actions>
+            </Modal.Actions >
           </Form>
         </Modal.Content>
       </Modal>

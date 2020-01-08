@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Select} from 'semantic-ui-react';
+import { Form, Input, Button, Select } from 'semantic-ui-react';
 
 const genreOptions = [
   { value: '', text: 'cancel this selection' },
@@ -54,28 +54,36 @@ class SearchForm extends Component {
 
   render() {
     return (
-      <Form style={{marginTop: '30px'}}>
+      <Form style={{ marginTop: '30px' }}>
         <Form.Field>
           <div className="ui labeled input">
-            <label className="ui right pointing label" style={{width: '40px'}}><i className="book icon"></i></label>
+            <label className="ui right pointing label" style={{ width: '40px' }}>
+              <i className="book icon"></i>
+            </label>
             <Input placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange} />
           </div>
         </Form.Field>
         <Form.Field>
           <div className="ui labeled input">
-            <label className="ui right pointing label" style={{width: '40px'}}><i className="user icon"></i></label>
+            <label className="ui right pointing label" style={{ width: '40px' }}>
+              <i className="user icon"></i>
+            </label>
             <Input placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange} />
           </div>
         </Form.Field>
         <Form.Field>
           <div className="ui labeled input">
-            <label className="ui right pointing label" style={{width: '40px'}}><i className="calendar check out icon"></i></label>
+            <label className="ui right pointing label" style={{ width: '40px' }}>
+              <i className="calendar check out icon"></i>
+            </label>
             <Input placeholder="Year" name="year" type="number" value={this.state.year} onChange={this.handleChange} />
-          </div>  
+          </div>
         </Form.Field>
         <Form.Field>
           <div className="ui labeled input">
-            <label className="ui right pointing label" style={{width: '40px'}}><i className="list alternate outline icon"></i></label>
+            <label className="ui right pointing label" style={{ width: '40px' }}>
+              <i className="list alternate outline icon"></i>
+            </label>
             <Select
               placeholder="Genre"
               name="genre"
@@ -85,15 +93,17 @@ class SearchForm extends Component {
             />
           </div>
         </Form.Field>
-          <Button className="orange ui button big" style={{width: '250px', marginLeft: '110px', marginTop:'10px'}} onClick={this.handleSubmit} icon="eye"
-                labelPosition="right"
-                content="Find books"/>
-          
-          
+        <Button
+          className="orange ui button big"
+          style={{ width: '250px', marginLeft: '110px', marginTop: '10px' }}
+          onClick={this.handleSubmit}
+          icon="eye"
+          labelPosition="right"
+          content="Find books"
+        />
       </Form>
     );
   }
 }
 
 export default SearchForm;
-

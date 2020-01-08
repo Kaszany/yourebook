@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Form, Modal} from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
+import '../../App.css';
 
 
 class LoginForm extends Component {
@@ -51,7 +52,7 @@ class LoginForm extends Component {
   render() {
     return (
 
-      <Modal
+      <Modal className="entrance-center"
         size={'mini'}
         trigger={
           <Button className="big olive ui button" onClick={this.handleOpen} style={{width: '140px'}}>
