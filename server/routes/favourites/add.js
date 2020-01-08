@@ -6,7 +6,7 @@ router.post('/api/favourites/', async (req, res) => {
   const { id, email } = req.query;
   console.log(email, id);
   try {
-    const user = await User.findOneAndUpdate({ email }, { $push: { favourites: id } });
+    const user = await User.findOneAndUpdate({ email }, { $addToSet: { favorites: id } });
     if (!user) throw new Error('User Not Found!');
 
     res.json({ id });
