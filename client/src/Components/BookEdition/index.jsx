@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import { Button, Modal, Form, Input, Icon, Select } from 'semantic-ui-react';
-import axios from 'axios';const genreOptions = [
+import axios from 'axios';
+
+
+const genreOptions = [
     { value: '', text: 'cancel this selection' },
     { value: 'romance', text: 'Romance' },
     { value: 'fantasy', text: 'Fantasy' },
     { value: 'horror', text: 'Horror' },
     { value: 'crime', text: 'Crime' },
     { value: 'thriller', text: 'Thriller' },
-  ];class BookEdition extends Component {
+  ];
+  
+  class BookEdition extends Component {
   
      state = { 
-        title: '',
-        author: '',
-        year: '',
-        genre: '',
-        modalOpen: false,
-               
+        title: this.props.book.title,
+        author: this.props.book.author,
+        year: this.props.book.year,
+        genre: this.props.book.genre,
+        modalOpen: false,             
      };    
 
 
@@ -23,52 +27,40 @@ import axios from 'axios';const genreOptions = [
 
      handleClose = () => this.setState({ modalOpen: false });
      
-     handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-      };      
+     handleChange = (e, { name, value }) => {
+      this.setState({ [name]: value });
+    };      
       
-      handleSubmit = async e => {
-        e.preventDefault();
-        
-        const id = this.props.book._id;
-        const { title, author, year, genre } = this.state;
-        const bookFormData = new FormData();
-        bookFormData.set('title', title);
-        bookFormData.set('author', author);
-        bookFormData.set('year', year);
-        bookFormData.set('genre', genre);
-        
     
-        await axios({
-            
-          method: 'put',
-          url: `/api/books/${id}`,
-          data: bookFormData,
-          
-        //   config: { headers: { 'Content-Type': 'multipart/form-data' } },
-        })
-          
-          
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      };    
+     handleSubmit = async e => {
+      e.preventDefault();
+      const id = this.props.book._id;
+      const { title, author, year, genre } = this.state;
+
+        const content = {
+          'title': title,
+          'author': author,
+          'year': year,
+          'genre': genre        
+        }
+
+        let req = {
+        url: `/api/books/${id}`,
+        method: 'PUT',
+        data: content
+        }
       
+        axios(req)
+        this.handleClose();  
+      }
       
-      
-      render() {
+    render() {
      return (
       
-              
-       
-               
-                <Modal
-                size={'mini'}
-                trigger={
+
+              <Modal
+              size={'mini'}
+              trigger={
                   <Button       
                   size="massive"
                   color="orange"
@@ -80,11 +72,11 @@ import axios from 'axios';const genreOptions = [
                   //floated="right"
                   />
                 }
-                open={this.state.modalOpen}
-                onClose={this.handleClose}
+              open={this.state.modalOpen}
+              onClose={this.handleClose}
               >
-                  <Modal.Content>
-                  <Form>
+              <Modal.Content>
+              <Form>
         <Form.Field>
           <Icon color="blue" name="hand point down outline" />
           <Icon color="blue" name="keyboard" />
@@ -115,8 +107,8 @@ import axios from 'axios';const genreOptions = [
           <Icon name="redo" /> Save changes
         </Button>
       </Form>
-                  </Modal.Content>
-              </Modal> 
+      </Modal.Content>
+      </Modal> 
               
      
     );
