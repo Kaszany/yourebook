@@ -48,7 +48,10 @@ const genreOptions = [
         }
       
         axios(req)
-        this.handleClose();  
+        this.handleClose(); 
+        alert("You have successfully made changes to this book")
+        this.props.handleShowClose();
+
       }
       
        render() {

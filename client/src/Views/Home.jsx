@@ -62,7 +62,7 @@ class Home extends Component {
             <Modal.Content>
               <Card.Group itemsPerRow={3}>
                 {this.state.allBooks.map(book => {
-                  return <BookCard key={book._id} book={book} favorites={this.state.favorites}/>;
+                  return <BookCard key={book._id} book={book} favorites={this.state.favorites} handleShowClose={this.handleShowClose}/>;
                 })}
               </Card.Group>
             </Modal.Content>
