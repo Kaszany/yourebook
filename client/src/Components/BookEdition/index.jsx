@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Modal, Form, Input, Icon, Select } from 'semantic-ui-react';
 import axios from 'axios';
 
-
 const genreOptions = [
     { value: '', text: 'cancel this selection' },
     { value: 'romance', text: 'Romance' },
@@ -22,16 +21,14 @@ const genreOptions = [
         modalOpen: false,             
      };    
 
-
      handleOpen = () => this.setState({ modalOpen: true });
 
      handleClose = () => this.setState({ modalOpen: false });
      
      handleChange = (e, { name, value }) => {
       this.setState({ [name]: value });
-    };      
-      
-    
+     };      
+       
      handleSubmit = async e => {
       e.preventDefault();
       const id = this.props.book._id;
@@ -54,27 +51,26 @@ const genreOptions = [
         this.handleClose();  
       }
       
-    render() {
-     return (
+       render() {
+         return (
       
 
-              <Modal
+            <Modal
               size={'mini'}
               trigger={
                   <Button       
                   size="massive"
+                  icon="redo"
                   color="orange"
-                  //icon="heart"
-                  labelPosition="right"
+                  labelPosition="left"
                   label="Edit this book"
                   onClick={this.handleOpen}
-                  //disabled = {this.state.disabled}
-                  //floated="right"
+                  floated="left"
                   />
                 }
               open={this.state.modalOpen}
               onClose={this.handleClose}
-              >
+            >
               <Modal.Content>
               <Form>
         <Form.Field>
