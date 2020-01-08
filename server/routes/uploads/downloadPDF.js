@@ -18,7 +18,7 @@ router.get('/api/PDFs.files/:id', (req, res) => {
     }
     if (!(file.contentType === 'application/pdf')) {
       res.status(404).json({
-        error: 'Requested assets is not image',
+        error: 'Requested assets is not and PDF',
       });
       return;
     }

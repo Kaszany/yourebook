@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-react';
 import axios from 'axios';
-
+import fileDownload from 'js-file-download';
 const BookCard = ({ book }) => {
-  const { title, author, genre, year, imgURL} = book;
+  const { title, author, genre, year, imgURL } = book;
 
   const handleDownload = () => {
     axios({
@@ -11,33 +11,21 @@ const BookCard = ({ book }) => {
       url: `/api/PDFs.files/${book.PDF}`,
       responseType: 'blob',
     }).then(response => {
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${book.title}`);
-      document.body.appendChild(link);
-      link.click();
-    }).catch(err => {
-      if(err.response) {console.log(err.response);
-      } else if (err.request) {
-        console.log(err.request)
-      }
-    }) ;
+      fileDownload(response.data, `${book.title}.pdf`);
+    });
   };
 
   return (
     <>
-      <Card color="grey" key={book._id} >
-        <Card.Content >
-          <div style={{display:'flex', justifyContent: 'space-between', marginBottom:'10px'}}>
+      <Card color="grey" key={book._id}>
+        <Card.Content>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
             <div>
               <Card.Header>{title}</Card.Header>
               <Card.Meta>{author}</Card.Meta>
               <Card.Meta>{year} r.</Card.Meta>
             </div>
-            <div>
-              {imgURL && <Image size="tiny" src={imgURL} />}
-            </div>
+            <div>{imgURL && <Image size="tiny" src={imgURL} />}</div>
           </div>
           <Modal
             size={'large'}
@@ -50,7 +38,6 @@ const BookCard = ({ book }) => {
                 labelPosition="right"
                 content="Show me this book"
                 floated="right"
-                
               />
             }
           >
@@ -74,7 +61,7 @@ const BookCard = ({ book }) => {
               />
             </ModalActions>
           </Modal>
-          </Card.Content>
+        </Card.Content>
       </Card>
     </>
   );

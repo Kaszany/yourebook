@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Modal, Header, Icon } from 'semantic-ui-react';
+import { Button, Form, Input, Modal, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 
 class AddBook extends Component {
@@ -61,7 +61,6 @@ class AddBook extends Component {
       })
       .catch(err => {
         this.setState({
-          request: 'Something went wrong',
           endmessage: err.response.data.message,
         });
       });
