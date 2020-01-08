@@ -47,6 +47,7 @@ router.post(
       title: req.body.title,
       author: req.body.author,
       genre: req.body.genre,
+      description: req.body.description,
       year: req.body.year,
       bookCover: req.files['bookCover'] ? req.files['bookCover'][0].id : null,
       PDF: req.files['PDF'] ? req.files['PDF'][0].id : null,

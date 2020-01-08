@@ -10,6 +10,7 @@ class AddBook extends Component {
       author: '',
       year: '',
       genre: '',
+      description: '',
       bookCover: null,
       PDF: null,
       modalOpen: false,
@@ -37,12 +38,13 @@ class AddBook extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const { title, author, year, genre, bookCover, PDF } = this.state;
+    const { title, author, year, genre, description, bookCover, PDF } = this.state;
     const bookFormData = new FormData();
     bookFormData.set('title', title);
     bookFormData.set('author', author);
     bookFormData.set('year', year);
     bookFormData.set('genre', genre);
+    bookFormData.set('description', description);
     bookFormData.set('bookCover', bookCover);
     bookFormData.set('PDF', PDF);
 
@@ -109,6 +111,12 @@ class AddBook extends Component {
               <div className="ui labeled input">
                 <label className="ui right pointing label" style={{width: '40px'}}><i className="list alternate outline icon"></i></label>
                 <Input placeholder="Genre" name="genre" value={this.state.genre} onChange={this.handleChange} />
+              </div>
+            </Form.Field>
+            <Form.Field>
+              <div className="ui labeled input">
+                <label className="ui right pointing label" style={{width: '40px'}}><i className="book icon"></i></label>
+                <Input placeholder="Description" name="description" value={this.state.description} onChange={this.handleChange} />
               </div>
             </Form.Field>
             <Form.Field>

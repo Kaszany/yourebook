@@ -3,7 +3,7 @@ import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-re
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 const BookCard = ({ book }) => {
-  const { title, author, genre, year, imgURL } = book;
+  const { title, author, genre, description, year, imgURL } = book;
 
   const handleDownload = () => {
     axios({
@@ -49,6 +49,7 @@ const BookCard = ({ book }) => {
                 <p>Author: {author}</p>
                 <p>Year: {year}</p>
                 <p>Genre: {genre}</p>
+                <p>Description: {description}</p>
               </Modal.Description>
             </Modal.Content>
             <ModalActions>
