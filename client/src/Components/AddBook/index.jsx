@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Modal, Header, Icon } from 'semantic-ui-react';
+import { Button, Form, Input, Modal, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 
 class AddBook extends Component {
@@ -13,6 +13,10 @@ class AddBook extends Component {
       bookCover: null,
       PDF: null,
       modalOpen: false,
+      request: '',
+      endmessage: '',
+      // jakoś podświetle jak bedzie error konkretny input
+      borderColor: '',
     };
   }
   handleOpen = () => this.setState({ modalOpen: true });
@@ -42,7 +46,7 @@ class AddBook extends Component {
     bookFormData.set('bookCover', bookCover);
     bookFormData.set('PDF', PDF);
 
-    await axios({
+      axios({
       method: 'post',
       url: '/api/books',
       data: bookFormData,
@@ -50,9 +54,15 @@ class AddBook extends Component {
     })
       .then(res => {
         console.log(res.data);
+        this.setState({
+          endmessage: 'Success!',
+        });
+        console.log(this.state.request);
       })
       .catch(err => {
-        console.log(err);
+        this.setState({
+          endmessage: err.response.data.message,
+        });
       });
   };
 
@@ -114,7 +124,11 @@ class AddBook extends Component {
                 Leave
               </Button>
               <Button className="olive ui button" type="submit" floated="right" ><Icon name='plus' />Add book</Button>
-            
+              {this.state.endmessage === 'Success!' ? (
+                <h5 style={{ color: 'green', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
+              ) : (
+                <h5 style={{ color: 'red', display: 'flex', justifyContent: 'center' }}>{this.state.endmessage}</h5>
+              )}
             </Modal.Actions>
           </Form>
         </Modal.Content>

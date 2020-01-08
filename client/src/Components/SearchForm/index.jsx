@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Select, Icon } from 'semantic-ui-react';
+import { Form, Input, Button, Select} from 'semantic-ui-react';
 
 const genreOptions = [
   { value: '', text: 'cancel this selection' },

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Modal, Card } from 'semantic-ui-react';
-
+import LoginForm from '../Components/Login/Auth'
+import RegisterForm from '../Components/Login/Register'
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';
 import BookCard from '../Components/BookCard';
-import LoginForm from '../Components/Login/Auth'
-import RegisterForm from '../Components/Login/Register'
+import NavBar from '../Components/NavBar';
 
 class Home extends Component {
   state = { findBooks: [], allBooks: [], modalFindOpen: false, modalAllOpen: false, modalOneOpen: false };
@@ -30,7 +30,7 @@ class Home extends Component {
   render() {
     return (
       <>
-
+        <NavBar />
 	      <div style={{marginTop:'10px'}}>
       	  <div className="ui segment" style={{marginLeft: '70%', display: 'flex', justifyContent: 'space-evenly'}}>
             <LoginForm />

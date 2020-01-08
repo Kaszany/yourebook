@@ -1,21 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-
-import Home from './Views/Home';
 import Login from './Views/Login';
+import Home from './Views/Home';
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Container>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/" component={Home} />
-        </Switch>
-      </Container>
-    </BrowserRouter>
-  );
-};
+import AuthLoader from './Components/AuthLoader';
+
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Container>
+          <Switch>
+            <Route path="/login" component={Login}></Route>
+            <AuthLoader>
+              <Route path="/" component={Home} />
+            </AuthLoader>
+          </Switch>
+        </Container>
+      </BrowserRouter>
+    );
+  }
+}
 
 export default App;
