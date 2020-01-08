@@ -20,6 +20,14 @@ class Home extends Component {
     this.setState({ allBooks });
   };
 
+  removeBook = id => {
+    const filteredBooks = this.state.allBooks.filter(book => book._id !== id);
+    this.setState({ allBooks: filteredBooks });
+
+    const filteredFindBooks = this.state.findBooks.filter(book => book._id !== id);
+    this.setState({ findBooks: filteredFindBooks})
+  };
+
   handleOpen = () => this.setState({ modalFindOpen: true });
 
   handleClose = () => this.setState({ modalFindOpen: false });
@@ -70,7 +78,7 @@ class Home extends Component {
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
               {this.state.findBooks.map(book => {
-                return <BookCard key={book._id} book={book} />;
+                return <BookCard key={book._id} book={book} removeBook={this.removeBook}/>;
               })}
             </Card.Group>
           </Modal.Content>
@@ -80,7 +88,7 @@ class Home extends Component {
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
               {this.state.allBooks.map(book => {
-                return <BookCard key={book._id} book={book} />;
+                return <BookCard key={book._id} book={book} removeBook={this.removeBook} />;
               })}
             </Card.Group>
           </Modal.Content>

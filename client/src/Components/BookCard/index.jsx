@@ -2,7 +2,9 @@ import React from 'react';
 import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-react';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
-const BookCard = ({ book }) => {
+import DeleteBook from '../DeleteBook';
+
+const BookCard = ({ book, removeBook }) => {
   const { title, author, genre, year, imgURL } = book;
 
   const handleDownload = () => {
@@ -15,20 +17,16 @@ const BookCard = ({ book }) => {
     });
   };
 
+  
   return (
     <>
       <Card color="grey" key={book._id}>
         <Card.Content>
-          <div  className="ui content" >
-            <div>
-              <Card.Header>{title}</Card.Header>
-              <Card.Meta>{author}</Card.Meta>
-              <Card.Meta>{year} r.</Card.Meta>
-            </div>
-            <div>{imgURL && <Image size="tiny" src={imgURL} />}</div>
-          </div>
-          <div className="ui extra content">
-          <Modal 
+          {imgURL && <Image floated="right" size="tiny" src={imgURL} />}
+          <Card.Header>{title}</Card.Header>
+          <Card.Meta>{author}</Card.Meta>
+          <Card.Meta>{year}</Card.Meta>
+          <Modal
             size={'large'}
             trigger={
               
@@ -62,8 +60,10 @@ const BookCard = ({ book }) => {
                 floated="right"
               />
             </ModalActions>
+	          <Modal.Actions>
+              <DeleteBook removeBook={removeBook} book={book} />
+            </Modal.Actions>
           </Modal>
-          </div>
         </Card.Content>
       </Card>
     </>
