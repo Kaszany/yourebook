@@ -78,7 +78,7 @@ class Home extends Component {
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
               {this.state.findBooks.map(book => {
-                return <BookCard key={book._id} book={book} removeBook={removeBook}/>;
+                return <BookCard key={book._id} book={book} removeBook={this.removeBook}/>;
               })}
             </Card.Group>
           </Modal.Content>
@@ -88,7 +88,7 @@ class Home extends Component {
           <Modal.Content>
             <Card.Group itemsPerRow={3}>
               {this.state.allBooks.map(book => {
-                return <BookCard key={book._id} book={book} removeBook={removeBook} />;
+                return <BookCard key={book._id} book={book} removeBook={this.removeBook} />;
               })}
             </Card.Group>
           </Modal.Content>

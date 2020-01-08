@@ -4,7 +4,7 @@ import axios from 'axios';
 import fileDownload from 'js-file-download';
 import DeleteBook from '../DeleteBook';
 
-const BookCard = ({ book, allBooks removeBook }) => {
+const BookCard = ({ book, removeBook }) => {
   const { title, author, genre, year, imgURL } = book;
 
   const handleDownload = () => {
@@ -59,9 +59,9 @@ const BookCard = ({ book, allBooks removeBook }) => {
                 style={{ marginBottom: '15px' }}
                 floated="right"
               />
-            </Modal.Actions>
-	    <Modal.Actions>
-              <DeleteBookCard removeBook={removeBook} book={book} />
+            </ModalActions>
+	          <Modal.Actions>
+              <DeleteBook removeBook={removeBook} book={book} />
             </Modal.Actions>
           </Modal>
         </Card.Content>
