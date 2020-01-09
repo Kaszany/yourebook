@@ -4,6 +4,7 @@ router.get('/api/PDFs.files/:id', (req, res) => {
   const { gfs } = res.locals;
 
   gfs.findOne({ _id: req.params.id }, (err, file) => {
+    var decodedString = String.fromCharCode.apply(null, new Uint8Array(res));
     if (err) {
       res.status(503).send('Internal server error');
       return;

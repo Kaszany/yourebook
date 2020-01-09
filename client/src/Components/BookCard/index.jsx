@@ -11,7 +11,7 @@ const BookCard = ({ book }) => {
     axios({
       method: 'get',
       url: `/api/PDFs.files/${book.PDF}`,
-      responseType: 'arraybuffer'
+      responseType: 'arraybuffer',
     })
       .then(response => {
         setResponse('Your download should begin in a second');
@@ -20,7 +20,6 @@ const BookCard = ({ book }) => {
       .catch(err => {
         const decodedErr = String.fromCharCode.apply(null, new Uint8Array(err.response.data));
         setResponse(decodedErr);
-          
       });
   };
 
