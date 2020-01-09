@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react';
 import genreOptions from '../../utils/genreOptions';
 import getToken from '../../utils/getToken';
+import {withRouter} from 'react-router-dom';
+
 class SearchForm extends Component {
   constructor() {
     super();
@@ -38,15 +40,17 @@ class SearchForm extends Component {
         this.state.genre === ''
       ) {
         alert('You have not selected any search options');
-      } else {
+      } else if(data) {
         //data.length = 5; - gdy chcę ograniczyć ilość
         this.setState({ books: data });
         this.props.findData(data);
         this.props.handleOpen();
       }
     } catch (error) {
-      alert('The value is not allowed');
-    }
+      console.log(error.response.data.message);
+      this.props.history.push('/login');
+    } 
+
   };
 
   render() {
@@ -103,4 +107,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);

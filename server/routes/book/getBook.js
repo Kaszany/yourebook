@@ -42,8 +42,8 @@ router.get('/api/books', auth, async (req, res) => {
     }
     res.json(books);
   } catch (ex) {
-    console.error(ex);
-    res.status(400).json({ message: ex.message });
+    console.error(err);
+    res.status(400).send({ message: ex.message });
   }
 });
 

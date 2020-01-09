@@ -31,7 +31,6 @@ getBooks = async e => {
     }
     } catch (error) {
     alert('The value is not allowed');
-    console.log(error)
   }
   };
 
