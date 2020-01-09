@@ -73,6 +73,7 @@ class AddBook extends Component {
   render() {
     return (
       <Modal
+      className='entrance-center'
         size={'mini'}
         trigger={
           <Button className="olive ui button big" style={{ marginTop: '10px', marginLeft:'80px', width: '250px'}} onClick={this.handleOpen} icon="plus"

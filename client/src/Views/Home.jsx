@@ -36,8 +36,8 @@ class Home extends Component {
       <>
         <NavBar />
         <div className="ui segment">
-          <div className="bg"></div>
-          <div className="lightning flashit">
+          <div className="segment-background"></div>
+          <div className="lightning-background flashit">
             <h1 className='logo'>BOOKSTORM</h1>
             <Icon name="bolt" size="massive"></Icon>
           </div>
