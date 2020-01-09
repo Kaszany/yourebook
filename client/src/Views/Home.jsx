@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Modal, Card } from 'semantic-ui-react';
-import LoginForm from '../Components/Login/Auth'
-import RegisterForm from '../Components/Login/Register'
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import BookElement from '../Components/BookElement';

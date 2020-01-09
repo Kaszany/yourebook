@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button} from 'semantic-ui-react';
-
+import getToken from '../../utils/getToken';
 class BookElement extends Component {
   
     constructor() {
@@ -13,7 +13,12 @@ class BookElement extends Component {
 getBooks = async e => {
     try {
     e.preventDefault();
-    const response = await fetch(`/api/books`);
+    const headers = {
+      'x-auth-token': getToken(),
+    };
+    const response = await fetch(`/api/books`, {
+      headers: headers
+    });
     const data = await response.json();
     if (data.length === 0){
       alert('The library does not contain this book');
@@ -26,6 +31,7 @@ getBooks = async e => {
     }
     } catch (error) {
     alert('The value is not allowed');
+    console.log(error)
   }
   };
 

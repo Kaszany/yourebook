@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react';
-import genreOptions from '../../utils/genreOptions'
-
+import genreOptions from '../../utils/genreOptions';
+import getToken from '../../utils/getToken';
 class SearchForm extends Component {
   constructor() {
     super();
@@ -22,7 +22,12 @@ class SearchForm extends Component {
     try {
       e.preventDefault();
       const { title, author, year, genre } = this.state;
-      const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`);
+      const headers = {
+        'x-auth-token': getToken()
+      };
+      const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`, {
+        headers: headers
+      });
       const data = await response.json();
       if (data.length === 0) {
         alert('The library does not contain this book');

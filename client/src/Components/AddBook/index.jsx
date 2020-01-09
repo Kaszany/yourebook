@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal, Icon, Select } from 'semantic-ui-react';
 import axios from 'axios';
 import genreOptions from '../../utils/genreOptions';
 import '../../App.css';
+import getToken from '../../utils/getToken';
 class AddBook extends Component {
   constructor() {
     super();
@@ -45,19 +46,21 @@ class AddBook extends Component {
     bookFormData.set('genre', genre);
     bookFormData.set('bookCover', bookCover);
     bookFormData.set('PDF', PDF);
-
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+      'x-auth-token': getToken(),
+    };
     axios({
       method: 'post',
       url: '/api/books',
       data: bookFormData,
-      config: { headers: { 'Content-Type': 'multipart/form-data' } },
+      headers: headers,
     })
       .then(res => {
         console.log(res.data);
         this.setState({
           endmessage: 'Success!',
         });
-        console.log(this.state.request);
       })
       .catch(err => {
         this.setState({
