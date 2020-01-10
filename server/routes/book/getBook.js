@@ -13,8 +13,8 @@ function SearchCriteria(criterias) {
 }
 
 router.get('/api/books', auth, async (req, res) => {
-  const { title, year, author, genre} = req.query;
-  const searchCriteria = new SearchCriteria({ title, year, author, genre});
+  const { title, year, author, genre } = req.query;
+  const searchCriteria = new SearchCriteria({ title, year, author, genre });
 
   try {
     const schema = Joi.object().keys({
@@ -26,7 +26,6 @@ router.get('/api/books', auth, async (req, res) => {
         .min(0),
       author: Joi.string().allow(''),
       genre: Joi.string().allow(''),
-    
     });
 
     Joi.validate(req.query, schema, err => {
@@ -36,13 +35,12 @@ router.get('/api/books', auth, async (req, res) => {
       }
     });
 
-    const books = await Book.find(searchCriteria).lean();
-    for (let book of books) {
-      if (book.bookCover) book.imgURL = `/uploads/${book.bookCover}`;
-    }
+    const books = await Book.find(searchCriteria);
+    console.log('TCL: books', books);
+
     res.json(books);
   } catch (ex) {
-    console.error(err);
+    console.error(ex);
     res.status(400).send({ message: ex.message });
   }
 });

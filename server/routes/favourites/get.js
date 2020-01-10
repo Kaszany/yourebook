@@ -10,10 +10,8 @@ router.get('/api/favourites/', async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) throw new Error('User Not Found!');
 
-    const books = await Book.find({ _id: { $in: user.favorites } }).lean();
-    for (let book of books) {
-      if (book.bookCover) book.imgURL = `/uploads/${book.bookCover}`;
-    }
+    const books = await Book.find({ _id: { $in: user.favorites } });
+
     res.json(books);
   } catch (ex) {
     console.log(ex);
