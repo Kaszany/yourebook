@@ -68,7 +68,7 @@ class BookEdition extends Component {
             icon="redo"
             color="orange"
             labelPosition="left"
-            label="Edit this book"
+            label="Edit book"
             onClick={this.handleOpen}
             style={{ marginLeft: '1px' }}
             floated="left"

@@ -32,6 +32,9 @@ const BookCard = ({ book, favorites, handleShowClose, removeBook }) => {
           <Card.Header>{title}</Card.Header>
           <Card.Meta>{author}</Card.Meta>
           <Card.Meta>{year}</Card.Meta>
+          </Card.Content>
+
+          <Card.Content extra>
           <Modal
             className="entrance-left"
             size={'large'}
@@ -42,8 +45,8 @@ const BookCard = ({ book, favorites, handleShowClose, removeBook }) => {
                 size="tiny"
                 icon="eye"
                 labelPosition="right"
-                content="Show me this book"
-                floated="right"
+                content="Show"
+                floated="left"
               />
             }
           >
@@ -71,11 +74,11 @@ const BookCard = ({ book, favorites, handleShowClose, removeBook }) => {
               <AddFavorites book={book} favorites={favorites}></AddFavorites>
               <BookEdition book={book} favorites={favorites} handleShowClose={handleShowClose}></BookEdition>
               {PDFResponse === 'Your download should begin in a second' ? (
-                <h4 style={{ color: 'green', display: 'flex', justifyContent: 'center', margin: '0' }}>
+                <h4 style={{ color: 'green', display: 'flex', justifyContent: 'center', margin: '10px 0 0 0' }}>
                   {PDFResponse}
                 </h4>
               ) : (
-                <h4 style={{ color: 'red', display: 'flex', justifyContent: 'center', margin: '0' }}>{PDFResponse}</h4>
+                <h4 style={{ color: 'red', display: 'flex', justifyContent: 'center', margin: '10px 0 0 0' }}>{PDFResponse}</h4>
               )}
             </Modal.Actions>
           </Modal>
