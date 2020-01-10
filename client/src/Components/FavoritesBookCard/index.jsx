@@ -1,7 +1,6 @@
 import React from 'react';
 import DeleteFavoritesButton from '../DeleteFavoritesButton';
 import { Card, Modal, Button, Image, Header } from 'semantic-ui-react';
-
 const FavoritesBookCard = ({ book, favorites, modalFavoritesClose }) => {
   const { title, author, genre, year, imgURL } = book;
   
