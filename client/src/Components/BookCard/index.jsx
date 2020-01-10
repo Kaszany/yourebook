@@ -1,10 +1,11 @@
 import React from 'react';
-import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-react';
+import AddFavorites from '../AddFavorites';
+import BookEdition from '../BookEdition';
+import { Card, Modal, Button, Image, Header} from 'semantic-ui-react';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 import DeleteBook from '../DeleteBook';
-
-const BookCard = ({ book, removeBook }) => {
+const BookCard = ({ book, favorites, handleShowClose, removeBook }) => {
   const { title, author, genre, year, imgURL } = book;
 
   const handleDownload = () => {
@@ -17,7 +18,6 @@ const BookCard = ({ book, removeBook }) => {
     });
   };
 
-  
   return (
     <>
       <Card color="grey" key={book._id}>
@@ -29,7 +29,6 @@ const BookCard = ({ book, removeBook }) => {
           <Modal
             size={'large'}
             trigger={
-              
               <Button
                 type="submit"
                 className="ui olive button"
@@ -41,7 +40,9 @@ const BookCard = ({ book, removeBook }) => {
               />
             }
           >
-            <Modal.Header>{title}</Modal.Header>
+            <Modal.Header>
+              {title} <DeleteBook removeBook={removeBook} book={book} />
+            </Modal.Header>
             <Modal.Content image>
               {imgURL && <Image wrapped size="medium" src={imgURL} />}
               <Modal.Description>
@@ -49,20 +50,18 @@ const BookCard = ({ book, removeBook }) => {
                 <p>Author: {author}</p>
                 <p>Year: {year}</p>
                 <p>Genre: {genre}</p>
+                <Button
+                  icon="file pdf"
+                  color="red"
+                  size="big"
+                  onClick={() => handleDownload()}
+                  style={{ marginBottom: '15px' }}
+                  floated="left"
+                />
               </Modal.Description>
             </Modal.Content>
-            <ModalActions>
-              <Button
-                icon="file pdf"
-                color="red"
-                onClick={() => handleDownload()}
-                style={{ marginBottom: '15px' }}
-                floated="right"
-              />
-            </ModalActions>
-	          <Modal.Actions>
-              <DeleteBook removeBook={removeBook} book={book} />
-            </Modal.Actions>
+            <AddFavorites book={book} favorites={favorites}></AddFavorites>
+            <BookEdition book={book} favorites={favorites} handleShowClose={handleShowClose}></BookEdition>
           </Modal>
         </Card.Content>
       </Card>

@@ -49,6 +49,7 @@ class DeleteBook extends Component {
             content="Delete book"
             icon="remove"
             onClick={this.handleOpen}
+            floated="right"
           />
         }
         open={this.state.modalOpen}
