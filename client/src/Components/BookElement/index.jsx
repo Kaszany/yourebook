@@ -3,14 +3,6 @@ import { Button } from 'semantic-ui-react';
 import getToken from '../../utils/getToken';
 
 class BookElement extends Component {
-  constructor() {
-    super();
-    this.state = {
-      books: [],
-      bookOnList: false,
-    };
-  }
-
   getBooks = async e => {
     try {
       e.preventDefault();
@@ -24,11 +16,7 @@ class BookElement extends Component {
       if (data.length === 0) {
         alert('The library does not contain this book');
       } else {
-        //data.length = 5; - gdy chcę ograniczyć ilość
-        this.setState({ books: data });
-        this.setState({ bookOnList: true });
-        this.props.showAllData(data);
-        this.props.handleShowOpen();
+        this.props.showBooks(data);
       }
     } catch (error) {
       alert('The value is not allowed');

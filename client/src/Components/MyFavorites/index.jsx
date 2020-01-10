@@ -1,45 +1,24 @@
 import React, { Component } from 'react';
-import { Button, Modal, Card } from 'semantic-ui-react';
-import FavoritesBookCard from '../FavoritesBookCard';
+import { Button } from 'semantic-ui-react';
+// import FavoritesBookCard from '../FavoritesBookCard';
+import userContext from '../AuthLoader/UserContext';
 
 class MyFavorites extends Component {
-  
-    state = {modalFavoritesOpen: false};
+  static contextType = userContext;
 
-    showFavorites = () => {
-    if (this.props.favorites.length === 0){
-        alert('You dont have any favorite book');
-        }else{
-        this.setState({ modalFavoritesOpen: true });
-        }
-    };
-
-    modalFavoritesClose = () => {
-    this.setState({ modalFavoritesOpen: false });   
+  showFavorites = () => {
+    if (this.context.favorites.length === 0) {
+      alert('You dont have any favorite book');
+    } else {
+      this.props.showBooks(this.context.favorites);
     }
+  };
 
-
-    handleFavoritesClose = () => this.setState({ modalFavoritesOpen: false });
-
-    render() {
-     return (
-    <>
-            <Button
-                color="red"
-                icon="heart"
-                content="My Favorites"
-                onClick={this.showFavorites}
-              />
-            <Modal size={'large'} open={this.state.modalFavoritesOpen} onClose={this.handleFavoritesClose}>
-            <Modal.Content>
-              <Card.Group itemsPerRow={3}>
-                {this.props.favorites.map(book => {
-                  return <FavoritesBookCard key={book._id} book={book} modalFavoritesClose={this.modalFavoritesClose}  favorites={this.props.favorites}/>;
-                })}
-              </Card.Group>
-            </Modal.Content>
-          </Modal>   
-    </>
+  render() {
+    return (
+      <>
+        <Button color="red" icon="heart" content="My Favorites" onClick={this.showFavorites} />
+      </>
     );
   }
 }
