@@ -8,6 +8,8 @@ const Grid = require('gridfs-stream');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const books = require('./routes/book');
+const favourites = require('./routes/favourites/add');
+const userFavorites = require('./routes/userFavorites');
 const images = require('./routes/uploads/images');
 const PDFs = require('./routes/uploads/downloadPDF');
 
@@ -57,7 +59,10 @@ app.use('/api/PDFs.files', (req, res, next) => {
 
 app.use('/api/auth', auth);
 app.use('/api/users', users);
+app.use(userFavorites);
 app.use(books);
+console.log(favourites);
+app.use(favourites);
 app.use(images);
 app.use(PDFs)
 

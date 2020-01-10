@@ -62,9 +62,8 @@
   height: 400px !important;
   padding: 0px !important;
   position: relative !important;
-  z-index: 0;
+  z-index: 5;
 }
-
 .segment-background {
   position: absolute;
   width: 100%;
@@ -94,29 +93,26 @@
 }
 
 .flashit {
-  -webkit-animation: flash ease-out 16s infinite;
-  -moz-animation: flash ease-out 16s infinite;
-  animation: flash ease-out 16s infinite;
+  -webkit-animation: flash ease-out 10s infinite;
+  -moz-animation: flash ease-out 10s infinite;
+  animation: flash ease-out 10s infinite;
 }
 
 @-webkit-keyframes flash {
   from {
     opacity: 0;
   }
-  25% {
+  90% {
     opacity: 0;
   }
-  27% {
-    opacity: 0.4;
-  }
-  29% {
-    opacity: 0.3;
-  }
-  31% {
+  92% {
     opacity: 0.6;
   }
-  55% {
-    opacity: 0
+  94% {
+    opacity: 0.4;
+  }
+  96% {
+    opacity: 0.7;
   }
   to {
     opacity: 0;
@@ -127,20 +123,17 @@
   from {
     opacity: 0;
   }
-  25% {
+  90% {
     opacity: 0;
   }
-  27% {
-    opacity: 0.4;
-  }
-  29% {
-    opacity: 0.3;
-  }
-  31% {
+  92% {
     opacity: 0.6;
   }
-  55% {
-    opacity: 0
+  94% {
+    opacity: 0.4;
+  }
+  96% {
+    opacity: 0.7;
   }
   to {
     opacity: 0;

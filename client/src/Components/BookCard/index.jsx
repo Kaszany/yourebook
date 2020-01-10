@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Card, Modal, Button, Image, Header, ModalActions } from 'semantic-ui-react';
+import AddFavorites from '../AddFavorites';
+import BookEdition from '../BookEdition';
+import { Card, Modal, Button, Image, Header} from 'semantic-ui-react';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
-import '../../App.css';
-
-const BookCard = ({ book }) => {
+import DeleteBook from '../DeleteBook';
+const BookCard = ({ book, favorites, handleShowClose, removeBook }) => {
   const { title, author, genre, year, imgURL } = book;
   const [PDFResponse, setResponse] = useState('');
   const handleDownload = () => {
@@ -27,14 +28,10 @@ const BookCard = ({ book }) => {
     <>
       <Card color="grey" key={book._id} className="entrance-center">
         <Card.Content>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-            <div>
-              <Card.Header>{title}</Card.Header>
-              <Card.Meta>{author}</Card.Meta>
-              <Card.Meta>{year} r.</Card.Meta>
-            </div>
-            <div>{imgURL && <Image size="tiny" src={imgURL} />}</div>
-          </div>
+          {imgURL && <Image floated="right" size="tiny" src={imgURL} />}
+          <Card.Header>{title}</Card.Header>
+          <Card.Meta>{author}</Card.Meta>
+          <Card.Meta>{year}</Card.Meta>
           <Modal
             className="entrance-left"
             size={'large'}
@@ -50,7 +47,9 @@ const BookCard = ({ book }) => {
               />
             }
           >
-            <Modal.Header>{title}</Modal.Header>
+            <Modal.Header>
+              {title} <DeleteBook removeBook={removeBook} book={book} />
+            </Modal.Header>
             <Modal.Content image>
               {imgURL && <Image wrapped size="medium" src={imgURL} />}
               <Modal.Description>
@@ -58,24 +57,25 @@ const BookCard = ({ book }) => {
                 <p>Author: {author}</p>
                 <p>Year: {year}</p>
                 <p>Genre: {genre}</p>
+                <Button
+                  icon="file pdf"
+                  color="red"
+                  size="big"
+                  onClick={() => handleDownload()}
+                  style={{ marginBottom: '15px' }}
+                  floated="left"
+                />
               </Modal.Description>
             </Modal.Content>
-            <ModalActions>
-              <Button
-                icon="file pdf"
-                color="red"
-                onClick={() => handleDownload()}
-                style={{ marginBottom: '15px' }}
-                floated="right"
-              />
-              {PDFResponse === 'Your download should begin in a second' ? (
+            <AddFavorites book={book} favorites={favorites}></AddFavorites>
+            <BookEdition book={book} favorites={favorites} handleShowClose={handleShowClose}></BookEdition>
+            {PDFResponse === 'Your download should begin in a second' ? (
                 <h5 style={{ color: 'green', display: 'flex', justifyContent: 'center', margin: '0' }}>
                   {PDFResponse}
                 </h5>
               ) : (
                 <h5 style={{ color: 'red', display: 'flex', justifyContent: 'center', margin: '0' }}>{PDFResponse}</h5>
               )}
-            </ModalActions>
           </Modal>
         </Card.Content>
       </Card>
