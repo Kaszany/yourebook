@@ -4,7 +4,7 @@ const router = express.Router();
 const { User } = require('../../models/User');
 const { Book } = require('../../models/Book');
 
-router.get('/api/favourites/', async (req, res) => {
+router.get('/', async (req, res) => {
   const { email } = req.query;
   try {
     const user = await User.findOne({ email });

@@ -3,7 +3,6 @@ const router = express.Router();
 const bookModel = require('./../../models/Book');
 const GridFsStorage = require('multer-gridfs-storage');
 const multer = require('multer');
-const auth = require('../../middleware/auth');
 
 const storage = new GridFsStorage({
   url: process.env.DATABASE_URL,
@@ -39,7 +38,7 @@ const upload = multer({
 });
 
 router.post(
-  '/api/books', auth, 
+  '/',
   upload.fields([
     { name: 'bookCover', maxCount: 1 },
     { name: 'PDF', maxCount: 1 },

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { User } = require('../../models/User');
 
-router.post('/api/favourites/', async (req, res) => {
+router.post('/', async (req, res) => {
   const { id, email } = req.query;
   console.log(email, id);
   try {

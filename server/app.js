@@ -4,7 +4,8 @@ const config = require('config');
 const mongoose = require('mongoose');
 const express = require('express');
 const Grid = require('gridfs-stream');
-// const books = require('./routes/book');
+
+const authMiddleware = require('./middleware/auth');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const books = require('./routes/book');
@@ -57,8 +58,8 @@ app.use('/api/PDFs.files', (req, res, next) => {
 
 app.use('/api/auth', auth);
 app.use('/api/users', users);
-app.use(books);
-app.use(favourites);
+app.use('/api/favourites/', authMiddleware, favourites);
+app.use('/api/books', authMiddleware, books);
 app.use(images);
 app.use(PDFs);
 
