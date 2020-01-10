@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Modal} from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
-
-
 class RegisterForm extends Component {
 
   state = { 
@@ -43,7 +41,7 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <Modal
+      <Modal className="entrance-center"
         size={'mini'}
         trigger={
           <Button className="big orange ui button" onClick={this.handleOpen}   style={{width: '140px'}}>

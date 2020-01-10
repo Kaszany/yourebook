@@ -15,7 +15,7 @@ class DeleteFavoritesButton extends Component {
     removeFromFavorites = async (e) => { 
     Array.prototype.remove = function (v) 
         {
-            if (this.indexOf(v) != -1) {
+            if (this.indexOf(v) !== -1) {
                 this.splice(this.indexOf(v), 1);
                 return true;
             }

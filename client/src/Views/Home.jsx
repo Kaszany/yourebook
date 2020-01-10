@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Modal, Card, Button, Menu } from 'semantic-ui-react';
-
+import { Modal, Card, Button, Icon } from 'semantic-ui-react';
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import MyFavorites from '../Components/MyFavorites';
 import BookElement from '../Components/BookElement';
 import BookCard from '../Components/BookCard';
-import NavBar from '../Components/NavBar';
+// import NavBar from '../Components/NavBar';
 import { Link } from 'react-router-dom';
 
 class Home extends Component {
@@ -45,6 +44,11 @@ class Home extends Component {
 
   handleShowClose = () => this.setState({ modalAllOpen: false });
 
+  getToken = () => {
+    if (!localStorage.getItem('status')) {
+      return '';
+    } else return localStorage.getItem('status');
+  };
   handleLogOut = e => {
     localStorage.removeItem('email');
     localStorage.removeItem('status');
@@ -55,11 +59,15 @@ class Home extends Component {
       <>
         <div
           className="ui rail"
-          style={{ height: '50px', width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '-1' }}
+          style={{ height: '200px', width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '-1' }}
         >
-          <img src="./bookstorm_crop.jpg" alt="book in storm" style={{ width: '100%' }} />
+          <div className="segment-background"></div>
+          <div className="lightning-background flashit">
+            <h1 className="logo">BOOKSTORM</h1>
+            <Icon name="bolt" size="massive"></Icon>
+          </div>
         </div>
-        <NavBar />
+        {/* <NavBar /> */}
         <div style={{ marginTop: '215px', backgroudColor: 'white' }}>
           <div style={{ marginLeft: '60%', display: 'flex', justifyContent: 'space-evenly' }}>
             <Button
@@ -72,6 +80,7 @@ class Home extends Component {
             >
               <i className="external alternate icon"></i>Log out
             </Button>
+            <MyFavorites favorites={this.state.favorites} />
           </div>
 
           {/* <div className="ui segment">
@@ -119,7 +128,6 @@ class Home extends Component {
               </Card.Group>
             </Modal.Content>
           </Modal>
-          <MyFavorites favorites={this.state.favorites} />
         </div>
       </>
     );

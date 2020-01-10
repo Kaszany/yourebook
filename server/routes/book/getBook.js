@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Book } = require('../../models/Book');
 const Joi = require('joi');
+const auth = require('../../middleware/auth');
 
 function SearchCriteria(criterias) {
   for (let [key, value] of Object.entries(criterias)) {
@@ -11,7 +12,7 @@ function SearchCriteria(criterias) {
   return this;
 }
 
-router.get('/api/books', async (req, res) => {
+router.get('/api/books', auth, async (req, res) => {
   const { title, year, author, genre} = req.query;
   const searchCriteria = new SearchCriteria({ title, year, author, genre});
 
@@ -41,8 +42,8 @@ router.get('/api/books', async (req, res) => {
     }
     res.json(books);
   } catch (ex) {
-    console.error(ex);
-    res.status(400).json({ message: ex.message });
+    console.error(err);
+    res.status(400).send({ message: ex.message });
   }
 });
 

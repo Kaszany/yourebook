@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Form, Input, Modal, Icon } from 'semantic-ui-react';
+import { Button, Form, Input, Modal, Icon, Select } from 'semantic-ui-react';
 import axios from 'axios';
-
+import genreOptions from '../../utils/genreOptions';
+import '../../App.css';
+import getToken from '../../utils/getToken';
 class AddBook extends Component {
   constructor() {
     super();
@@ -23,8 +25,7 @@ class AddBook extends Component {
 
   handleClose = () => this.setState({ modalOpen: false });
 
-  handleChange = e => {
-    const { name, value } = e.target;
+  handleChange = (e, { name, value }) => {
     this.setState({ [name]: value });
   };
 
@@ -45,12 +46,15 @@ class AddBook extends Component {
     bookFormData.set('genre', genre);
     bookFormData.set('bookCover', bookCover);
     bookFormData.set('PDF', PDF);
-
-      axios({
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+      'x-auth-token': getToken(),
+    };
+    axios({
       method: 'post',
       url: '/api/books',
       data: bookFormData,
-      config: { headers: { 'Content-Type': 'multipart/form-data' } },
+      headers: headers,
     })
       .then(res => {
         console.log(res.data);
@@ -69,6 +73,7 @@ class AddBook extends Component {
   render() {
     return (
       <Modal
+      className='entrance-center'
         size={'mini'}
         trigger={
           <Button className="olive ui button big" style={{ marginTop: '10px', marginLeft:'80px', width: '250px'}} onClick={this.handleOpen} icon="plus"
@@ -107,8 +112,17 @@ class AddBook extends Component {
             </Form.Field>
             <Form.Field>
               <div className="ui labeled input">
-                <label className="ui right pointing label" style={{width: '40px'}}><i className="list alternate outline icon"></i></label>
-                <Input placeholder="Genre" name="genre" value={this.state.genre} onChange={this.handleChange} />
+                <label className="ui right pointing label" style={{ width: '40px' }}>
+                  <i className="list alternate outline icon"></i>
+                </label>
+                <Select
+                  style={{ width: '268px' }}
+                  placeholder="Genre"
+                  name="genre"
+                  value={this.state.genre}
+                  onChange={this.handleChange}
+                  options={genreOptions}
+                />
               </div>
             </Form.Field>
             <Form.Field>

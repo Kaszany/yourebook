@@ -4,24 +4,19 @@ router.get('/api/PDFs.files/:id', (req, res) => {
   const { gfs } = res.locals;
 
   gfs.findOne({ _id: req.params.id }, (err, file) => {
+    var decodedString = String.fromCharCode.apply(null, new Uint8Array(res));
     if (err) {
-      res.status(503).json({
-        error: 'Internal server error',
-      });
+      res.status(503).send('Internal server error');
       return;
     }
     if (!file) {
-      res.status(404).json({
-        error: 'File is missing',
-      });
+      res.status(404).send('No file attached');
       return;
     }
     if (!(file.contentType === 'application/pdf')) {
-      res.status(404).json({
-        error: 'Requested assets is not and PDF',
-      });
+      res.status(404).send('Requested asset is not and PDF');
       return;
-    }
+    } 
 
     const readstream = gfs.createReadStream({
       _id: req.params.id,
