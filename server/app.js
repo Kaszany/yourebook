@@ -8,11 +8,9 @@ const Grid = require('gridfs-stream');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const books = require('./routes/book');
-const favourites = require('./routes/favourites/add');
-const userFavorites = require('./routes/userFavorites');
+const favourites = require('./routes/favourites');
 const images = require('./routes/uploads/images');
 const PDFs = require('./routes/uploads/downloadPDF');
-
 
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
@@ -27,14 +25,14 @@ let gfsImage;
 conn.once('open', () => {
   // Init stream
   gfsImage = Grid(conn.db, mongoose.mongo);
-  gfsImage.collection('Bookcovers')
+  gfsImage.collection('Bookcovers');
 });
 
 let gfsPDF;
 conn.once('open', () => {
   // Init stream
   gfsPDF = Grid(conn.db, mongoose.mongo);
-  gfsPDF.collection('PDFs')
+  gfsPDF.collection('PDFs');
 });
 
 mongoose
@@ -59,12 +57,10 @@ app.use('/api/PDFs.files', (req, res, next) => {
 
 app.use('/api/auth', auth);
 app.use('/api/users', users);
-app.use(userFavorites);
 app.use(books);
-console.log(favourites);
 app.use(favourites);
 app.use(images);
-app.use(PDFs)
+app.use(PDFs);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
