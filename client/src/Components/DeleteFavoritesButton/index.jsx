@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, Card, Header } from 'semantic-ui-react';
+import { Button, Modal, Header } from 'semantic-ui-react';
 
 class DeleteFavoritesButton extends Component {
   state = {

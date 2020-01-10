@@ -11,7 +11,7 @@ const Login = () => {
         </div>
         
         <div className="ui segment">
-          <img src='./bookstorm.jpg' alt='book in storm'/>
+          <img src='./bookstorm.jpg' alt='book in storm' style={{width:'100%'}}/>
         </div>
     </div>
     
