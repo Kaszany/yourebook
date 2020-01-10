@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Error } from 'react';
 import { Form, Input, Button, Select } from 'semantic-ui-react';
 import genreOptions from '../../utils/genreOptions';
 import getToken from '../../utils/getToken';
@@ -13,6 +13,7 @@ class SearchForm extends Component {
       year: '',
       genre: '',
       books: [],
+      error: false
     };
   }
 
@@ -46,15 +47,18 @@ class SearchForm extends Component {
         this.props.findData(data);
         this.props.handleOpen();
       }
-    } catch (error) {
-      console.log(error.response.data.message);
+    } catch (err) {
+      this.setState({ error: true})
       this.props.history.push('/login');
     } 
 
   };
 
   render() {
-    return (
+  if(this.state.error) { 
+    return <Error />
+  }
+  return (
       <Form style={{ marginTop: '30px' }}>
         <Form.Field>
           <div className="ui labeled input">

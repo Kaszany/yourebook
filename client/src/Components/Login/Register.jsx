@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Form, Input, Button, Modal} from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
-import '../../App.css';
-
 class RegisterForm extends Component {
 
   state = { 

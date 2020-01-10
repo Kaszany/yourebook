@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Button, Form, Modal} from 'semantic-ui-react'
 import { withRouter } from "react-router-dom";
 
-import '../../App.css';
 
 
 class LoginForm extends Component {
@@ -27,8 +26,7 @@ class LoginForm extends Component {
     e.preventDefault();
     const { email, password} = this.state;
 
-    // zapisanie email do localStorage
-    // localStorage.setItem('email', email);
+    localStorage.setItem('email', email);
 
     axios
       .post('/api/auth', {

@@ -93,53 +93,54 @@
 }
 
 .flashit {
-  -webkit-animation: flash ease-out 10s infinite;
-  -moz-animation: flash ease-out 10s infinite;
-  animation: flash ease-out 10s infinite;
+  -webkit-animation: flash ease-out 12s infinite;
+  -moz-animation: flash ease-out 12s infinite;
+  animation: flash ease-out 12s infinite;
 }
 
 @-webkit-keyframes flash {
   from {
     opacity: 0;
   }
-  90% {
-    opacity: 0;
-  }
-  92% {
-    opacity: 0.6;
-  }
-  94% {
+  27% {
     opacity: 0.4;
   }
-  96% {
+  29% {
+    opacity: 0.3;
+  }
+  31% {
     opacity: 0.7;
+  }
+  65% {
+    opacity: 0;
   }
   to {
     opacity: 0;
   }
 }
-
 @keyframes flash {
   from {
     opacity: 0;
   }
-  90% {
+  25% {
     opacity: 0;
   }
-  92% {
-    opacity: 0.6;
-  }
-  94% {
+  27% {
     opacity: 0.4;
   }
-  96% {
+  29% {
+    opacity: 0.3;
+  }
+  31% {
     opacity: 0.7;
+  }
+  65% {
+    opacity: 0;
   }
   to {
     opacity: 0;
   }
 }
-
 .logo {
   font-size: 118px;
   font-family: 'Oswald', sans-serif;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddFavorites from '../AddFavorites';
 import BookEdition from '../BookEdition';
-import { Card, Modal, Button, Image, Header} from 'semantic-ui-react';
+import { Card, Modal, Button, Image, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 import DeleteBook from '../DeleteBook';
@@ -67,15 +67,17 @@ const BookCard = ({ book, favorites, handleShowClose, removeBook }) => {
                 />
               </Modal.Description>
             </Modal.Content>
-            <AddFavorites book={book} favorites={favorites}></AddFavorites>
-            <BookEdition book={book} favorites={favorites} handleShowClose={handleShowClose}></BookEdition>
-            {PDFResponse === 'Your download should begin in a second' ? (
-                <h5 style={{ color: 'green', display: 'flex', justifyContent: 'center', margin: '0' }}>
+            <Modal.Actions style={{padding: '0'}}>
+              <AddFavorites book={book} favorites={favorites}></AddFavorites>
+              <BookEdition book={book} favorites={favorites} handleShowClose={handleShowClose}></BookEdition>
+              {PDFResponse === 'Your download should begin in a second' ? (
+                <h4 style={{ color: 'green', display: 'flex', justifyContent: 'center', margin: '0' }}>
                   {PDFResponse}
-                </h5>
+                </h4>
               ) : (
-                <h5 style={{ color: 'red', display: 'flex', justifyContent: 'center', margin: '0' }}>{PDFResponse}</h5>
+                <h4 style={{ color: 'red', display: 'flex', justifyContent: 'center', margin: '0' }}>{PDFResponse}</h4>
               )}
+            </Modal.Actions>
           </Modal>
         </Card.Content>
       </Card>
