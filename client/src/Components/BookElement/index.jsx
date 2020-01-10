@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button} from 'semantic-ui-react';
 
 class BookElement extends Component {
   
@@ -29,13 +29,14 @@ getBooks = async e => {
   }
   };
 
-render(){
-  return (
-    <>   
-     <Button className="ui button" color="yellow" onClick={this.getBooks}><Icon name='redo' />Show all books in the library!</Button>  
-    </>
-  );
-}
-}
-
-export default BookElement;
+  render(){
+    return (
+      <>   
+       <Button className="ui yellow button big" style={{ marginTop: '10px', width: '250px'}} onClick={this.getBooks} icon="eye"
+                labelPosition="right" content="Show all books"/>  
+      </>
+    );
+  }
+  }
+  
+  export default BookElement;

@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const { Book } = require('../../models/Book');
 const Joi = require('joi');
 
@@ -13,8 +12,8 @@ function SearchCriteria(criterias) {
 }
 
 router.get('/api/books', async (req, res) => {
-  const { title, year, author, genre } = req.query;
-  const searchCriteria = new SearchCriteria({ title, year, author, genre });
+  const { title, year, author, genre} = req.query;
+  const searchCriteria = new SearchCriteria({ title, year, author, genre});
 
   try {
     const schema = Joi.object().keys({
@@ -26,6 +25,7 @@ router.get('/api/books', async (req, res) => {
         .min(0),
       author: Joi.string().allow(''),
       genre: Joi.string().allow(''),
+    
     });
 
     Joi.validate(req.query, schema, err => {

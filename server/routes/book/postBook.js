@@ -3,7 +3,6 @@ const router = express.Router();
 const bookModel = require('./../../models/Book');
 const GridFsStorage = require('multer-gridfs-storage');
 const multer = require('multer');
-
 const storage = new GridFsStorage({
   url: process.env.DATABASE_URL,
   file: (req, file) => {
