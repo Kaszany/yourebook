@@ -35,7 +35,6 @@ router.get('/', async (req, res) => {
     });
 
     const books = await Book.find(searchCriteria);
-    console.log('TCL: books', books);
 
     res.json(books);
   } catch (ex) {

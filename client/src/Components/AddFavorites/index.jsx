@@ -7,7 +7,7 @@ class AddFavorites extends Component {
 
   addToFavorites = async e => {
     try {
-      const response = await axios.post(`/api/favourites?email=marcin.wos@coderscrew.pl&id=${this.props.book._id}`);
+      const response = await axios.post(`/api/favourites?id=${this.props.book._id}`);
       for (var i = 0; i < this.props.favorites.length; i++) {
         if (this.props.favorites[i]._id === this.props.book._id) {
           alert('This book is already in favorites');

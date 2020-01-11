@@ -21,7 +21,10 @@ class AuthLoader extends React.Component {
 
     axios
       .get('api/users/me', { headers: { 'x-auth-token': token } })
-      .then(res => this.setState({ user: res.data }))
+      .then(res => {
+        this.setState({ user: res.data });
+        axios.defaults.headers.common['x-auth-token'] = token;
+      })
       .catch(err => {
         localStorage.removeItem('status');
         console.log(err);

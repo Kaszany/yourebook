@@ -44,6 +44,7 @@ router.post(
     { name: 'PDF', maxCount: 1 },
   ]),
   async (req, res) => {
+    const { _id: userID } = req.user;
     const book = new bookModel.Book({
       title: req.body.title,
       author: req.body.author,
@@ -51,6 +52,7 @@ router.post(
       year: req.body.year,
       bookCover: req.files['bookCover'] ? req.files['bookCover'][0].id : null,
       PDF: req.files['PDF'] ? req.files['PDF'][0].id : null,
+      owner: userID,
     });
 
     try {

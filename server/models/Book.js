@@ -33,6 +33,9 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
   },
   {
     toObject: { virtuals: true },
