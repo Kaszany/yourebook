@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const path = require('path');
 const config = require('config');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -18,6 +19,7 @@ if (!config.get('jwtPrivateKey')) {
   process.exit(1);
 }
 // Create mongo connection
+console.log(process.env);
 const conn = mongoose.createConnection(process.env.DATABASE_URL);
 
 // Init gfs
@@ -25,6 +27,7 @@ let gfsImage;
 
 conn.once('open', () => {
   // Init stream
+
   gfsImage = Grid(conn.db, mongoose.mongo);
   gfsImage.collection('Bookcovers');
 });
@@ -44,6 +47,10 @@ mongoose
 const app = express();
 app.use(express.json());
 
+const publicPath = path.join(__dirname, '..', '/client/build');
+
+app.use('/', express.static(publicPath));
+
 app.use('/uploads', (req, res, next) => {
   eval(`Grid.prototype.findOne = ${Grid.prototype.findOne.toString().replace('nextObject', 'next')}`);
   res.locals.gfs = gfsImage;
@@ -62,6 +69,10 @@ app.use('/api/favourites/', authMiddleware, favourites);
 app.use('/api/books', authMiddleware, books);
 app.use(images);
 app.use(PDFs);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
