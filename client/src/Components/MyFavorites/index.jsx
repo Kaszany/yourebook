@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import axios from 'axios';
-// import FavoritesBookCard from '../FavoritesBookCard';
 import userContext from '../AuthLoader/UserContext';
 
 class MyFavorites extends Component {
@@ -11,7 +10,7 @@ class MyFavorites extends Component {
     if (this.context.favorites.length === 0) {
       alert('You dont have any favorite book');
     } else {
-      const books = await axios.get(`/api/favourites?email=${this.context.email}`);
+      const books = await axios.get(`/api/favourites`);
       console.log(books.data);
       this.props.showBooks(books.data);
     }

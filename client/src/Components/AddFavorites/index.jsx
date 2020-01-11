@@ -16,8 +16,7 @@ class AddFavorites extends Component {
 
   addToFavorites = async e => {
     try {
-      const response = await axios.post(`/api/favourites?id=${this.props.book._id}`);
-
+      await axios.post(`/api/favourites?id=${this.props.book._id}`);
       this.setState({ isFavourite: true });
       const { favorites } = this.context;
       favorites.push(this.props.book.id);
@@ -29,8 +28,7 @@ class AddFavorites extends Component {
 
   removeFromFavorites = async e => {
     try {
-      const response = await axios.delete(`/api/favourites?id=${this.props.book._id}`);
-
+      await axios.delete(`/api/favourites?id=${this.props.book._id}`);
       this.setState({ isFavourite: false });
       const { favorites } = this.context;
       favorites.splice(favorites.indexOf(this.props.book.id), 1);
