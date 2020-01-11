@@ -37,7 +37,16 @@ class Home extends Component {
       <>
         <div
           className="ui rail"
-          style={{ height: '200px', width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '-1' }}
+          style={{
+            height: '200px',
+            width: '100%',
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            zIndex: '-1',
+            borderColor: 'orange',
+            border: '10px',
+          }}
         >
           <div className="segment-background"></div>
           <div className="lightning-background flashit">

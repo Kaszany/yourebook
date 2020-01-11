@@ -1,5 +1,11 @@
 body {
   overflow-y: hidden;
+  background-image: url('./interlaced.png');
+  background-repeat: repeat;
+}
+
+.form {
+  background: transparent;
 }
 
 .entrance-center {
@@ -77,6 +83,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -2;
+  border-bottom: 3px  solid;
 }
 
 .lightning-background {
@@ -94,6 +101,7 @@ body {
   -o-filter: brightness(3);
   -moz-filter: brightness(3);
   z-index: -1;
+
 }
 
 .flashit {

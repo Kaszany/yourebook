@@ -6,23 +6,25 @@ const FavoritesBookCard = ({ book, favorites, modalFavoritesClose }) => {
   
   return (
     <>
-      <Card color="blue" key={book._id}>
+      <Card color="red" key={book._id}>
         <Card.Content>
           {imgURL && <Image floated="right" size="tiny" src={imgURL} />}
           <Card.Header>{title}</Card.Header>
           <Card.Meta>{author}</Card.Meta>
           <Card.Meta>{year}</Card.Meta>
+          </Card.Content>
+          <Card.Content extra>
           <Modal
             size={'large'}
             trigger={
               <Button
                 type="submit"
                 size="tiny"
-                color="blue"
+                color="red"
                 icon="redo"
                 labelPosition="right"
-                content="Show me this book"
-                floated="right"
+                content="Show"
+                floated="left"
               />
             }
           >

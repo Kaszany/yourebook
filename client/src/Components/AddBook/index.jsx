@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Button, Form, Input, Modal, Icon, Select } from 'semantic-ui-react';
 import axios from 'axios';
 import genreOptions from '../../utils/genreOptions';
-import '../../App.css';
 import getToken from '../../utils/getToken';
+import getEmail from '../../utils/getEmail';
 class AddBook extends Component {
   constructor() {
     super();
@@ -36,7 +36,10 @@ class AddBook extends Component {
     });
   };
 
+
+
   handleSubmit = async e => {
+
     e.preventDefault();
     const { title, author, year, genre, bookCover, PDF } = this.state;
     const bookFormData = new FormData();
@@ -46,6 +49,7 @@ class AddBook extends Component {
     bookFormData.set('genre', genre);
     bookFormData.set('bookCover', bookCover);
     bookFormData.set('PDF', PDF);
+    bookFormData.set('email', getEmail());
     const headers = {
       'Content-Type': 'multipart/form-data',
       'x-auth-token': getToken(),
