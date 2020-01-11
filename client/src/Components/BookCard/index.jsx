@@ -8,7 +8,7 @@ import DeleteBook from '../DeleteBook';
 import AddFavorites from '../AddFavorites';
 import BookEdition from '../BookEdition';
 
-const BookCard = ({ book, favorites, removeBook }) => {
+const BookCard = ({ book, removeBook }) => {
   const { owner, title, author, genre, year, imgURL } = book;
   const [PDFResponse, setResponse] = useState('');
   const { _id: userID } = useContext(userContext);
@@ -77,8 +77,8 @@ const BookCard = ({ book, favorites, removeBook }) => {
               </Modal.Description>
             </Modal.Content>
             <Modal.Actions style={{ padding: '0' }}>
-              <AddFavorites book={book} favorites={favorites}></AddFavorites>
-              <BookEdition book={book} favorites={favorites} disabled={!userIsOwner}></BookEdition>
+              <AddFavorites book={book}></AddFavorites>
+              <BookEdition book={book} disabled={!userIsOwner}></BookEdition>
               {PDFResponse === 'Your download should begin in a second' ? (
                 <h4 style={{ color: 'green', display: 'flex', justifyContent: 'center', margin: '10px 0 0 0' }}>
                   {PDFResponse}

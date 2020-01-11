@@ -11,7 +11,6 @@ import BookCard from '../Components/BookCard';
 class Home extends Component {
   state = {
     books: [],
-    favorites: [],
     modalIsOpen: false,
   };
 
@@ -73,14 +72,7 @@ class Home extends Component {
             <Modal.Content>
               <Card.Group itemsPerRow={3}>
                 {this.state.books.map(book => {
-                  return (
-                    <BookCard
-                      key={book._id}
-                      book={book}
-                      removeBook={this.removeBook}
-                      favorites={this.state.favorites}
-                    />
-                  );
+                  return <BookCard key={book._id} book={book} removeBook={this.removeBook} />;
                 })}
               </Card.Group>
             </Modal.Content>
