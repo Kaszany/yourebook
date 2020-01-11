@@ -29,7 +29,7 @@ class SearchForm extends Component {
       const headers = {
         'x-auth-token': getToken()
       };
-      const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}&email=${getEmail()}`, {
+      const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`, {
         headers: headers
       });
       const data = await response.json();
