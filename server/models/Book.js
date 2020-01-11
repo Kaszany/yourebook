@@ -32,6 +32,11 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+
+  email: {
+    type: String,
+    required:  false
+  }
 });
 
 const Book = mongoose.model('Book', bookSchema);

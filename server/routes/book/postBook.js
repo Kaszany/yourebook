@@ -52,6 +52,7 @@ router.post(
       year: req.body.year,
       bookCover: req.files['bookCover'] ? req.files['bookCover'][0].id : null,
       PDF: req.files['PDF'] ? req.files['PDF'][0].id : null,
+      email: req.body.email
     });
 
     try {

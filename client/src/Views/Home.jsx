@@ -8,6 +8,7 @@ import BookCard from '../Components/BookCard';
 // import NavBar from '../Components/NavBar';
 import { Link } from 'react-router-dom';
 
+
 class Home extends Component {
   state = {
     findBooks: [],
@@ -59,7 +60,7 @@ class Home extends Component {
       <>
         <div
           className="ui rail"
-          style={{ height: '200px', width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '-1' }}
+          style={{ height: '200px', width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '-1', borderColor:'orange', border:'10px' }}
         >
           <div className="segment-background"></div>
           <div className="lightning-background flashit">
@@ -88,7 +89,7 @@ class Home extends Component {
           </div> */}
         </div>
 
-        <div style={{ backgroundColor: 'white', marginTop: '5%' }}>
+        <div style={{marginTop: '5%' }}>
           <SearchForm findData={this.findData} handleOpen={this.handleOpen} />
           <div style={{ marginLeft: '450px', width: '100%', position: 'relative', top: '-55px' }}>
             <BookElement showAllData={this.showAllData} handleShowOpen={this.handleShowOpen} />

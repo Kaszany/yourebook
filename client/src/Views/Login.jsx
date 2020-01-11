@@ -5,7 +5,7 @@ import RegisterForm from '../Components/Login/Register'
 const Login = () => {
   return (  
     <div>
-        <div style={{marginLeft: '55%', marginTop: '14px', display: 'flex', justifyItems: 'right'}}>
+        <div style={{marginTop: '14px', display: 'flex', justifyContent: 'center'}}>
           <LoginForm />
           <RegisterForm />
         </div>

@@ -3,7 +3,7 @@ import { Form, Input, Button, Select } from 'semantic-ui-react';
 import genreOptions from '../../utils/genreOptions';
 import getToken from '../../utils/getToken';
 import {withRouter} from 'react-router-dom';
-
+import getEmail from '../../utils/getEmail';
 class SearchForm extends Component {
   constructor() {
     super();
@@ -13,6 +13,7 @@ class SearchForm extends Component {
       year: '',
       genre: '',
       books: [],
+      email: null,
       error: false
     };
   }
@@ -28,7 +29,7 @@ class SearchForm extends Component {
       const headers = {
         'x-auth-token': getToken()
       };
-      const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`, {
+      const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}&email=${getEmail()}`, {
         headers: headers
       });
       const data = await response.json();
@@ -48,6 +49,7 @@ class SearchForm extends Component {
         this.props.handleOpen();
       }
     } catch (err) {
+      console.log(err);
       this.setState({ error: true})
       this.props.history.push('/login');
     } 
@@ -57,7 +59,7 @@ class SearchForm extends Component {
   render() {
   if(this.state.error) { 
     return <Error />
-  }
+  } else 
   return (
       <Form style={{ marginTop: '30px' }}>
         <Form.Field>
