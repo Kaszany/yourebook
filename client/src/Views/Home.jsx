@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Modal, Card, Button, Icon } from 'semantic-ui-react';
+import { Modal, Card, Button, Icon, Container } from 'semantic-ui-react';
 
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
@@ -45,7 +45,7 @@ class Home extends Component {
             <Icon name="bolt" size="massive"></Icon>
           </div>
         </div>
-        <div style={{ marginTop: '215px', backgroudColor: 'white' }}>
+        <div style={{ marginTop: '215px' }}>
           <div style={{ marginLeft: '60%', display: 'flex', justifyContent: 'space-evenly' }}>
             <Button
               className="ui yellow button big"
@@ -60,24 +60,25 @@ class Home extends Component {
             <MyFavorites showBooks={this.showBooks} />
           </div>
         </div>
+        <Container>
+          <div style={{ backgroundColor: 'white', marginTop: '5%' }}>
+            <SearchForm showBooks={this.showBooks} handleOpen={this.handleOpen} />
+            <div style={{ marginLeft: '450px', width: '100%', position: 'relative', top: '-55px' }}>
+              <BookElement showBooks={this.showBooks} />
+              <AddBook />
+            </div>
 
-        <div style={{ backgroundColor: 'white', marginTop: '5%' }}>
-          <SearchForm showBooks={this.showBooks} handleOpen={this.handleOpen} />
-          <div style={{ marginLeft: '450px', width: '100%', position: 'relative', top: '-55px' }}>
-            <BookElement showBooks={this.showBooks} />
-            <AddBook />
+            <Modal size={'large'} open={this.state.modalIsOpen} onClose={this.handleClose}>
+              <Modal.Content>
+                <Card.Group itemsPerRow={3}>
+                  {this.state.books.map(book => {
+                    return <BookCard key={book._id} book={book} removeBook={this.removeBook} />;
+                  })}
+                </Card.Group>
+              </Modal.Content>
+            </Modal>
           </div>
-
-          <Modal size={'large'} open={this.state.modalIsOpen} onClose={this.handleClose}>
-            <Modal.Content>
-              <Card.Group itemsPerRow={3}>
-                {this.state.books.map(book => {
-                  return <BookCard key={book._id} book={book} removeBook={this.removeBook} />;
-                })}
-              </Card.Group>
-            </Modal.Content>
-          </Modal>
-        </div>
+        </Container>
       </>
     );
   }

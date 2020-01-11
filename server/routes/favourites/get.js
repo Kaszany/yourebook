@@ -6,7 +6,6 @@ const { Book } = require('../../models/Book');
 
 router.get('/', async (req, res) => {
   const { _id } = req.user;
-  console.log(req.user);
   try {
     const user = await User.findOne({ _id });
     if (!user) throw new Error('User Not Found!');
