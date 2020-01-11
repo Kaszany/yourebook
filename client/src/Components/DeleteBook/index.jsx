@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Card, Modal, Header, Form } from 'semantic-ui-react';
 
-
 class DeleteBook extends Component {
   constructor() {
     super();
     this.state = {
       modalOpen: false,
+      popupMessage: null,
     };
   }
 
@@ -27,13 +27,17 @@ class DeleteBook extends Component {
       .delete(`/api/books/${id}`)
       .then(response => {
         if (response.data === null) {
-          alert('This book has been deleted  already');
+          this.setState({ popupMessage: 'This book has been deleted already' });
         } else {
-          setTimeout(this.removeBookFromList, 1000)
+          this.setState({ popupMessage: 'This book has been removed' });
+          console.log('12');
+          setTimeout(this.removeBookFromList, 1000);
         }
       })
       .catch(error => {
-        alert({ errorMessage: error.response });
+        console.error(error);
+        this.setState({ popupMessage: "Couldn't remove this book" });
+        setTimeout(() => this.setState({ popupMessage: null }), 1500);
       });
   };
 
@@ -62,20 +66,10 @@ class DeleteBook extends Component {
               <Button style={{ marginLeft: '0px' }} onClick={this.handleClose}>
                 Leave
               </Button>
-              <Modal
-                size={'small'}
-                trigger={
-                  <Button
-                    type="submit"
-                    color="red"
-                    content="Delete book"
-                    floated="right"
-                    onClick={this.deleteBook}
-                  />
-                }
-              >
+              <Button type="submit" color="red" content="Delete book" floated="right" onClick={this.deleteBook} />
+              <Modal size={'small'} open={!!this.state.popupMessage}>
                 <Card fluid color="red">
-                  <Card.Content header="This book has been removed" textAlign="center" />
+                  <Card.Content header={this.state.popupMessage} textAlign="center" />
                 </Card>
               </Modal>
             </Modal.Actions>

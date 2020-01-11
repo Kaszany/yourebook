@@ -1,9 +1,9 @@
-import React, { Component, Error } from 'react';
-import { Form, Input, Button, Select } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Form, Input, Button, Select, Modal } from 'semantic-ui-react';
 import genreOptions from '../../utils/genreOptions';
 import getToken from '../../utils/getToken';
-import {withRouter} from 'react-router-dom';
-import getEmail from '../../utils/getEmail';
+import { withRouter } from 'react-router-dom';
+
 class SearchForm extends Component {
   constructor() {
     super();
@@ -12,9 +12,7 @@ class SearchForm extends Component {
       author: '',
       year: '',
       genre: '',
-      books: [],
-      email: null,
-      error: false
+      error: false,
     };
   }
 
@@ -27,10 +25,10 @@ class SearchForm extends Component {
       e.preventDefault();
       const { title, author, year, genre } = this.state;
       const headers = {
-        'x-auth-token': getToken()
+        'x-auth-token': getToken(),
       };
       const response = await fetch(`/api/books?title=${title}&author=${author}&year=${year}&genre=${genre}`, {
-        headers: headers
+        headers: headers,
       });
       const data = await response.json();
       if (data.length === 0) {
@@ -42,25 +40,22 @@ class SearchForm extends Component {
         this.state.genre === ''
       ) {
         alert('You have not selected any search options');
-      } else if(data) {
-        //data.length = 5; - gdy chcę ograniczyć ilość
-        this.setState({ books: data });
-        this.props.findData(data);
-        this.props.handleOpen();
+      } else if (data) {
+        console.log(data);
+        this.props.showBooks(data);
       }
     } catch (err) {
-      console.log(err);
-      this.setState({ error: true})
-      this.props.history.push('/login');
-    } 
-
+      console.error(err);
+      this.setState({ error: true });
+      // this.props.history.push('/login');
+    }
   };
 
   render() {
-  if(this.state.error) { 
-    return <Error />
-  } else 
-  return (
+    if (this.state.error) {
+      return <Modal open={true} content={'Error, press F13 to continue or try refreshing page'} />;
+    }
+    return (
       <Form style={{ marginTop: '30px' }}>
         <Form.Field>
           <div className="ui labeled input">

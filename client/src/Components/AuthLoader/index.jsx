@@ -1,25 +1,30 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import {Loader, Dimmer} from 'semantic-ui-react'
-import getToken from '../../utils/getToken'
+import { Loader, Dimmer } from 'semantic-ui-react';
+
+import getToken from '../../utils/getToken';
+import { UserContextProvider } from './UserContext';
 class AuthLoader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      valid: null,
+      user: null,
     };
   }
   componentDidMount() {
     const token = getToken();
     if (!token) {
       console.log('brak tokena');
-        this.props.history.push('/login');
+      this.props.history.push('/login');
     }
 
     axios
       .get('api/users/me', { headers: { 'x-auth-token': token } })
-      .then(res => this.setState({ valid: res.data }))
+      .then(res => {
+        this.setState({ user: res.data });
+        axios.defaults.headers.common['x-auth-token'] = token;
+      })
       .catch(err => {
         localStorage.removeItem('status');
         console.log(err);
@@ -28,14 +33,14 @@ class AuthLoader extends React.Component {
   }
 
   render() {
-    if (this.state.valid === null) {
+    if (this.state.user === null) {
       return (
         <Dimmer active>
           <Loader size="massive">Please wait...</Loader>
-          </Dimmer>
+        </Dimmer>
       );
     }
-    return <div>{this.props.children}</div>;
+    return <UserContextProvider value={this.state.user}>{this.props.children}</UserContextProvider>;
   }
 }
 

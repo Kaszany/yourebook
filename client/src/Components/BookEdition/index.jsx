@@ -55,7 +55,6 @@ class BookEdition extends Component {
       console.log(err);
     });
     this.handleClose();
-    this.props.handleShowClose();
   };
 
   render() {
@@ -72,6 +71,7 @@ class BookEdition extends Component {
             onClick={this.handleOpen}
             style={{ marginLeft: '1px' }}
             floated="left"
+            disabled={this.props.disabled}
           />
         }
         open={this.state.modalOpen}

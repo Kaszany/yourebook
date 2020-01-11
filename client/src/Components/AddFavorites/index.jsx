@@ -1,42 +1,74 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import axios from 'axios';
+
+import userContext from '../AuthLoader/UserContext';
 
 class AddFavorites extends Component {
-  
-    state = { disabled: false,
-              isBookThere: 1
-    };
+  static contextType = userContext;
 
-    addToFavorites = async (e) => { 
-         for (var i = 0; i < this.props.favorites.length; i++ ){
-         if (this.props.favorites[i]._id === this.props.book._id){
-             alert("This book is already in favorites");
-             this.setState({disabled:true})
-             await this.setState( {isBookThere: 2} )
-         }
-        }
-        if (this.state.isBookThere === 1){    
-        this.props.favorites.push(this.props.book);
-        this.setState({disabled:true})
-        }
-    };
+  constructor(props, context) {
+    super(props, context);
+    const { favorites } = this.context;
+    const { id } = this.props.book;
+    this.state = { isFavourite: favorites.includes(id) };
+  }
 
-    render() {
-     return (
+  addToFavorites = async e => {
+    try {
+      await axios.post(`/api/favourites?id=${this.props.book._id}`);
+      this.setState({ isFavourite: true });
+      const { favorites } = this.context;
+      favorites.push(this.props.book.id);
+    } catch (ex) {
+      console.error(ex);
+      alert('Book not added. Please try later.');
+    }
+  };
+
+  removeFromFavorites = async e => {
+    try {
+      await axios.delete(`/api/favourites?id=${this.props.book._id}`);
+      this.setState({ isFavourite: false });
+      const { favorites } = this.context;
+      favorites.splice(favorites.indexOf(this.props.book.id), 1);
+    } catch (ex) {
+      console.error(ex);
+      alert('Book not added. Please try later.');
+    }
+  };
+
+  render() {
+    if (this.state.isFavourite) {
+      return (
         <>
-              <Button
-                size="massive"
-                color="red"
-                icon="heart"
-                labelPosition="right"
-                label="Add to favorites"
-                onClick={this.addToFavorites}
-                disabled = {this.state.disabled}
-                floated="right"
-              />   
+          <Button
+            size="massive"
+            color="red"
+            icon="undo alternate"
+            labelPosition="right"
+            label="Remove from favorites"
+            onClick={this.removeFromFavorites}
+            floated="right"
+          />
         </>
-    );
-}
+      );
+    } else {
+      return (
+        <>
+          <Button
+            size="massive"
+            color="red"
+            icon="heart"
+            labelPosition="right"
+            label="Add to favorites"
+            onClick={this.addToFavorites}
+            floated="right"
+          />
+        </>
+      );
+    }
+  }
 }
 
 export default AddFavorites;
