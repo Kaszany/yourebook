@@ -6,7 +6,6 @@ const { User } = require('../../models/User');
 router.post('/', async (req, res) => {
   const { id: bookID } = req.query;
   const { _id: userID } = req.user;
-  console.log(userID, bookID);
   try {
     const user = await User.findOneAndUpdate({ _id: userID }, { $addToSet: { favorites: bookID } });
     if (!user) throw new Error('User Not Found!');
