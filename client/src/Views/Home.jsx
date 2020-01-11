@@ -70,7 +70,7 @@ class Home extends Component {
           </div>
         </div>
         <Container>
-          <div style={{ backgroundColor: 'white', marginTop: '5%' }}>
+          <div style={{ marginTop: '5%' }}>
             <SearchForm showBooks={this.showBooks} handleOpen={this.handleOpen} />
             <div style={{ marginLeft: '450px', width: '100%', position: 'relative', top: '-55px' }}>
               <BookElement showBooks={this.showBooks} />
