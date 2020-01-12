@@ -5,6 +5,7 @@ import { Modal, Card, Button, Icon, Container } from 'semantic-ui-react';
 import SearchForm from '../Components/SearchForm';
 import AddBook from '../Components/AddBook';
 import MyFavorites from '../Components/MyFavorites';
+import MyBooks from '../Components/MyBooks';
 import BookElement from '../Components/BookElement';
 import BookCard from '../Components/BookCard';
 
@@ -57,6 +58,8 @@ class Home extends Component {
         </div>
         <div style={{ marginTop: '215px' }}>
           <div style={{ marginLeft: '60%', display: 'flex', justifyContent: 'space-evenly' }}>
+            <MyFavorites showBooks={this.showBooks} />
+            <MyBooks showBooks={this.showBooks} />
             <Button
               className="ui yellow button big"
               name="logout"
@@ -67,7 +70,6 @@ class Home extends Component {
             >
               <i className="external alternate icon"></i>Log out
             </Button>
-            <MyFavorites showBooks={this.showBooks} />
           </div>
         </div>
         <Container>
