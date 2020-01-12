@@ -32,6 +32,8 @@ class AddFavorites extends Component {
       this.setState({ isFavourite: false });
       const { favorites } = this.context;
       favorites.splice(favorites.indexOf(this.props.book.id), 1);
+
+      this.props.removeBook && this.props.removeBook(this.props.book.id);
     } catch (ex) {
       console.error(ex);
       alert('Book not added. Please try later.');

@@ -11,8 +11,7 @@ class MyFavorites extends Component {
       alert('You dont have any favorite book');
     } else {
       const books = await axios.get(`/api/favourites`);
-      console.log(books.data);
-      this.props.showBooks(books.data);
+      this.props.showBooks(books.data, 'Favourites');
     }
   };
 

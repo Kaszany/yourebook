@@ -11,11 +11,12 @@ import BookCard from '../Components/BookCard';
 class Home extends Component {
   state = {
     books: [],
+    viewName: null,
     modalIsOpen: false,
   };
 
-  showBooks = books => {
-    this.setState({ modalIsOpen: true, books });
+  showBooks = (books, viewName = null) => {
+    this.setState({ modalIsOpen: true, books, viewName });
   };
 
   removeBook = id => {
@@ -81,7 +82,9 @@ class Home extends Component {
               <Modal.Content>
                 <Card.Group itemsPerRow={3}>
                   {this.state.books.map(book => {
-                    return <BookCard key={book._id} book={book} removeBook={this.removeBook} />;
+                    return (
+                      <BookCard key={book._id} book={book} removeBook={this.removeBook} view={this.state.viewName} />
+                    );
                   })}
                 </Card.Group>
               </Modal.Content>

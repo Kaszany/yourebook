@@ -19,7 +19,6 @@ if (!config.get('jwtPrivateKey')) {
   process.exit(1);
 }
 // Create mongo connection
-console.log(process.env);
 const conn = mongoose.createConnection(process.env.DATABASE_URL);
 
 // Init gfs
