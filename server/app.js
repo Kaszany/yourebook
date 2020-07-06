@@ -41,7 +41,7 @@ conn.once('open', () => {
 mongoose
   .connect(process.env.DATABASE_URL, { useNewUrlParser: true })
   .then(() => console.log('Connected to db'))
-  .catch(err => console.error('Cant connect' + err));
+  .catch((err) => console.error('Cant connect' + err));
 
 const app = express();
 app.use(express.json());
@@ -63,6 +63,7 @@ app.use('/api/PDFs.files', (req, res, next) => {
 });
 
 app.use('/api/auth', auth);
+
 app.use('/api/users', users);
 app.use('/api/favourites/', authMiddleware, favourites);
 app.use('/api/books', authMiddleware, books);
